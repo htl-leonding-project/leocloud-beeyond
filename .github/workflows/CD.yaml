@@ -1,5 +1,12 @@
 name: CD
 
+on:
+  push:
+    branches: [ master ]
+
+  workflow_dispatch:
+
+
 jobs:
   build_backend:
     name: Build backend
