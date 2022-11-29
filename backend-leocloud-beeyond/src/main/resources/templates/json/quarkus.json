@@ -1,0 +1,33 @@
+{
+  "name": "Simple Quarkus Deployment",
+  "description": "Deployment of a Quarkus Application",
+  "content": "quarkus.yaml",
+  "deleted": false,
+  "fields": [
+    {
+      "label": "Name",
+      "wildcard": "name",
+      "description": "Name of the service and deployment"
+    },
+    {
+      "label": "Image",
+      "wildcard": "image",
+      "description": "Image name"
+    },
+    {
+      "label": "Database URL",
+      "wildcard": "db-url",
+      "description": "URL to the database"
+    },
+    {
+      "label": "Database Username",
+      "wildcard": "db-user",
+      "description": "Database user"
+    },
+    {
+      "label": "Database Password",
+      "wildcard": "db-password",
+      "description": "Password for the specified user"
+    }
+  ]
+}

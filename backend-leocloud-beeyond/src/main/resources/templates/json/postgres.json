@@ -1,0 +1,28 @@
+{
+  "name": "Postgres DB",
+  "description": "Deployment and service for a postgres database",
+  "content": "postgres.yaml",
+  "deleted": false,
+  "fields": [
+    {
+      "label": "Name",
+      "wildcard": "name",
+      "description": "Name of the service and deployment"
+    },
+    {
+      "label": "Database",
+      "wildcard": "db",
+      "description": "Database name"
+    },
+    {
+      "label": "Password",
+      "wildcard": "password",
+      "description": "Password for the specified user"
+    },
+    {
+      "label": "User",
+      "wildcard": "user",
+      "description": "User name"
+    }
+  ]
+}
