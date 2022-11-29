@@ -19,7 +19,11 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className={"w-2/5"}></div>
+            <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
+                <ListItem name={"Test1"}/>
+                <ListItem name={"Test2"}/>
+                <ListItem name={"Test3"}/>
+            </div>
         </div>
     )
 }
