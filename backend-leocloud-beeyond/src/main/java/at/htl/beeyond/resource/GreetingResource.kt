@@ -1,4 +1,4 @@
-package at.htl.beeyond
+package at.htl.beeyond.resource
 
 import javax.ws.rs.GET
 import javax.ws.rs.Path
