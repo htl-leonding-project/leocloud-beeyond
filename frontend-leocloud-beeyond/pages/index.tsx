@@ -17,8 +17,10 @@ export default function Home() {
     if (!selectedTemplate) return;
 
     if (direction == "right") {
-      selectedTemplates.push(selectedTemplate);
-      setSelectedTemplates(selectedTemplates);
+      if (!selectedTemplates.includes(selectedTemplate)) {
+        selectedTemplates.push(selectedTemplate);
+        setSelectedTemplates(selectedTemplates);
+      }
     } else {
       setSelectedTemplates(
         selectedTemplates.filter(
