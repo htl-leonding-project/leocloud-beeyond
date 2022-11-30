@@ -78,7 +78,7 @@
     </dependency>
   </dependencies>
   <build>
-    <sourceDirectory>src/main/java</sourceDirectory>
+    <sourceDirectory>src/main/kotlin</sourceDirectory>
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
     <plugins>
       <plugin>
