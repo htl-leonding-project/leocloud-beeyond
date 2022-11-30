@@ -46,7 +46,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Quarkus Application
-        run: ./mvnw package
+        run: |
+          chmod +x ./mvnw
+          ./mvnw package
 
       - name: Build and push
         uses: docker/build-push-action@v3
