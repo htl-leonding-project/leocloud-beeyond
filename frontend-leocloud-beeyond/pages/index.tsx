@@ -12,7 +12,7 @@ export default function Home() {
             <div className={"w-1/5 flex items-center justify-center h-full"}>
                 <div className={"flex-row"}>
                     <div className={"cursor-pointer"}>
-                        <Image src={"/assets/arrow-left.svg"} alt={"arrow-left"} width={48} height={48}/>
+                        <Image src={"/assets/arrow-left.svg"} alt={"arrow-left"} width={48} height={48} priority={true}/>
                     </div>
                     <div className={"cursor-pointer"}>
                         <Image src={"/assets/arrow-right.svg"} alt={"arrow-right"} width={48} height={48}/>
