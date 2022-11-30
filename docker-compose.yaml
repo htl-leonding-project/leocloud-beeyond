@@ -1,0 +1,11 @@
+version: '3'
+services:
+  beeyond-db:
+    container_name: beeyond-db
+    image: postgres:13.0
+    environment:
+      POSTGRES_USER: beeyond
+      POSTGRES_PASSWORD: beeyond
+      POSTGRES_DB: beeyond_db
+    ports:
+      - 5432:5432
