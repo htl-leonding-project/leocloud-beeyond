@@ -25,13 +25,10 @@ public class Template extends PanacheEntityBase {
     @OneToMany(mappedBy = "template", cascade = CascadeType.ALL)
     private List<TemplateField> fields = new LinkedList<>();
 
-    private Boolean deleted;
-
     public Template(TemplateDto templateDto) {
         this.name = templateDto.getName();
         this.description = templateDto.getDescription();
         this.content = templateDto.getContent();
-        this.deleted = false;
 
         this.fields = templateDto.getFields()
                 .stream()
@@ -81,14 +78,6 @@ public class Template extends PanacheEntityBase {
 
     public void setFields(List<TemplateField> fields) {
         this.fields = fields;
-    }
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
     }
 }
 

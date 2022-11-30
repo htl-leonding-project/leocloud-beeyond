@@ -2,7 +2,6 @@
   "name": "Simple Quarkus Deployment",
   "description": "Deployment of a Quarkus Application",
   "content": "quarkus.yaml",
-  "deleted": false,
   "fields": [
     {
       "label": "Name",

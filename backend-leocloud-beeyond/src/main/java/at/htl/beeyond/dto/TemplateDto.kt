@@ -14,7 +14,6 @@ class TemplateDto(
     @field:Size(max = 255) var description: String? = null,
     @field:NotBlank var content: String? = null,
     @field:Valid var fields: List<TemplateFieldDto> = LinkedList(),
-    @set:JsonbTransient var deleted: Boolean? = null
 ) {
     constructor(template: Template) : this(
         template.id,
@@ -22,7 +21,6 @@ class TemplateDto(
         template.description,
         template.content,
         template.fields.map { TemplateFieldDto(it) }.toList(),
-        template.deleted
     )
 
     override fun toString(): String {

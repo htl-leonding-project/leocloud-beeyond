@@ -2,7 +2,6 @@
   "name": "Postgres DB",
   "description": "Deployment and service for a postgres database",
   "content": "postgres.yaml",
-  "deleted": false,
   "fields": [
     {
       "label": "Name",
