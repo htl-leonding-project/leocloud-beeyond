@@ -2,6 +2,7 @@ import ListItem from "../components/ListItem";
 import Image from "next/image";
 import useSWR from 'swr'
 import { Template } from "../models/template";
+import { useState } from "react";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const url = `${process.env.API_URL}/template`;
@@ -9,11 +10,13 @@ const url = `${process.env.API_URL}/template`;
 export default function Home() {
     const { data } = useSWR<Template[]>(url, fetcher);
 
+    const [selectedTemplate, setSelectedTemplate] = useState<Template>();
+
     return (
         <div className={"flex h-screen p-8"}>
             <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
                 {
-                    data?.map(template => <ListItem key={template.id} name={template.name}/>)
+                    data?.map(template => <ListItem key={template.id} template={template} selectedTemplate={selectedTemplate!} setSelectedTemplate={setSelectedTemplate}/>)
                 }
             </div>
             <div className={"w-1/5 flex-col h-full"}>
@@ -31,9 +34,7 @@ export default function Home() {
                 </div>
             </div>
             <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
-                <ListItem name={"Test1"}/>
-                <ListItem name={"Test2"}/>
-                <ListItem name={"Test3"}/>
+
             </div>
         </div>
     )
