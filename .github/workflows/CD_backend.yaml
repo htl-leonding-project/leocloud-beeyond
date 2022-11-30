@@ -3,10 +3,11 @@ name: CD
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'backend-leocloud-beeyond/**'
 
 
 jobs:
-
   build_backend:
     name: Build backend
     defaults:
