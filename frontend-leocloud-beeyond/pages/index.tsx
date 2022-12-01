@@ -14,7 +14,24 @@ export default function Home() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template>();
 
   const downloadDeployment = () => {
-    console.log(buildDeploymentContent());
+    downloadDeploymentFile(buildDeploymentContent());
+  };
+
+  const downloadDeploymentFile = (content: string) => {
+    let file = new Blob([content], { type: ".yaml" });
+    let url = window.URL.createObjectURL(file);
+
+    let a = document.createElement("a");
+    a.setAttribute("style", "display: none");
+    a.href = url;
+    a.download = "deployment.yaml";
+
+    document.body.appendChild(a);
+
+    a.click();
+    a.remove();
+
+    window.URL.revokeObjectURL(url);
   };
 
   const buildDeploymentContent = (): string => {
