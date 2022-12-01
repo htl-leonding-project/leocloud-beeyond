@@ -13,6 +13,24 @@ export default function Home() {
   const [selectedTemplates, setSelectedTemplates] = useState<Template[]>([]);
   const [selectedTemplate, setSelectedTemplate] = useState<Template>();
 
+  const downloadDeployment = () => {
+    console.log(buildDeploymentContent());
+  };
+
+  const buildDeploymentContent = (): string => {
+    let content = "";
+
+    for (let i = 0; i < selectedTemplates.length; i++) {
+      content += selectedTemplates[i].content;
+
+      if (i != selectedTemplates.length - 1) {
+        content += "\n---\n";
+      }
+    }
+
+    return content;
+  };
+
   const selectTemplate = (direction: string) => {
     if (!selectedTemplate) return;
 
@@ -78,6 +96,7 @@ export default function Home() {
             className={
               "font-medium text-white bg-primary rounded-lg shadow-md hover:bg-secondary hover:text-black p-4"
             }
+            onClick={downloadDeployment}
           >
             DOWNLOAD
           </button>
