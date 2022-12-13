@@ -1,5 +1,4 @@
 import { Template } from "../models/template";
-import ListItem from "./ListItem";
 
 function FormElement({ label }: { label: string }) {
   return (
@@ -15,19 +14,20 @@ function FormElement({ label }: { label: string }) {
   );
 }
 
-export function WildCardForm({ selectedTemplates }: { selectedTemplates: Template[] }) {
+export function WildCardForm({
+  selectedTemplate,
+}: {
+  selectedTemplate: Template;
+}) {
   return (
-    <div className={"h-full"}>
+    <div className={"h-full overflow-auto"}>
+      <hr />
       <form className="mt-6">
-        {selectedTemplates.map((template) => (
-            <div>
-              <h1 className={"block text-sm font-semibold text-gray-800 mx-2"}>{template.name}</h1>
-              {template.fields.map((field) => (
-                <FormElement label={field.label}></FormElement>
-              ))}
-            </div>
-          )
-        )}
+        <div>
+          {selectedTemplate.fields.map((field) => (
+            <FormElement label={field.label}></FormElement>
+          ))}
+        </div>
       </form>
     </div>
   );
