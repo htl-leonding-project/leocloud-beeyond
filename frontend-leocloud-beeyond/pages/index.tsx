@@ -3,7 +3,6 @@ import Image from "next/image";
 import useSWR from "swr";
 import { Template } from "../models/template";
 import { useState } from "react";
-import { FormData } from "next/dist/compiled/@edge-runtime/primitives/fetch";
 import { WildCardForm } from "../components/WildcardForm";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -122,8 +121,18 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={"h-full w-2/5 bg-white shadow-md rounded-lg overflow-auto flex flex-col"}>
-        <div className={"h-full bg-white shadow-md rounded-lg overflow-auto"}>
+      <div
+        className={
+          "h-full w-2/5 bg-white shadow-md rounded-lg overflow-auto flex flex-col"
+        }
+      >
+        <div
+          className={
+            selectedTemplates.includes(selectedTemplate!)
+              ? "h-full bg-white rounded-lg overflow-auto"
+              : "h-full bg-white rounded-lg overflow-auto shadow-md"
+          }
+        >
           {selectedTemplates.map((template) => (
             <ListItem
               key={template.id}
@@ -133,9 +142,9 @@ export default function Home() {
             />
           ))}
         </div>
-        {selectedTemplates.length !== 0 &&
-          <WildCardForm selectedTemplates={selectedTemplates}></WildCardForm>
-        }
+        {selectedTemplates.includes(selectedTemplate!) && (
+          <WildCardForm selectedTemplate={selectedTemplate!}></WildCardForm>
+        )}
       </div>
     </div>
   );
