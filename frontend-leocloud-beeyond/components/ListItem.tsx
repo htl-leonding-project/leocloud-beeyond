@@ -1,10 +1,9 @@
 import { Template } from "../models/template";
-import useStateStore from "../store/store";
+import useStateStore from "../store/stateStore";
 
 export default function ListItem({ template }: { template: Template }) {
-  // @ts-ignore
+
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
-  // @ts-ignore
   const setSelectedTemplate = useStateStore((state) => state.setActiveTemplate);
 
   return (

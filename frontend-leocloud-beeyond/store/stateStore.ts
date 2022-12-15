@@ -4,7 +4,7 @@ import { Template } from "../models/template";
 
 interface StateStore {
   activeTemplate: Template | null;
-  setActiveTemplate: (template: Template) => void;
+  setActiveTemplate: (template: Template | null) => void;
   selectedTemplates: Template[];
   addSelectedTemplate: (template: Template) => void;
   removeSelectedTemplate: (template: Template) => void;
@@ -12,7 +12,7 @@ interface StateStore {
 
 const useStateStore = create<StateStore>((set) => ({
   activeTemplate: null,
-  setActiveTemplate: (template: Template) =>
+  setActiveTemplate: (template: Template | null) =>
     set(() => ({ activeTemplate: template })),
   selectedTemplates: [],
   addSelectedTemplate: (template: Template) =>

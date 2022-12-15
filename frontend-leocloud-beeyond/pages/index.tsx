@@ -3,7 +3,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import { Template } from "../models/template";
 import { WildCardForm } from "../components/WildcardForm";
-import useStateStore from "../store/store";
+import useStateStore from "../store/stateStore";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const url = `${process.env.API_URL}/template`;
@@ -11,22 +11,13 @@ const url = `${process.env.API_URL}/template`;
 export default function Home() {
   const { data } = useSWR<Template[]>(url, fetcher);
 
-  //const [selectedTemplates, setSelectedTemplates] = useState<Template[]>([]);
-  //const [selectedTemplate, setSelectedTemplate] = useState<Template>();
-
-  // @ts-ignore
   const selectedTemplates = useStateStore((state) => state.selectedTemplates);
-  // @ts-ignore
   const addSelectedTemplate = useStateStore((state) => state.addSelectedTemplate);
-  const removeSelectedTemplate = useStateStore(
-    // @ts-ignore
-    (state) => state.removeSelectedTemplate
+  const removeSelectedTemplate = useStateStore((state) => state.removeSelectedTemplate
   );
 
-  // @ts-ignore
-  const selectedTemplate = useStateStore((state) => state.activeTemplate);
-  // @ts-ignore
-  const setSelectedTemplate = useStateStore((state) => state.setActiveTemplate);
+  const activeTemplate = useStateStore((state) => state.activeTemplate);
+  const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent());
@@ -64,25 +55,17 @@ export default function Home() {
   };
 
   const selectTemplate = (direction: string) => {
-    if (!selectedTemplate) return;
+    if (!activeTemplate) return;
 
     if (direction == "right") {
-      if (!selectedTemplates.includes(selectedTemplate)) {
-        //selectedTemplates.push(selectedTemplate);
-        //setSelectedTemplates(selectedTemplates);
-        addSelectedTemplate(selectedTemplate);
+      if (!selectedTemplates.includes(activeTemplate)) {
+        addSelectedTemplate(activeTemplate);
       }
     } else {
-      //setSelectedTemplates(
-      //selectedTemplates.filter(
-      //  (template: Template) => template.id != selectedTemplate.id
-      //);
-      //);
-
-      removeSelectedTemplate(selectedTemplate);
+      removeSelectedTemplate(activeTemplate);
     }
 
-    setSelectedTemplate(undefined);
+    setActiveTemplate(null);
   };
 
   return (
@@ -140,7 +123,7 @@ export default function Home() {
       >
         <div
           className={
-            selectedTemplates.includes(selectedTemplate!)
+            selectedTemplates.includes(activeTemplate!)
               ? "h-full bg-white rounded-lg overflow-auto"
               : "h-full bg-white rounded-lg overflow-auto shadow-md"
           }
@@ -149,7 +132,7 @@ export default function Home() {
             <ListItem key={template.id} template={template} />
           ))}
         </div>
-        {selectedTemplates.includes(selectedTemplate!) && (
+        {selectedTemplates.includes(activeTemplate!) && (
           <WildCardForm></WildCardForm>
         )}
       </div>

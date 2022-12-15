@@ -1,5 +1,5 @@
 import { WildcardField } from "../models/template";
-import useStateStore from "../store/store";
+import useStateStore from "../store/stateStore";
 
 function FormElement({ label }: { label: string }) {
   return (
@@ -16,7 +16,6 @@ function FormElement({ label }: { label: string }) {
 }
 
 export function WildCardForm({}: {}) {
-  // @ts-ignore
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
 
   return (
@@ -24,7 +23,7 @@ export function WildCardForm({}: {}) {
       <hr />
       <form className="mt-6">
         <div>
-          {selectedTemplate.fields.map((field: WildcardField) => (
+          {selectedTemplate?.fields.map((field: WildcardField) => (
             <FormElement key={field.label} label={field.label}></FormElement>
           ))}
         </div>
