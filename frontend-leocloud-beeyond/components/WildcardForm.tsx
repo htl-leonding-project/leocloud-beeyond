@@ -1,6 +1,6 @@
 import { Template, WildcardField } from "../models/template";
 import useStateStore from "../store/stateStore";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function FormElement({
   wildcard,
@@ -11,6 +11,10 @@ function FormElement({
 }) {
   const [value, setValue] = useState(wildcard.value);
   const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
+
+  useEffect(() => {
+    setValue(wildcard.value);
+  }, [wildcard.value]);
 
   return (
     <div className="mb-2 mx-2">
