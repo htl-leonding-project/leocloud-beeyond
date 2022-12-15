@@ -3,7 +3,7 @@ import Image from "next/image";
 import useSWR from "swr";
 import { Template } from "../models/template";
 import { WildCardForm } from "../components/WildcardForm";
-import useStore from "../store/store";
+import useStateStore from "../store/store";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const url = `${process.env.API_URL}/template`;
@@ -15,18 +15,18 @@ export default function Home() {
   //const [selectedTemplate, setSelectedTemplate] = useState<Template>();
 
   // @ts-ignore
-  const selectedTemplates = useStore((state) => state.selectedTemplates);
+  const selectedTemplates = useStateStore((state) => state.selectedTemplates);
   // @ts-ignore
-  const addSelectedTemplate = useStore((state) => state.addSelectedTemplate);
-  const removeSelectedTemplate = useStore(
+  const addSelectedTemplate = useStateStore((state) => state.addSelectedTemplate);
+  const removeSelectedTemplate = useStateStore(
     // @ts-ignore
     (state) => state.removeSelectedTemplate
   );
 
   // @ts-ignore
-  const selectedTemplate = useStore((state) => state.selectedTemplate);
+  const selectedTemplate = useStateStore((state) => state.activeTemplate);
   // @ts-ignore
-  const setSelectedTemplate = useStore((state) => state.setSelectedTemplate);
+  const setSelectedTemplate = useStateStore((state) => state.setActiveTemplate);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent());

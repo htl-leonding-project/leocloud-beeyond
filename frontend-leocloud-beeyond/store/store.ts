@@ -1,21 +1,30 @@
 import create from "zustand";
 import { Template } from "../models/template";
 
-const useStore = create((set) => ({
-  selectedTemplate: null,
-  setSelectedTemplate: (template: Template) =>
-    set(() => ({ selectedTemplate: template })),
 
+interface StateStore {
+  activeTemplate: Template | null;
+  setActiveTemplate: (template: Template) => void;
+  selectedTemplates: Template[];
+  addSelectedTemplate: (template: Template) => void;
+  removeSelectedTemplate: (template: Template) => void;
+}
+
+const useStateStore = create<StateStore>((set) => ({
+  activeTemplate: null,
+  setActiveTemplate: (template: Template) =>
+    set(() => ({ activeTemplate: template })),
   selectedTemplates: [],
   addSelectedTemplate: (template: Template) =>
-    set((state: any) => ({
-      selectedTemplates: [...state.selectedTemplates, template],
+    set((state) => ({
+      selectedTemplates: [...state.selectedTemplates, template]
     })),
   removeSelectedTemplate: (template: Template) =>
-    set((state: any) => ({
+    set((state) => ({
       selectedTemplates: state.selectedTemplates.filter(
         (t: Template) => t.id !== template.id
-      ),
-    })),
+      )
+    }))
 }));
-export default useStore;
+
+export default useStateStore;

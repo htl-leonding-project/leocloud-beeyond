@@ -1,5 +1,5 @@
 import { WildcardField } from "../models/template";
-import useStore from "../store/store";
+import useStateStore from "../store/store";
 
 function FormElement({ label }: { label: string }) {
   return (
@@ -17,7 +17,7 @@ function FormElement({ label }: { label: string }) {
 
 export function WildCardForm({}: {}) {
   // @ts-ignore
-  const selectedTemplate = useStore((state) => state.selectedTemplate);
+  const selectedTemplate = useStateStore((state) => state.activeTemplate);
 
   return (
     <div className={"h-full overflow-auto"}>
