@@ -2,8 +2,8 @@ import ListItem from "../components/ListItem";
 import Image from "next/image";
 import useSWR from "swr";
 import { Template } from "../models/template";
-import { useState } from "react";
 import { WildCardForm } from "../components/WildcardForm";
+import useStore from "../store/store";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const url = `${process.env.API_URL}/template`;
@@ -11,8 +11,22 @@ const url = `${process.env.API_URL}/template`;
 export default function Home() {
   const { data } = useSWR<Template[]>(url, fetcher);
 
-  const [selectedTemplates, setSelectedTemplates] = useState<Template[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<Template>();
+  //const [selectedTemplates, setSelectedTemplates] = useState<Template[]>([]);
+  //const [selectedTemplate, setSelectedTemplate] = useState<Template>();
+
+  // @ts-ignore
+  const selectedTemplates = useStore((state) => state.selectedTemplates);
+  // @ts-ignore
+  const addSelectedTemplate = useStore((state) => state.addSelectedTemplate);
+  const removeSelectedTemplate = useStore(
+    // @ts-ignore
+    (state) => state.removeSelectedTemplate
+  );
+
+  // @ts-ignore
+  const selectedTemplate = useStore((state) => state.selectedTemplate);
+  // @ts-ignore
+  const setSelectedTemplate = useStore((state) => state.setSelectedTemplate);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent());
@@ -54,15 +68,18 @@ export default function Home() {
 
     if (direction == "right") {
       if (!selectedTemplates.includes(selectedTemplate)) {
-        selectedTemplates.push(selectedTemplate);
-        setSelectedTemplates(selectedTemplates);
+        //selectedTemplates.push(selectedTemplate);
+        //setSelectedTemplates(selectedTemplates);
+        addSelectedTemplate(selectedTemplate);
       }
     } else {
-      setSelectedTemplates(
-        selectedTemplates.filter(
-          (template) => template.id != selectedTemplate.id
-        )
-      );
+      //setSelectedTemplates(
+      //selectedTemplates.filter(
+      //  (template: Template) => template.id != selectedTemplate.id
+      //);
+      //);
+
+      removeSelectedTemplate(selectedTemplate);
     }
 
     setSelectedTemplate(undefined);
@@ -74,12 +91,7 @@ export default function Home() {
         {data
           ?.filter((template) => !selectedTemplates.includes(template))
           .map((template) => (
-            <ListItem
-              key={template.id}
-              template={template}
-              selectedTemplate={selectedTemplate!}
-              setSelectedTemplate={setSelectedTemplate}
-            />
+            <ListItem key={template.id} template={template} />
           ))}
       </div>
       <div className={"w-1/5 flex-col h-full"}>
@@ -133,17 +145,12 @@ export default function Home() {
               : "h-full bg-white rounded-lg overflow-auto shadow-md"
           }
         >
-          {selectedTemplates.map((template) => (
-            <ListItem
-              key={template.id}
-              template={template}
-              selectedTemplate={selectedTemplate!}
-              setSelectedTemplate={setSelectedTemplate}
-            />
+          {selectedTemplates.map((template: Template) => (
+            <ListItem key={template.id} template={template} />
           ))}
         </div>
         {selectedTemplates.includes(selectedTemplate!) && (
-          <WildCardForm selectedTemplate={selectedTemplate!}></WildCardForm>
+          <WildCardForm></WildCardForm>
         )}
       </div>
     </div>

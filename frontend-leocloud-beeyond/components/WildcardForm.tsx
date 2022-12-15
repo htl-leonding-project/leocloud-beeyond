@@ -1,4 +1,5 @@
-import { Template } from "../models/template";
+import { WildcardField } from "../models/template";
+import useStore from "../store/store";
 
 function FormElement({ label }: { label: string }) {
   return (
@@ -14,18 +15,17 @@ function FormElement({ label }: { label: string }) {
   );
 }
 
-export function WildCardForm({
-  selectedTemplate,
-}: {
-  selectedTemplate: Template;
-}) {
+export function WildCardForm({}: {}) {
+  // @ts-ignore
+  const selectedTemplate = useStore((state) => state.selectedTemplate);
+
   return (
     <div className={"h-full overflow-auto"}>
       <hr />
       <form className="mt-6">
         <div>
-          {selectedTemplate.fields.map((field) => (
-            <FormElement label={field.label}></FormElement>
+          {selectedTemplate.fields.map((field: WildcardField) => (
+            <FormElement key={field.label} label={field.label}></FormElement>
           ))}
         </div>
       </form>
