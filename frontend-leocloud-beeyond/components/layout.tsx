@@ -15,7 +15,7 @@ const Layout = ({ children }: LayoutProps) => {
       </Head>
       <main className="flex flex-col h-screen">
         <Navbar></Navbar>
-        <div className="h-full overflow-y-scroll">{children}</div>
+        <div className="h-full pb-2">{children}</div>
       </main>
     </>
   );
