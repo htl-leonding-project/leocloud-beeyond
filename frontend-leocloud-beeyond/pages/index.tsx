@@ -69,7 +69,7 @@ export default function Home() {
   };
 
   return (
-    <div className={"flex h-screen p-8"}>
+    <div className={"flex h-full px-8"}>
       <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
         {data
           ?.filter((template) => !selectedTemplates.includes(template))
@@ -77,7 +77,7 @@ export default function Home() {
             <ListItem key={template.id} template={template} />
           ))}
       </div>
-      <div className={"w-1/5 flex-col h-full"}>
+      <div className={"w-1/5 flex-col"}>
         <div className={"h-1/3"}></div>
         <div className={"h-1/3 flex flex-col justify-center items-center"}>
           <div
