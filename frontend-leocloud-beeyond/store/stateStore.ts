@@ -1,7 +1,6 @@
 import create from "zustand";
 import { Template } from "../models/template";
 
-
 interface StateStore {
   activeTemplate: Template | null;
   setActiveTemplate: (template: Template | null) => void;
@@ -17,14 +16,14 @@ const useStateStore = create<StateStore>((set) => ({
   selectedTemplates: [],
   addSelectedTemplate: (template: Template) =>
     set((state) => ({
-      selectedTemplates: [...state.selectedTemplates, template]
+      selectedTemplates: [...state.selectedTemplates, template],
     })),
   removeSelectedTemplate: (template: Template) =>
     set((state) => ({
       selectedTemplates: state.selectedTemplates.filter(
         (t: Template) => t.id !== template.id
-      )
-    }))
+      ),
+    })),
 }));
 
 export default useStateStore;

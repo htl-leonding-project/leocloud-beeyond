@@ -12,8 +12,11 @@ export default function Home() {
   const { data } = useSWR<Template[]>(url, fetcher);
 
   const selectedTemplates = useStateStore((state) => state.selectedTemplates);
-  const addSelectedTemplate = useStateStore((state) => state.addSelectedTemplate);
-  const removeSelectedTemplate = useStateStore((state) => state.removeSelectedTemplate
+  const addSelectedTemplate = useStateStore(
+    (state) => state.addSelectedTemplate
+  );
+  const removeSelectedTemplate = useStateStore(
+    (state) => state.removeSelectedTemplate
   );
 
   const activeTemplate = useStateStore((state) => state.activeTemplate);
@@ -21,6 +24,19 @@ export default function Home() {
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent());
+  };
+
+  const getTemplateContent = (template: Template) => {
+    const regex = /%([\w-]+)%/g;
+    let temp = template.content;
+    template.fields.forEach((f) => {
+      if (f.value) {
+        const re = new RegExp("%" + f.wildcard + "%", "g");
+        temp = temp.replace(re, f.value);
+      }
+    });
+    const content = temp.replace(regex, "temp");
+    return content;
   };
 
   const downloadDeploymentFile = (content: string) => {
@@ -44,7 +60,7 @@ export default function Home() {
     let content = "";
 
     for (let i = 0; i < selectedTemplates.length; i++) {
-      content += selectedTemplates[i].content;
+      content += getTemplateContent(selectedTemplates[i]);
 
       if (i != selectedTemplates.length - 1) {
         content += "\n---\n";
