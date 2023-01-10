@@ -21,7 +21,7 @@ export function WildCardForm({}: {}) {
             )
           )}
 
-          <div className="mx-2">
+          <div className="mb-2 mx-2">
             <div
               className="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
             >
