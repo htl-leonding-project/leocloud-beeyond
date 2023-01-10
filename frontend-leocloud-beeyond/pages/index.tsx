@@ -2,7 +2,8 @@ import ListItem from "../components/ListItem";
 import Image from "next/image";
 import useSWR from "swr";
 import { Template } from "../models/template";
-import { useState } from "react";
+import { WildCardForm } from "../components/WildcardForm";
+import useStateStore from "../store/stateStore";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const url = `${process.env.API_URL}/template`;
@@ -10,11 +11,32 @@ const url = `${process.env.API_URL}/template`;
 export default function Home() {
   const { data } = useSWR<Template[]>(url, fetcher);
 
-  const [selectedTemplates, setSelectedTemplates] = useState<Template[]>([]);
-  const [selectedTemplate, setSelectedTemplate] = useState<Template>();
+  const selectedTemplates = useStateStore((state) => state.selectedTemplates);
+  const addSelectedTemplate = useStateStore(
+    (state) => state.addSelectedTemplate
+  );
+  const removeSelectedTemplate = useStateStore(
+    (state) => state.removeSelectedTemplate
+  );
+
+  const activeTemplate = useStateStore((state) => state.activeTemplate);
+  const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent());
+  };
+
+  const getTemplateContent = (template: Template) => {
+    const regex = /%([\w-]+)%/g;
+    let temp = template.content;
+    template.fields.forEach((f) => {
+      if (f.value) {
+        const re = new RegExp("%" + f.wildcard + "%", "g");
+        temp = temp.replace(re, f.value);
+      }
+    });
+    const content = temp.replace(regex, "temp");
+    return content;
   };
 
   const downloadDeploymentFile = (content: string) => {
@@ -38,7 +60,7 @@ export default function Home() {
     let content = "";
 
     for (let i = 0; i < selectedTemplates.length; i++) {
-      content += selectedTemplates[i].content;
+      content += getTemplateContent(selectedTemplates[i]);
 
       if (i != selectedTemplates.length - 1) {
         content += "\n---\n";
@@ -49,39 +71,29 @@ export default function Home() {
   };
 
   const selectTemplate = (direction: string) => {
-    if (!selectedTemplate) return;
+    if (!activeTemplate) return;
 
     if (direction == "right") {
-      if (!selectedTemplates.includes(selectedTemplate)) {
-        selectedTemplates.push(selectedTemplate);
-        setSelectedTemplates(selectedTemplates);
+      if (!selectedTemplates.includes(activeTemplate)) {
+        addSelectedTemplate(activeTemplate);
       }
     } else {
-      setSelectedTemplates(
-        selectedTemplates.filter(
-          (template) => template.id != selectedTemplate.id
-        )
-      );
+      removeSelectedTemplate(activeTemplate);
     }
 
-    setSelectedTemplate(undefined);
+    setActiveTemplate(null);
   };
 
   return (
-    <div className={"flex h-screen p-8"}>
+    <div className={"flex h-full px-8"}>
       <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
         {data
           ?.filter((template) => !selectedTemplates.includes(template))
           .map((template) => (
-            <ListItem
-              key={template.id}
-              template={template}
-              selectedTemplate={selectedTemplate!}
-              setSelectedTemplate={setSelectedTemplate}
-            />
+            <ListItem key={template.id} template={template} />
           ))}
       </div>
-      <div className={"w-1/5 flex-col h-full"}>
+      <div className={"w-1/5 flex-col"}>
         <div className={"h-1/3"}></div>
         <div className={"h-1/3 flex flex-col justify-center items-center"}>
           <div
@@ -119,15 +131,26 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
-        {selectedTemplates.map((template) => (
-          <ListItem
-            key={template.id}
-            template={template}
-            selectedTemplate={selectedTemplate!}
-            setSelectedTemplate={setSelectedTemplate}
-          />
-        ))}
+
+      <div
+        className={
+          "h-full w-2/5 bg-white shadow-md rounded-lg overflow-auto flex flex-col"
+        }
+      >
+        <div
+          className={
+            selectedTemplates.includes(activeTemplate!)
+              ? "h-full bg-white rounded-lg overflow-auto"
+              : "h-full bg-white rounded-lg overflow-auto shadow-md"
+          }
+        >
+          {selectedTemplates.map((template: Template) => (
+            <ListItem key={template.id} template={template} />
+          ))}
+        </div>
+        {selectedTemplates.includes(activeTemplate!) && (
+          <WildCardForm></WildCardForm>
+        )}
       </div>
     </div>
   );

@@ -9,13 +9,15 @@ class TemplateFieldDto(
     @set:JsonbTransient var id: Long? = null,
     label: String? = null,
     wildcard: String? = null,
-    description: String? = null
+    description: String? = null,
+    value: String? = null
 ) {
     constructor(templateField: TemplateField) : this(
         templateField.id,
         templateField.label,
         templateField.wildcard,
-        templateField.description
+        templateField.description,
+        templateField.value
     )
 
     @field:NotBlank
@@ -41,6 +43,14 @@ class TemplateFieldDto(
         set(value) {
             if (value != null) {
                 field = value.trim()
+            }
+        }
+
+    @field:Size(max = 255)
+    var value: String? = value
+        set(setVal) {
+            if (setVal != null) {
+                field = setVal.trim()
             }
         }
 }

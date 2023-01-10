@@ -6,22 +6,26 @@
     {
       "label": "Name",
       "wildcard": "name",
-      "description": "Name of the service and deployment"
+      "description": "Name of the service and deployment",
+      "value": "Postgres"
     },
     {
       "label": "Database",
       "wildcard": "db",
-      "description": "Database name"
+      "description": "Database name",
+      "value": "db"
     },
     {
       "label": "Password",
       "wildcard": "password",
-      "description": "Password for the specified user"
+      "description": "Password for the specified user",
+      "value": "app"
     },
     {
       "label": "User",
       "wildcard": "user",
-      "description": "User name"
+      "description": "User name",
+      "value": "app"
     }
   ]
 }

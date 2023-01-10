@@ -6,27 +6,32 @@
     {
       "label": "Name",
       "wildcard": "name",
-      "description": "Name of the service and deployment"
+      "description": "Name of the service and deployment",
+      "value": "Quarkus"
     },
     {
       "label": "Image",
       "wildcard": "image",
-      "description": "Image name"
+      "description": "Image name",
+      "value": "ghcr.io/markusremplbauer/quarkus-hello:latest"
     },
     {
       "label": "Database URL",
       "wildcard": "db-url",
-      "description": "URL to the database"
+      "description": "URL to the database",
+      "value": "jdbc:postgresql://postgres:5432/db"
     },
     {
       "label": "Database Username",
       "wildcard": "db-user",
-      "description": "Database user"
+      "description": "Database user",
+      "value": "app"
     },
     {
       "label": "Database Password",
       "wildcard": "db-password",
-      "description": "Password for the specified user"
+      "description": "Password for the specified user",
+      "value": "app"
     }
   ]
 }

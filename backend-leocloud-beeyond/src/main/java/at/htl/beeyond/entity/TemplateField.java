@@ -17,13 +17,15 @@ public class TemplateField extends PanacheEntityBase {
 
     private String description;
 
+    private String value;
     @ManyToOne
     private Template template;
 
-    public TemplateField(String label, String wildcard, String description, Template template) {
+    public TemplateField(String label, String wildcard, String description, String value, Template template) {
         this.label = label;
         this.wildcard = wildcard;
         this.description = description;
+        this.value = value;
         this.template = template;
     }
 
@@ -61,6 +63,15 @@ public class TemplateField extends PanacheEntityBase {
     public Template getTemplate() {
         return template;
     }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
 
     public void setTemplate(Template template) {
         this.template = template;
