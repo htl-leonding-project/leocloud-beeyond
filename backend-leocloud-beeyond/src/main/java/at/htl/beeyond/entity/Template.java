@@ -37,7 +37,7 @@ public class Template extends PanacheEntityBase {
                         templateFieldDto.getWildcard(),
                         templateFieldDto.getDescription(),
                         templateFieldDto.getValue(),
-                        this)
+                        templateFieldDto.getPlaceholder(), this)
                 )
                 .collect(Collectors.toList());
     }

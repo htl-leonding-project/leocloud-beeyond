@@ -12,5 +12,6 @@ export interface WildcardField {
   id: number;
   label: string;
   wildcard: string;
-  value: string;
+  value: string | undefined;
+  placeholder: string;
 }

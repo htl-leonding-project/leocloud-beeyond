@@ -10,14 +10,16 @@ class TemplateFieldDto(
     label: String? = null,
     wildcard: String? = null,
     description: String? = null,
-    value: String? = null
+    value: String? = null,
+    placeholder: String? = null
 ) {
     constructor(templateField: TemplateField) : this(
         templateField.id,
         templateField.label,
         templateField.wildcard,
         templateField.description,
-        templateField.value
+        templateField.value,
+        templateField.placeholder
     )
 
     @field:NotBlank
@@ -48,6 +50,14 @@ class TemplateFieldDto(
 
     @field:Size(max = 255)
     var value: String? = value
+        set(setVal) {
+            if (setVal != null) {
+                field = setVal.trim()
+            }
+        }
+
+    @field:Size(max = 255)
+    var placeholder: String? = placeholder
         set(setVal) {
             if (setVal != null) {
                 field = setVal.trim()

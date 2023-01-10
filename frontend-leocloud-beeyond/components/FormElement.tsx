@@ -16,14 +16,18 @@ export function FormElement({
     setValue(wildcard.value);
   }, [wildcard.value]);
 
+  const showPlaceholder = wildcard.value === undefined;
+
   return (
     <div className="mb-2 mx-2">
       <label className="block text-sm font-semibold text-gray-800">
         {wildcard.label}
       </label>
+      {/*use the value if exists else use a placeholder*/}
       <input
         type="text"
-        value={value}
+        value={showPlaceholder ? "" : value}
+        placeholder={wildcard.placeholder}
         onChange={(e) => {
           setValue(e.target.value);
           const field = selectedTemplate.fields.find(
