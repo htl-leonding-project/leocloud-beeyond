@@ -23,7 +23,6 @@ export function FormElement({
       <label className="block text-sm font-semibold text-gray-800">
         {wildcard.label}
       </label>
-      {/*use the value if exists else use a placeholder*/}
       <input
         type="text"
         value={showPlaceholder ? "" : value}
