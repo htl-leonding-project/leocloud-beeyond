@@ -7,37 +7,42 @@ export function WildCardForm({}: {}) {
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
 
   return (
-    <div className={"h-full overflow-auto"}>
+    <>
       <hr />
-      <form className="mt-6">
-        <div>
-          {selectedTemplate?.fields.map(
-            (field: WildcardField, index: number) => (
-              <FormElement
-                key={index}
-                wildcard={field}
-                selectedTemplate={selectedTemplate}
-              ></FormElement>
-            )
-          )}
+      <div className={"h-full overflow-auto"}>
+        <div className={"block text-lg font-semibold text-gray-800 mx-2"}>
+          Template Fields
+        </div>
+        <form className="mt-2">
+          <div>
+            {selectedTemplate?.fields.map(
+              (field: WildcardField, index: number) => (
+                <FormElement
+                  key={index}
+                  wildcard={field}
+                  selectedTemplate={selectedTemplate}
+                ></FormElement>
+              )
+            )}
 
-          <div className="mb-2 mx-2">
-            <div className="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40">
-              <label className="block text-sm font-semibold text-gray-800">
-                <input
-                  className="mr-2 leading-tight"
-                  type="checkbox"
-                  onClick={() => {
-                    selectedTemplate!.createIngress =
-                      !selectedTemplate!.createIngress;
-                  }}
-                />
-                <span className="text-sm">Create ingress for Service</span>
-              </label>
+            <div className="mb-2 mx-2">
+              <div className="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40">
+                <label className="block text-sm font-semibold text-gray-800">
+                  <input
+                    className="mr-2 leading-tight"
+                    type="checkbox"
+                    onClick={() => {
+                      selectedTemplate!.createIngress =
+                        !selectedTemplate!.createIngress;
+                    }}
+                  />
+                  <span className="text-sm">Create ingress for Service</span>
+                </label>
+              </div>
             </div>
           </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </>
   );
 }
