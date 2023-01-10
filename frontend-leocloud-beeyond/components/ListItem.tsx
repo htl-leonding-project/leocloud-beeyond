@@ -2,7 +2,6 @@ import { Template } from "../models/template";
 import useStateStore from "../store/stateStore";
 
 export default function ListItem({ template }: { template: Template }) {
-
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
   const setSelectedTemplate = useStateStore((state) => state.setActiveTemplate);
 
