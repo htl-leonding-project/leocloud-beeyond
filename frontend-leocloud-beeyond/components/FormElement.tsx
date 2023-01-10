@@ -5,9 +5,11 @@ import useStateStore from "../store/stateStore";
 export function FormElement({
   wildcard,
   selectedTemplate,
+  showExample,
 }: {
   wildcard: WildcardField;
   selectedTemplate: Template;
+  showExample: boolean;
 }) {
   const [value, setValue] = useState(wildcard.value);
   const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
@@ -20,13 +22,19 @@ export function FormElement({
 
   return (
     <div className="mb-2 mx-2">
-      <label className="block text-sm font-semibold text-gray-800">
-        {wildcard.label}
-      </label>
+      <div className={"flex justify-between"}>
+        <label className="block text-sm font-semibold text-gray-800">
+          {wildcard.label}
+        </label>
+        {showExample && (
+          <label className="block text-sm text-gray-400">
+            {`example: ${wildcard.placeholder}`}
+          </label>
+        )}
+      </div>
       <input
         type="text"
         value={showPlaceholder ? "" : value}
-        placeholder={wildcard.placeholder}
         onChange={(e) => {
           setValue(e.target.value);
           const field = selectedTemplate.fields.find(
