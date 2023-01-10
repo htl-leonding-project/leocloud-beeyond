@@ -1,0 +1,40 @@
+{
+  "name": ".NET Deployment",
+  "description": "Deployment of a .NET Application",
+  "content": "dotnet.yaml",
+  "fields": [
+    {
+      "label": "Name",
+      "wildcard": "name",
+      "description": "Name of the service and deployment",
+      "value": "dotnet",
+      "placeholder": "Name of the deployment"
+    },
+    {
+      "label": "Image",
+      "wildcard": "image",
+      "description": "Image name",
+      "placeholder": "ghcr.io/markusremplbauer/auction-backend:latest"
+    },
+    {
+      "label": "Database URL",
+      "wildcard": "db-url",
+      "description": "URL to the database",
+      "placeholder": "jdbc:<driver>://<host>:<port>/<database>"
+    },
+    {
+      "label": "Database Username",
+      "wildcard": "db-user",
+      "description": "Database user",
+      "value": "app",
+      "placeholder": "Database user"
+    },
+    {
+      "label": "Database Password",
+      "wildcard": "db-password",
+      "description": "Password for the specified user",
+      "value": "app",
+      "placeholder": "Database password"
+    }
+  ]
+}
