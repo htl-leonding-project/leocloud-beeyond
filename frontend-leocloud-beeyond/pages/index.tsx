@@ -85,7 +85,7 @@ export default function Home() {
   };
 
   return (
-    <div className={"flex h-full px-8"}>
+    <div className={"flex h-full"}>
       <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
         {data
           ?.filter((template) => !selectedTemplates.includes(template))
