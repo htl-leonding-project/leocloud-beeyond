@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: %name%
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: %name%
+  template:
+    metadata:
+      labels:
+        app: %name%
+    spec:
+      containers:
+        - env:
+            - name: NODEJS_DATASOURCE_JDBC_URL
+              value: %db-url%
+            - name: NODEJS_DATASOURCE_USERNAME
+              value: %db-user%
+            - name: NODEJS_DATASOURCE_PASSWORD
+              value: %db-password%
+          image: %image%
+          name: %name%
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: %name%
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: %name%

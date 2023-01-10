@@ -1,13 +1,13 @@
 {
-  "name": "Quarkus Deployment",
-  "description": "Deployment of a Quarkus Application",
-  "content": "quarkus.yaml",
+  "name": ".NET Deployment",
+  "description": "Deployment of a .NET Application",
+  "content": "dotnet.yaml",
   "fields": [
     {
       "label": "Name",
       "wildcard": "name",
       "description": "Name of the service and deployment",
-      "value": "Quarkus",
+      "value": "dotnet",
       "placeholder": "Name of the deployment"
     },
     {
