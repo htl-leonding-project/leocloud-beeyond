@@ -8,11 +8,10 @@ export function WildCardForm({}: {}) {
 
   return (
     <>
-      <hr />
+      <div className={"block text-lg font-semibold text-gray-800 mx-2"}>
+        Template Fields
+      </div>
       <div className={"h-full overflow-auto"}>
-        <div className={"block text-lg font-semibold text-gray-800 mx-2"}>
-          Template Fields
-        </div>
         <form className="mt-2">
           <div>
             {selectedTemplate?.fields.map(
