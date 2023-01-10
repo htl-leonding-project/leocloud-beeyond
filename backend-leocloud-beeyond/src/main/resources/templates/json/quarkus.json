@@ -1,5 +1,5 @@
 {
-  "name": "Simple Quarkus Deployment",
+  "name": "Quarkus Deployment",
   "description": "Deployment of a Quarkus Application",
   "content": "quarkus.yaml",
   "fields": [
@@ -14,7 +14,7 @@
       "label": "Image",
       "wildcard": "image",
       "description": "Image name",
-      "placeholder": "ghcr.io/markusremplbauer/quarkus-hello:latest"
+      "placeholder": "ghcr.io/markusremplbauer/auction-backend:latest"
     },
     {
       "label": "Database URL",
