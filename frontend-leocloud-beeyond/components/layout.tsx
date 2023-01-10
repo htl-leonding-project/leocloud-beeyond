@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Head>
-        <title>Invadium</title>
+        <title>Beeyond</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex flex-col h-screen">
