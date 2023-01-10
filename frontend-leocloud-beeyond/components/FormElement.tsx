@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import useStateStore from "../store/stateStore";
 
 export function FormElement({
-                              wildcard,
-                              selectedTemplate
-                            }: {
+  wildcard,
+  selectedTemplate,
+}: {
   wildcard: WildcardField;
   selectedTemplate: Template;
 }) {
