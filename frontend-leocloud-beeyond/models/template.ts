@@ -4,6 +4,7 @@ export interface Template {
   fields: WildcardField[];
   id: number;
   name: string;
+  createIngress: boolean;
 }
 
 export interface WildcardField {
