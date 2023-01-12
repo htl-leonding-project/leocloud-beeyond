@@ -86,12 +86,15 @@ export default function Home() {
 
   return (
     <div className={"flex h-full"}>
-      <div className={"w-2/5 bg-white shadow-md rounded-lg overflow-auto"}>
-        {data
-          ?.filter((template) => !selectedTemplates.includes(template))
-          .map((template) => (
-            <ListItem key={template.id} template={template} />
-          ))}
+      <div className={"flex flex-col w-2/5"}>
+        <div className={"font-bold text-2xl p-2"}>Available Templates</div>
+        <div className={"bg-white shadow-md rounded-lg h-full"}>
+          {data
+            ?.filter((template) => !selectedTemplates.includes(template))
+            .map((template) => (
+              <ListItem key={template.id} template={template} />
+            ))}
+        </div>
       </div>
       <div className={"w-1/5 flex-col"}>
         <div className={"h-1/3"}></div>
@@ -132,25 +135,28 @@ export default function Home() {
         </div>
       </div>
 
-      <div
-        className={
-          "h-full w-2/5 bg-white shadow-md rounded-lg overflow-auto flex flex-col"
-        }
-      >
+      <div className={"flex flex-col w-2/5"}>
+        <div className={"font-bold text-2xl p-2"}>Selected Templates</div>
         <div
           className={
-            selectedTemplates.includes(activeTemplate!)
-              ? "h-full bg-white rounded-lg overflow-auto"
-              : "h-full bg-white rounded-lg overflow-auto shadow-md"
+            "h-full bg-white shadow-md rounded-lg overflow-auto flex flex-col"
           }
         >
-          {selectedTemplates.map((template: Template) => (
-            <ListItem key={template.id} template={template} />
-          ))}
+          <div
+            className={
+              selectedTemplates.includes(activeTemplate!)
+                ? "h-full bg-white rounded-lg overflow-auto"
+                : "h-full bg-white rounded-lg overflow-auto shadow-md"
+            }
+          >
+            {selectedTemplates.map((template: Template) => (
+              <ListItem key={template.id} template={template} />
+            ))}
+          </div>
+          {selectedTemplates.includes(activeTemplate!) && (
+            <WildCardForm></WildCardForm>
+          )}
         </div>
-        {selectedTemplates.includes(activeTemplate!) && (
-          <WildCardForm></WildCardForm>
-        )}
       </div>
     </div>
   );
