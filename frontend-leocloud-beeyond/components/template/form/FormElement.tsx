@@ -1,6 +1,6 @@
-import { Template, WildcardField } from "../models/template";
 import { useEffect, useState } from "react";
-import useStateStore from "../store/stateStore";
+import { Template, WildcardField } from "@models/template";
+import useStateStore from "@stores/stateStore";
 
 export function FormElement({
   wildcard,
