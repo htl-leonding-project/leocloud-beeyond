@@ -1,5 +1,5 @@
 {
-  "name": "Quarkus Deployment",
+  "name": "Quarkus Deployment with DB",
   "description": "Deployment of a Quarkus Application",
   "content": "quarkus.yaml",
   "fields": [
@@ -7,7 +7,7 @@
       "label": "Name",
       "wildcard": "name",
       "description": "Name of the service and deployment",
-      "value": "Quarkus",
+      "value": "quarkus-backend",
       "placeholder": "Name of the deployment"
     },
     {
