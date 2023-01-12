@@ -1,5 +1,5 @@
 import create from "zustand";
-import { Template } from "../models/template";
+import { Template } from "@models/template";
 
 interface StateStore {
   activeTemplate: Template | null;

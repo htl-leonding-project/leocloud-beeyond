@@ -1,7 +1,7 @@
-import { WildcardField } from "../models/template";
-import useStateStore from "../store/stateStore";
 import React, { useEffect, useState } from "react";
-import { FormElement } from "./FormElement";
+import useStateStore from "@stores/stateStore";
+import { WildcardField } from "@models/template";
+import { FormElement } from "@components/template/form/FormElement";
 
 export function WildCardForm({}: {}) {
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
