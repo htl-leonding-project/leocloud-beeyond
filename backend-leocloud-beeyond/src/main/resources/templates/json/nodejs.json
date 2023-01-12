@@ -7,7 +7,7 @@
       "label": "Name",
       "wildcard": "name",
       "description": "Name of the service and deployment",
-      "value": "dotnet",
+      "value": "dotnet-backend",
       "placeholder": "Name of the deployment"
     },
     {

@@ -7,8 +7,8 @@
       "label": "Name",
       "wildcard": "name",
       "description": "Name of the service and deployment",
-      "value": "Postgres",
-      "placeholder": "Postgres"
+      "value": "postgres-db",
+      "placeholder": "Name of the deployment"
     },
     {
       "label": "Database",
