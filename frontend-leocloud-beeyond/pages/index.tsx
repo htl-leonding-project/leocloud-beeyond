@@ -1,9 +1,9 @@
-import ListItem from "../components/template/list/ListItem";
+import ListItem from "@components/template/list/ListItem";
 import Image from "next/image";
 import useSWR from "swr";
-import { Template } from "../models/template";
-import { WildCardForm } from "../components/template/form/WildcardForm";
-import useStateStore from "../stores/stateStore";
+import { Template } from "@models/template";
+import { WildCardForm } from "@components/template/form/WildcardForm";
+import useStateStore from "@stores/stateStore";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const url = `${process.env.API_URL}/template`;
@@ -35,8 +35,7 @@ export default function Home() {
         temp = temp.replace(re, f.value);
       }
     });
-    const content = temp.replace(regex, "temp");
-    return content;
+    return temp.replace(regex, "temp");
   };
 
   const downloadDeploymentFile = (content: string) => {
