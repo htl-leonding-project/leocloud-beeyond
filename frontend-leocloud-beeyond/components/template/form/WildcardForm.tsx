@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useStateStore from "@stores/stateStore";
 import { WildcardField } from "@models/template";
 import { FormElement } from "@components/template/form/FormElement";
 
 export function WildCardForm({}: {}) {
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
+  const [createIngres, setCreateIngress] = useState(
+    selectedTemplate!.createIngress
+  );
+
+  useEffect(() => {
+    setCreateIngress(selectedTemplate!.createIngress);
+  }, [selectedTemplate!.createIngress]);
 
   return (
     <>
@@ -31,7 +38,9 @@ export function WildCardForm({}: {}) {
                   <input
                     className="mr-2 leading-tight"
                     type="checkbox"
+                    checked={selectedTemplate!.createIngress}
                     onClick={() => {
+                      setCreateIngress(!createIngres);
                       selectedTemplate!.createIngress =
                         !selectedTemplate!.createIngress;
                     }}
