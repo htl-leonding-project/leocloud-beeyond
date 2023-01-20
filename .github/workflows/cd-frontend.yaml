@@ -2,9 +2,9 @@ name: CD frontend
 
 on:
   push:
-    branches: [ build-frontend-package ]
-    #paths:
-    #  - 'frontend-leocloud_beeyond/**'
+    branches: [ main ]
+    paths:
+      - 'frontend-leocloud_beeyond/**'
 
 
 jobs:
