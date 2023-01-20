@@ -2,7 +2,8 @@ name: CD frontend
 
 on:
   push:
-    branches: [ build-frontend-package ]
+    branches:
+      - '*'
     paths:
       - 'frontend-leocloud_beeyond/**'
 
