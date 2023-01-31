@@ -1,0 +1,60 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: leocloud-beeyond-db-pv-claim
+  labels:
+    app: leocloud-beeyond-db
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leocloud-beeyond-db
+spec:
+  selector:
+    matchLabels:
+      app: leocloud-beeyond-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: leocloud-beeyond-db
+    spec:
+      containers:
+        - name: leocloud-beeyond-db
+          image: postgres:13.0
+          ports:
+            - name: http
+              containerPort: 5432
+          env:
+            - name: POSTGRES_PASSWORD
+              value: app
+            - name: POSTGRES_USER
+              value: app
+            - name: POSTGRES_DB
+              value: db
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: leocloud-beeyond-db
+      volumes:
+        - name: leocloud-beeyond-db
+          persistentVolumeClaim:
+            claimName: leocloud-beeyond-db-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leocloud-beeyond-db
+spec:
+  selector:
+    app: leocloud-beeyond-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+  type: LoadBalancer
