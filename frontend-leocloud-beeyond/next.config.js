@@ -6,7 +6,8 @@ const nextConfig = {
     API_URL: "https://student.cloud.htl-leonding.ac.at/n.hirsch/api",
     BASE_PATH: "/n.hirsch/app",
   },
-  output: "standalone"
+  output: "standalone",
+  assetPrefix: "/n.hirsch/app",
 };
 
 module.exports = nextConfig;
