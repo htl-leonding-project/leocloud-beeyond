@@ -3,7 +3,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    API_URL: process.env.API_URL,
+    API_URL: "https://student.cloud.htl-leonding.ac.at/n.hirsch/api",
+    BASE_PATH: "/n.hirsch/app",
   },
   output: "standalone"
 };
