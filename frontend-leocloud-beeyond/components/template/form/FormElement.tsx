@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Template, WildcardField } from "@models/template";
 import useStateStore from "@stores/stateStore";
 
@@ -18,7 +18,7 @@ export function FormElement({
     setValue(wildcard.value);
   }, [wildcard.value]);
 
-  const showPlaceholder = wildcard.value === undefined;
+  const showPlaceholder = wildcard.value === "";
 
   return (
     <div className="mb-2 mx-2">
