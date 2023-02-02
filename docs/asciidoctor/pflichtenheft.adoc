@@ -1,0 +1,24 @@
+|===
+|*Projekttitel:*      |Beeyond
+|*Projektmitglieder:* |Nico Hirsch, Markus Remplbauer
+|===
+
+== Ausgangssituation
+
+Die HTL Leonding ist eine Höhere Technische Lehranstalt im oberösterreichischen Zentralraum mit etwa 1000 Schülerinnen und Schülern sowie den Fachabteilungen IT-Medientechnik, Informatik, Medizintechnik und Elektrotechnik.
+Im Laufe der Berufsausbildung erstellen die Schülerinnen und Schüler Projekte mit einem Team aus meist zwei bis drei Schülern.
+
+== Ist-Zustand
+
+Die meisten Schülerinnen und Schüler benötigen für ihre Projekte oftmals Produktions- oder Testumgebungen.
+Dafür müssen sie immer eine virtuelle Maschine beim Systemadministrator beantragen, die von ihm genehmigt und aufgesetzt werden.
+
+== Problemstellung
+
+Für den Systemadministrator ist es sehr umständlich, dass er jeden Antrag selbst bearbeiten muss, da es bei zu vielen von ihnen unübersichtlich wird.
+Außerdem hat dieser auch andere Tätigkeiten, die erledigt werden müssen.
+
+== Ziele
+
+Die Projekte der Schülerinnen und Schüler können mit wenig Mühe schnell und effizient aufgesetzt werden. +
+Durch die Automatisierung vereinfachen sich die administrativen Tätigkeiten.
