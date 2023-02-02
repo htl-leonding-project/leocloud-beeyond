@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'frontend-leocloud-beeyond/**'
+  workflow_dispatch:
 
 
 jobs:
