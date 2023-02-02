@@ -22,6 +22,8 @@ jobs:
         run: sudo gem install asciidoctor-diagram
       - name: Setup graphviz
         run: sudo apt install graphviz
+      - name: Make build script executable
+        run: chmod +x docs/build
       - name: Build documentation
         run: docs/build
       - name: Deploy
