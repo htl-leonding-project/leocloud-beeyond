@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leocloud-beeyond-backend
+spec:
+  selector:
+    matchLabels:
+      app: leocloud-beeyond-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: leocloud-beeyond-backend
+    spec:
+      containers:
+        - env:
+            - name: beeyond.database.jdbc
+              value: jdbc:postgresql://leocloud-beeyond-db:5432
+            - name: beeyond.database.username
+              value: app
+            - name: beeyond.database.password
+              value: app
+            - name: beeyond.database.database
+              value: db
+          name: leocloud-beeyond-backend
+          image: ghcr.io/htl-leonding-project/leocloud-beeyond-backend:latest
+          ports:
+            - name: http
+              containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leocloud-beeyond-backend-sv
+spec:
+  selector:
+    app: leocloud-beeyond-backend
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP

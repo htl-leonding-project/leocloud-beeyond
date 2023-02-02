@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: leocloud-beeyond-frontend
+spec:
+  selector:
+    matchLabels:
+      app: leocloud-beeyond-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: leocloud-beeyond-frontend
+    spec:
+      containers:
+        - env:
+            - name: API_URL
+              value: https://student.cloud.htl-leonding.ac.at/n.hirsch/api
+            - name: BASE_PATH
+              value: /n.hirsch/app
+          name: leocloud-beeyond-frontend
+          image: ghcr.io/htl-leonding-project/leocloud-beeyond-frontend:latest
+          ports:
+            - name: http
+              containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: leocloud-beeyond-frontend-sv
+spec:
+  selector:
+    app: leocloud-beeyond-frontend
+  ports:
+    - port: 80
+      targetPort: 3000
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: leocloud-beeyond-frontend-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: student.cloud.htl-leonding.ac.at
+      http:
+        paths:
+          - path: /n.hirsch/app(/|$)(.*)$
+            pathType: Prefix
+            backend:
+              service:
+                name: leocloud-beeyond-frontend-sv
+                port:
+                  number: 80

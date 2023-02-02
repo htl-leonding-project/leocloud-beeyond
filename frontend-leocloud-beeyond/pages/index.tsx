@@ -115,7 +115,7 @@ export default function Home() {
             onClick={() => selectTemplate("left")}
           >
             <Image
-              src={"/assets/arrow-left.svg"}
+              src={`${process.env.BASE_PATH}/assets/arrow-left.svg`}
               alt={"arrow-left"}
               width={48}
               height={48}
@@ -127,7 +127,7 @@ export default function Home() {
             onClick={() => selectTemplate("right")}
           >
             <Image
-              src={"/assets/arrow-right.svg"}
+              src={`${process.env.BASE_PATH}/assets/arrow-right.svg`}
               alt={"arrow-right"}
               width={48}
               height={48}
