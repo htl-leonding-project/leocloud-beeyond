@@ -1,0 +1,20 @@
+.slides section h1 {
+     text-align: left!important;
+    color: #5d2689;
+}
+
+.text-left {
+    text-align: left!important;
+    margin-left: 1em;
+}
+
+.reveal .lightbg { background: #fff8f1d0; }
+
+
+h1 {
+    color: #5d2689;
+}
+
+.reveal .white {
+    color: #FFFFFF;
+}
