@@ -1,0 +1,103 @@
+#!/bin/bash
+
+recurse() {
+ for i in "$1"/*;do
+    if [ -d "$i" ];then
+        FOLDER=$(echo $i | cut -d/ -f3-)
+        if [[ $FOLDER = slides* ]] && [[ $FOLDER != slides ]]; then
+            REVEAL_VERSION="3.9.2"
+            BUILD_DIR=out/$FOLDER
+            REVEAL_DIR=asciidoctor/$FOLDER
+
+            # Download revealjs
+            if [ ! -d "reveal.js-$REVEAL_VERSION" ]; then
+                curl -s -L https://github.com/hakimel/reveal.js/archive/$REVEAL_VERSION.zip --output revealjs.zip
+                unzip revealjs.zip
+                rm revealjs.zip
+            fi
+            cp -R reveal.js-$REVEAL_VERSION $BUILD_DIR/revealjs
+
+            # Build slides
+            TEMP=$(pwd)/$BUILD_DIR
+
+            docker run --rm \
+                    -v $TEMP:/documents \
+                    asciidoctor/docker-asciidoctor:1.2.0 asciidoctor-revealjs \
+                    -r asciidoctor-diagram \
+                    -a icons=font \
+                    -a revealjs_theme=white \
+                    -a source-highlighter=rouge \
+                    -a imagesdir=images \
+                    -a revealjsdir=revealjs \
+                    -a revealjs_slideNumber=c/t \
+                    -a revealjs_transition=slide \
+                    -a revealjs_hash=true \
+                    -b revealjs \
+                    '*.adoc'
+        else
+            asciidoctor -r asciidoctor-diagram -D ./out/$FOLDER ./asciidoctor/$FOLDER/*.adoc    
+        fi
+
+	    recurse "$i"
+    fi
+ done
+}
+
+rm -rf out
+mkdir out
+cp -r ./continuous-integration-report/* out/
+cp -p -r ./asciidoctor/* out/
+recurse ./asciidoctor
+
+if [ -d "out/protokolle" ];then
+    echo >> out/index.adoc
+    echo >> out/index.adoc
+
+    echo '== Protokolle' >> out/index.adoc
+    find out/protokolle -name "*.html" -type f | sort -r | while read line; do
+      if [[ $line != *"vorlage"* ]]; then
+        PROTOKOLL=$(echo $line | cut -d/ -f2- | cut -d. -f1)
+        NAME=$(echo $line | rev | cut -d/ -f1 | rev | cut -d. -f1)
+        echo "<<$PROTOKOLL#, $NAME>>" >> out/index.adoc
+        echo >> out/index.adoc
+      fi
+    done
+fi
+
+if [ -d "out/slides" ];then
+    echo >> out/index.adoc
+    echo >> out/index.adoc
+
+    echo '== Slides' >> out/index.adoc
+    find out/slides -name "index.html" -type f | while read line; do
+        if [[ $line != *"revealjs"* ]]; then
+            SLIDE=$(echo $line | cut -d/ -f2- | cut -d. -f1)
+            NAME=$(echo $line| rev | cut -d/ -f2 | rev)
+            echo "<<$SLIDE#, $NAME>>" >> out/index.adoc
+            echo >> out/index.adoc
+        fi
+    done
+fi
+
+if [ -d "out/docu" ];then
+    echo >> out/docu/index.adoc
+    echo >> out/docu/index.adoc
+
+    echo '== Tutorials' >> out/docu/index.adoc
+    find asciidoctor/docu/tutorials -type f -name "*.adoc" | while read line; do
+        SLIDE=$(echo $line | rev | cut -d/ -f1-2 | rev | cut -d. -f1)
+        NAME=''
+        for i in $(echo $SLIDE | cut -d/ -f2 | tr "-" "\n"); do
+            TEMP="$(tr '[:lower:]' '[:upper:]' <<< ${i:0:1})${i:1}"
+            NAME="$NAME $TEMP"
+        done
+        echo "<<$SLIDE#, $NAME>>" >> out/docu/index.adoc
+        echo >> out/docu/index.adoc
+    done
+
+    asciidoctor -r asciidoctor-diagram ./out/docu/index.adoc
+fi
+
+asciidoctor -r asciidoctor-diagram ./out/*.adoc
+
+find out -name "*.adoc" -type f -delete

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+COMMIT="link:https://github.com/halilbahar/beeyond/commit/$1[$1]"
+DATE=$(TZ=":Europe/Berlin" date +'%d.%m.%Y %H:%M')
+KARATE="link:$1/karate/overview-features.html[hier]"
+BACKEND="link:$1/backend/index.html[hier]"
+VALIDATION="link:$1/validation/index.html[hier]"
+BRANCH=$([ "$2" = "master" ] && echo "link:https://github.com/halilbahar/beeyond[$2]" || echo "link:https://github.com/halilbahar/beeyond/tree/$2[$2]")
+USER="link:https://github.com/$3[$3]"
+ROW="| $COMMIT | $BRANCH | $USER | $DATE | $KARATE | $BACKEND | $VALIDATION"
+
+EXISTING=$(grep '^| link' ./asciidoctor/reports.adoc | wc -l)
+
+if  [ $EXISTING -gt 50 ]
+then
+  LINE=$(expr $(cat ./asciidoctor/reports.adoc | wc -l) - 1)d
+  sed -i "$LINE" ./asciidoctor/reports.adoc
+fi
+
+sed -i "/\/\/ insert-new-line-please-here/a\\$ROW" ./asciidoctor/reports.adoc
