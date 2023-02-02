@@ -1,0 +1,55 @@
+
+[beeyond]
+= Beeyond
+:imagesdir: images
+:notitle:
+:title-slide-background-image: avg.jpg
+:customcss: style.css
+
+[.text-left]
+K8s Templating App
+
+[.lightbg,background-opacity="0.9"]
+== Warum braucht die HTL Leonding eine eigene Cloud
+image::questionmark.jpg[background, size=cover]
+
+[%notitle,.lightbg,background-image="cloud-tech.png",background-size="contain"]
+== Cloud
+
+
+[.lightbg, background-opacity="0.8"]
+== Warum braucht die HTL Leonding eine eigene Cloud
+image::meeting.jpg[background, size=cover]
+
+* Ausbildung mit Fokus auf aktuelle Technologien
+* die Anzahl an Cloud Anwendungen steigt stetig an
+* kommerzielle Cloud-Dienste nicht im Budget
+* HTL Leonding ist die erste HTL mit eigener Cloud
+
+
+[.lightbg, background-opacity="0.8"]
+== Wie hilft Beeyond?
+image::helping.jpg[background, size=cover]
+
+* den Schülern wird die Cloud näher gebracht
+* vereinfacht das Deployment von Projekten
+* immer ein laufendes Deployment des Projekts für Präsentationen
+
+[.lightbg, background-opacity="0.8"]
+== Konfiguration mit Beeyond
+image::gear.jpg[background, size=cover]
+
+* Templates für beliebte Tech-Stacks
+* Abstraktion von K8s Manifests
+* Einschränkungen für Ressourcen je nach Projekt
+
+== !
+image::sys-arch.png[background, size=cover]
+
+[.text-left]
+== Live-Demo
+
+image::avg.jpg[background, size=cover]
+
+* https://student.cloud.htl-leonding.ac.at/beeyond[App^]
+* https://halilbahar.github.io/beeyond[Docs^]
