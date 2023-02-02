@@ -20,5 +20,5 @@ image::sys-spec.png[]
 
 == Pflichtenheft
 
-include::pflichtenheft.adoc[leveloffset=+1]
+include::pflichtenheft.adoc[]
 
