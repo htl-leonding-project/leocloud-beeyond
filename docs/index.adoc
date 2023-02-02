@@ -5,9 +5,10 @@
 :imagesdir: images
 Hirsch Nico, Remplbauer Markus
 
-Webanwendungen, die an der HTL Leonding entwickelt werden, können ganz einfach in der LeoCloud – der Cloud Computing Umgebung der HTL Leonding – online gehen.
-Beeyond bietet dazu eine benutzerfreundliche und einfache Konfigurationsmöglichkeit für Unterrichtsprojekte.
-
+Beeyond ist ein Projekt, dessen Ziel es ist, Schülern der HTL Leonding einfachen Zugang zu LeoCloud – der Cloud-Computing Umgebung der HTL Leonding – zu geben.
+Beeyond stellt Templates für die Schüler zur Verfügung, welche ihnen ermöglichen, ihre Anwendungen und Dienste schnell und effizient in einer Produktions-ähnlichen Umgebung zu testen und zu deployen.
+Die Kubernetes Templates werden an die Bedürfnisse und Anforderungen der Schüler angepasst und sollen eine einfache Handhabung garantieren.
+Beeyond soll somit dazu beitragen, dass die Schüler frühzeitig praktische Erfahrungen im Umgang mit modernen Technologien sammeln und ihre Fähigkeiten verbessern können.
 
 == Systemarchitektur
 

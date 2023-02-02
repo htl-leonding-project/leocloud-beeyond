@@ -1,33 +1,34 @@
-name: GitHub Pages CD
+name: Docs
 
 on:
-  push:
-    branches:
-      - '*'
-    paths:
-      - docs/**
   workflow_dispatch:
 
+  push:
+    branches:
+      - 'main'
+    paths:
+      - docs/**
 
 jobs:
-  build-and-deploy:
+  build:
+    name: Build & Publish 🚀
     runs-on: ubuntu-latest
-
+    env:
+      INPUTPATH: docs
+      OUTPUTPATH: dist
+      SLIDES: true
+      BRANCH: gh-pages
     steps:
-      - name: Setup repo
-        uses: actions/checkout@v2
-      - name: Setup asciidoctor
-        run: sudo apt-get install -y asciidoctor
-      - name: Setup asciidoctor-diagram
-        run: sudo gem install asciidoctor-diagram
-      - name: Setup graphviz
-        run: sudo apt install graphviz
-      - name: Make build script executable
-        run: chmod +x docs/build
-      - name: Build documentation
-        run: docs/build
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: actions/checkout@v2
+      - name: Build
+        uses: quirinecker/asciidoctor-convert-action@main
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out
+          slides: ${{ env.SLIDES }}
+          inputPath: ${{ env.INPUTPATH }}
+          outputPath: ${{ env.OUTPUTPATH }}
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ github.TOKEN }}
+          BRANCH: ${{ env.BRANCH }}
+          FOLDER: ${{ env.OUTPUTPATH }}
