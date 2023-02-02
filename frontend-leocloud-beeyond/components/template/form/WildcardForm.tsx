@@ -5,7 +5,7 @@ import { FormElement } from "@components/template/form/FormElement";
 
 export function WildCardForm({}: {}) {
   const selectedTemplate = useStateStore((state) => state.activeTemplate);
-  const [createIngres, setCreateIngress] = useState(
+  const [createIngress, setCreateIngress] = useState(
     selectedTemplate!.createIngress
   );
 
@@ -27,7 +27,7 @@ export function WildCardForm({}: {}) {
                   key={index}
                   wildcard={field}
                   selectedTemplate={selectedTemplate}
-                  showExample={field.value === undefined}
+                  showExample={field.value === ""}
                 ></FormElement>
               )
             )}
@@ -39,8 +39,8 @@ export function WildCardForm({}: {}) {
                     className="mr-2 leading-tight"
                     type="checkbox"
                     checked={selectedTemplate!.createIngress}
-                    onClick={() => {
-                      setCreateIngress(!createIngres);
+                    onChange={() => {
+                      setCreateIngress(!createIngress);
                       selectedTemplate!.createIngress =
                         !selectedTemplate!.createIngress;
                     }}

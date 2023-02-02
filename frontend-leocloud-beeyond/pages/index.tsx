@@ -5,7 +5,19 @@ import { Template } from "@models/template";
 import { WildCardForm } from "@components/template/form/WildcardForm";
 import useStateStore from "@stores/stateStore";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) =>
+  fetch(url).then(async (res) => {
+    let data: Template[] = await res.json();
+    data.map((t) => {
+      t.createIngress = false;
+      t.fields.map((f) => {
+        if (f.value === undefined) {
+          f.value = "";
+        }
+      });
+    });
+    return data;
+  });
 const url = `${process.env.API_URL}/template`;
 
 export default function Home() {
