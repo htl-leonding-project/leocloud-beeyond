@@ -21,7 +21,7 @@ jobs:
       - name: Setup graphviz
         run: sudo apt install graphviz
       - name: Build documentation
-        run: ./build
+        run: docs/build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
