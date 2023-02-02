@@ -12,6 +12,8 @@ Beeyond soll somit dazu beitragen, dass die Schüler frühzeitig praktische Erfa
 
 == Systemarchitektur
 
+image::sys-spec.png[]
+
 
 == Beeyond Tutorial
 
