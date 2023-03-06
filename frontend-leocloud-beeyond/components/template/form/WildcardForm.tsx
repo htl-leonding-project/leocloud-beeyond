@@ -27,7 +27,7 @@ export function WildCardForm({}: {}) {
                   key={index}
                   wildcard={field}
                   selectedTemplate={selectedTemplate}
-                  showExample={field.value === ""}
+                  showExample={true}
                 ></FormElement>
               )
             )}

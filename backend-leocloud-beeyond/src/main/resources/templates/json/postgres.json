@@ -8,7 +8,7 @@
       "wildcard": "name",
       "description": "Name of the service and deployment",
       "value": "postgres-db",
-      "placeholder": "Name of the deployment"
+      "placeholder": "postgres-db"
     },
     {
       "label": "Database",
