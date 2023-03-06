@@ -7,8 +7,8 @@
       "label": "Name",
       "wildcard": "name",
       "description": "Name of the service and deployment",
-      "value": "dotnet",
-      "placeholder": "Name of the deployment"
+      "value": "dotnet-backend",
+      "placeholder": "dotnet-backend"
     },
     {
       "label": "Image",
@@ -27,14 +27,14 @@
       "wildcard": "db-user",
       "description": "Database user",
       "value": "app",
-      "placeholder": "Database user"
+      "placeholder": "app"
     },
     {
       "label": "Database Password",
       "wildcard": "db-password",
       "description": "Password for the specified user",
       "value": "app",
-      "placeholder": "Database password"
+      "placeholder": "app"
     }
   ]
 }

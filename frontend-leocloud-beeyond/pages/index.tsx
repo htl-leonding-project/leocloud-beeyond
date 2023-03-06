@@ -6,7 +6,7 @@ import { WildCardForm } from "@components/template/form/WildcardForm";
 import useStateStore from "@stores/stateStore";
 import yaml from "js-yaml";
 import { K8sYaml } from "@models/K8sYaml";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const fetcher = (url: string) =>
   fetch(url).then(async (res) => {
@@ -190,6 +190,9 @@ spec:
             <div className={"flex justify-between"}>
               <label className="block text-sm font-semibold text-gray-800">
                 Username
+              </label>
+              <label className="block text-sm text-gray-400">
+                {`example: m.remplbauer`}
               </label>
             </div>
             <input
