@@ -16,7 +16,7 @@ image::sys-spec.png[]
 
 == Slides
 
-* https://student.cloud.htl-leonding.ac.at/n.hirsch/app[Slides^]
+* https://htl-leonding-project.github.io/leocloud-beeyond/slides/syp-5ahif/[Slides^]
 
 == Beeyond Tutorial
 
