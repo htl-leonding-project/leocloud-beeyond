@@ -1,7 +1,8 @@
 
 [beeyond]
 = Beeyond
-ifndef::imagesdir[:imagesdir: ./images]
+//:imagesdir: images
+ifndef::imagesdir[:imagesdir: ../../images]
 :notitle:
 :title-slide-background-image: avg.jpg
 :customcss: style.css
