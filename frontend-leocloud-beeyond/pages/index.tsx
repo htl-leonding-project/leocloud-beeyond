@@ -6,6 +6,7 @@ import { WildCardForm } from "@components/template/form/WildcardForm";
 import useStateStore from "@stores/stateStore";
 import yaml from "js-yaml";
 import { K8sYaml } from "@models/K8sYaml";
+import { useState } from "react";
 
 const fetcher = (url: string) =>
   fetch(url).then(async (res) => {
@@ -35,6 +36,8 @@ export default function Home() {
 
   const activeTemplate = useStateStore((state) => state.activeTemplate);
   const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
+
+  const [username, setUsername] = useState("");
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent());
@@ -101,9 +104,8 @@ spec:
     const name = documents[0].metadata.name;
     const serviceName = documents[1].metadata.name;
     const port = documents[1].spec.ports[0].port;
-    const user = "m.remplbauer";
 
-    return generateIngressYaml(serviceName, port, user, name);
+    return generateIngressYaml(serviceName, port, username, name);
   }
 
   const buildDeploymentContent = (): string => {
@@ -179,10 +181,26 @@ spec:
             />
           </div>
         </div>
-        <div className={"h-1/3 flex justify-center items-end"}>
+        <div
+          className={
+            "h-1/3 flex flex-col justify-end items-end space-y-4 pr-4 pl-4"
+          }
+        >
+          <div className="w-full">
+            <div className={"flex justify-between"}>
+              <label className="block text-sm font-semibold text-gray-800">
+                Username
+              </label>
+            </div>
+            <input
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+              className="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
+            />
+          </div>
           <button
             className={
-              "font-medium text-white bg-primary rounded-lg shadow-md hover:bg-secondary hover:text-black p-4"
+              "w-full font-medium text-white bg-primary rounded-lg shadow-md hover:bg-secondary hover:text-black p-4"
             }
             onClick={downloadDeployment}
           >
