@@ -20,7 +20,7 @@
       "label": "Database URL",
       "wildcard": "db-url",
       "description": "URL to the database",
-      "placeholder": "jdbc:<driver>://<host>:<port>/<database>"
+      "placeholder": "jdbc:postgresql://auction-db:5432/db"
     },
     {
       "label": "Database Username",
