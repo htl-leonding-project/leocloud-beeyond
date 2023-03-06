@@ -1,7 +1,7 @@
 
 [beeyond]
 = Beeyond
-:imagesdir: ./images
+:imagesdir: assets
 :notitle:
 :title-slide-background-image: avg.jpg
 :customcss: style.css
@@ -44,12 +44,12 @@ image::gear.jpg[background, size=cover]
 * Einschränkungen für Ressourcen je nach Projekt
 
 == !
-image::sys-arch.png[background, size=cover]
+image::sys-spec.png[background, size=cover]
 
 [.text-left]
 == Live-Demo
 
 image::avg.jpg[background, size=cover]
 
-* https://student.cloud.htl-leonding.ac.at/beeyond[App^]
-* https://halilbahar.github.io/beeyond[Docs^]
+* https://student.cloud.htl-leonding.ac.at/n.hirsch/app[App^]
+* https://htl-leonding-project.github.io/leocloud-beeyond/[Docs^]
