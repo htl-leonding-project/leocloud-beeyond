@@ -4,6 +4,8 @@ import useSWR from "swr";
 import { Template } from "@models/template";
 import { WildCardForm } from "@components/template/form/WildcardForm";
 import useStateStore from "@stores/stateStore";
+import yaml from "js-yaml";
+import { K8sYaml } from "@models/K8sYaml";
 
 const fetcher = (url: string) =>
   fetch(url).then(async (res) => {
@@ -67,11 +69,54 @@ export default function Home() {
     window.URL.revokeObjectURL(url);
   };
 
+  function generateIngressYaml(
+    serviceName: string,
+    port: number,
+    user: string,
+    name: string
+  ): string {
+    return `apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${name}-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: student.cloud.htl-leonding.ac.at
+      http:
+        paths:
+          - path: /${user}/${name}(/|$)(.*)$
+            pathType: Prefix
+            backend:
+              service:
+                name: ${serviceName}
+                port:
+                  number: ${port}`;
+  }
+
+  function getIngressForTemplate(templateContent: string): string {
+    const documents = yaml.loadAll(templateContent) as K8sYaml[];
+
+    const name = documents[0].metadata.name;
+    const serviceName = documents[1].metadata.name;
+    const port = documents[1].spec.ports[0].port;
+    const user = "m.remplbauer";
+
+    return generateIngressYaml(serviceName, port, user, name);
+  }
+
   const buildDeploymentContent = (): string => {
     let content = "";
 
     for (let i = 0; i < selectedTemplates.length; i++) {
-      content += getTemplateContent(selectedTemplates[i]);
+      const templateContent = getTemplateContent(selectedTemplates[i]);
+      content += templateContent;
+
+      if (selectedTemplates[i].createIngress) {
+        content += "\n---\n";
+        content += getIngressForTemplate(templateContent);
+      }
 
       if (i != selectedTemplates.length - 1) {
         content += "\n---\n";

@@ -21,6 +21,7 @@
     "zustand": "^4.1.5"
   },
   "devDependencies": {
+    "@types/js-yaml": "^4.0.5",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
     "prettier": "2.8.0",
