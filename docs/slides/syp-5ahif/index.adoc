@@ -1,7 +1,7 @@
 
 [beeyond]
 = Beeyond
-:imagesdir: images
+:imagesdir: ./images
 :notitle:
 :title-slide-background-image: avg.jpg
 :customcss: style.css
