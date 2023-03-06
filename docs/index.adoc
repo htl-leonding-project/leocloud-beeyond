@@ -14,6 +14,9 @@ Beeyond soll somit dazu beitragen, dass die Schüler frühzeitig praktische Erfa
 
 image::sys-spec.png[]
 
+== Slides
+
+* https://student.cloud.htl-leonding.ac.at/n.hirsch/app[Slides^]
 
 == Beeyond Tutorial
 
