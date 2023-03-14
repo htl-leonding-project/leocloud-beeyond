@@ -196,7 +196,6 @@ spec:
               </label>
               <input
                 type="text"
-                placeholder="Type here"
                 className="input input-bordered w-full"
                 onChange={(e) => setUsername(e.target.value)}
               />
