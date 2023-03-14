@@ -187,24 +187,23 @@ spec:
           }
         >
           <div className="w-full">
-            <div className={"flex justify-between"}>
-              <label className="block text-sm font-semibold text-gray-800">
-                Username
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text text-sm font-semibold text-gray-800 pr-1">
+                  Username
+                </span>
+                <span className="label-text-alt text-sm text-gray-400 truncate">{`example: m.remplbauer`}</span>
               </label>
-              <label className="block text-sm text-gray-400">
-                {`example: m.remplbauer`}
-              </label>
+              <input
+                type="text"
+                placeholder="Type here"
+                className="input input-bordered w-full"
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
-            <input
-              type="text"
-              onChange={(e) => setUsername(e.target.value)}
-              className="block w-full px-4 py-2 mt-2 text-indigo-700 bg-white border rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
-            />
           </div>
           <button
-            className={
-              "w-full font-medium text-white bg-primary rounded-lg shadow-md hover:bg-secondary hover:text-black p-4"
-            }
+            className="btn btn-primary w-full text-white"
             onClick={downloadDeployment}
           >
             DOWNLOAD
