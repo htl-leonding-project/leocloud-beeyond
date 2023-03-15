@@ -1,13 +1,13 @@
+import React, { useState } from "react";
+
+import ArrowButton from "@components/ArrowButton";
 import ListItem from "@components/template/list/ListItem";
-import Image from "next/image";
-import useSWR from "swr";
 import { Template } from "@models/template";
 import { WildCardForm } from "@components/template/form/WildcardForm";
-import useStateStore from "@stores/stateStore";
-import React, { useState } from "react";
-import { downloadDeploymentFile } from "@utils/download-utils";
 import { buildDeploymentContent } from "@utils/deployment-utils";
-import ArrowButton from "@components/ArrowButton";
+import { downloadDeploymentFile } from "@utils/download-utils";
+import useSWR from "swr";
+import useStateStore from "@stores/stateStore";
 
 const fetcher = (url: string) =>
   fetch(url).then(async (res) => {
@@ -82,11 +82,7 @@ export default function Home() {
             onClick={() => selectTemplate("left")}
           />
         </div>
-        <div
-          className={
-            "h-1/3 flex flex-col justify-end items-end space-y-4 pr-4 pl-4"
-          }
-        >
+        <div className="h-1/3 flex flex-col justify-end items-end space-y-4 pr-4 pl-4">
           <div className="w-full">
             <div className="form-control w-full">
               <label className="label">
@@ -96,8 +92,8 @@ export default function Home() {
                 <span className="label-text-alt text-sm text-gray-400 truncate">{`example: m.remplbauer`}</span>
               </label>
               <input
-                type="text"
                 className="input input-bordered w-full"
+                type="text"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
@@ -113,17 +109,11 @@ export default function Home() {
 
       <div className={"flex flex-col w-2/5"}>
         <div className={"font-bold text-2xl p-2"}>Selected Templates</div>
-        <div
-          className={
-            "h-full bg-white shadow-md rounded-lg overflow-auto flex flex-col"
-          }
-        >
+        <div className="h-full bg-white shadow-md rounded-lg overflow-auto flex flex-col">
           <div
-            className={
-              selectedTemplates.includes(activeTemplate!)
-                ? "h-full bg-white rounded-lg overflow-auto"
-                : "h-full bg-white rounded-lg overflow-auto shadow-md"
-            }
+            className={`h-full bg-white rounded-lg overflow-auto ${
+              selectedTemplates.includes(activeTemplate!) ? "shadow-md" : ""
+            }`}
           >
             {selectedTemplates.map((template: Template) => (
               <ListItem key={template.id} template={template} />
