@@ -7,6 +7,7 @@ import useStateStore from "@stores/stateStore";
 import React, { useState } from "react";
 import { downloadDeploymentFile } from "@utils/download-utils";
 import { buildDeploymentContent } from "@utils/deployment-utils";
+import ArrowButton from "@components/ArrowButton";
 
 const fetcher = (url: string) =>
   fetch(url).then(async (res) => {
@@ -72,29 +73,14 @@ export default function Home() {
       <div className={"w-1/5 flex-col"}>
         <div className={"h-1/3"}></div>
         <div className={"h-1/3 flex flex-col justify-center items-center"}>
-          <div
-            className={"cursor-pointer"}
-            onClick={() => selectTemplate("left")}
-          >
-            <Image
-              src={`${process.env.BASE_PATH}/assets/arrow-left.svg`}
-              alt={"arrow-left"}
-              width={48}
-              height={48}
-              priority={true}
-            />
-          </div>
-          <div
-            className={"cursor-pointer"}
+          <ArrowButton
+            direction="right"
             onClick={() => selectTemplate("right")}
-          >
-            <Image
-              src={`${process.env.BASE_PATH}/assets/arrow-right.svg`}
-              alt={"arrow-right"}
-              width={48}
-              height={48}
-            />
-          </div>
+          />
+          <ArrowButton
+            direction="left"
+            onClick={() => selectTemplate("left")}
+          />
         </div>
         <div
           className={
