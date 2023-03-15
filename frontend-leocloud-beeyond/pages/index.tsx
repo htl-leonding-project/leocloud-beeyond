@@ -9,19 +9,23 @@ import { downloadDeploymentFile } from "@utils/download-utils";
 import useSWR from "swr";
 import useStateStore from "@stores/stateStore";
 
-const fetcher = (url: string) =>
-  fetch(url).then(async (res) => {
-    let data: Template[] = await res.json();
-    data.map((t) => {
-      t.createIngress = false;
-      t.fields.map((f) => {
-        if (f.value === undefined) {
-          f.value = "";
-        }
-      });
+const fetcher = async (url: string): Promise<Template[]> => {
+  const res = await fetch(url);
+  const data = await res.json();
+  
+  data.forEach((t:Template) => {
+    t.createIngress = false;
+    t.fields.forEach((f) => {
+      if (f.value === undefined) {
+        f.value = "";
+      }
     });
-    return data;
   });
+  
+  return data;
+};
+
+
 const url = `${process.env.API_URL}/template`;
 
 export default function Home() {
@@ -110,11 +114,7 @@ export default function Home() {
       <div className={"flex flex-col w-2/5"}>
         <div className={"font-bold text-2xl p-2"}>Selected Templates</div>
         <div className="h-full bg-white shadow-md rounded-lg overflow-auto flex flex-col">
-          <div
-            className={`h-full bg-white rounded-lg overflow-auto ${
-              selectedTemplates.includes(activeTemplate!) ? "shadow-md" : ""
-            }`}
-          >
+          <div className="h-full bg-white rounded-lg overflow-auto">
             {selectedTemplates.map((template: Template) => (
               <ListItem key={template.id} template={template} />
             ))}
