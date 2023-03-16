@@ -12,8 +12,8 @@ import useStateStore from "@stores/stateStore";
 const fetcher = async (url: string): Promise<Template[]> => {
   const res = await fetch(url);
   const data = await res.json();
-  
-  data.forEach((t:Template) => {
+
+  data.forEach((t: Template) => {
     t.createIngress = false;
     t.fields.forEach((f) => {
       if (f.value === undefined) {
@@ -21,26 +21,28 @@ const fetcher = async (url: string): Promise<Template[]> => {
       }
     });
   });
-  
+
   return data;
 };
-
 
 const url = `${process.env.API_URL}/template`;
 
 export default function Home() {
   const { data } = useSWR<Template[]>(url, fetcher);
 
-  const selectedTemplates = useStateStore((state) => state.selectedTemplates);
-  const addSelectedTemplate = useStateStore(
-    (state) => state.addSelectedTemplate
-  );
-  const removeSelectedTemplate = useStateStore(
-    (state) => state.removeSelectedTemplate
-  );
-
-  const activeTemplate = useStateStore((state) => state.activeTemplate);
-  const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
+  const [
+    selectedTemplates,
+    addSelectedTemplate,
+    removeSelectedTemplate,
+    activeTemplate,
+    setActiveTemplate,
+  ] = useStateStore((state) => [
+    state.selectedTemplates,
+    state.addSelectedTemplate,
+    state.removeSelectedTemplate,
+    state.activeTemplate,
+    state.setActiveTemplate,
+  ]);
 
   const [username, setUsername] = useState("");
 
@@ -48,14 +50,15 @@ export default function Home() {
     downloadDeploymentFile(buildDeploymentContent(selectedTemplates, username));
   };
 
-  const selectTemplate = (direction: string) => {
+  const selectTemplate = (direction: "left" | "right") => {
     if (!activeTemplate) return;
 
-    if (direction == "right") {
-      if (!selectedTemplates.includes(activeTemplate)) {
-        addSelectedTemplate(activeTemplate);
-      }
-    } else {
+    if (direction === "right" && !selectedTemplates.includes(activeTemplate)) {
+      addSelectedTemplate(activeTemplate);
+    } else if (
+      direction === "left" &&
+      selectedTemplates.includes(activeTemplate)
+    ) {
       removeSelectedTemplate(activeTemplate);
     }
 
