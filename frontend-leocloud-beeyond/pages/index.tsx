@@ -93,13 +93,13 @@ export default function Home() {
           <div className="w-full">
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text text-sm font-semibold text-gray-800 pr-1">
+                <span className="label-text text-sm font-semibold text-gray-800 pr-4">
                   Username
                 </span>
                 <span className="label-text-alt text-sm text-gray-400 truncate">{`example: m.remplbauer`}</span>
               </label>
               <input
-                className="input input-bordered w-full"
+                className="input input-bordered w-full text-indigo-700 rounded-md focus:border-indigo-400 focus:ring-indigo-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 type="text"
                 onChange={(e) => setUsername(e.target.value)}
               />
