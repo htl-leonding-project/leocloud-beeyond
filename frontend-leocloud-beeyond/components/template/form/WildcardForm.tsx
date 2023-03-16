@@ -21,7 +21,6 @@ export function WildCardForm({}: {}) {
       </div>
       <div className={"h-full overflow-auto"}>
         <form className="mt-2">
-          <div>
             {selectedTemplate?.fields.map(
               (field: WildcardField, index: number) => (
                 <FormElement
@@ -49,7 +48,6 @@ export function WildCardForm({}: {}) {
                 </label>
               </div>
             </div>
-          </div>
         </form>
       </div>
     </>
