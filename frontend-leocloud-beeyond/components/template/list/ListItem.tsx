@@ -7,7 +7,7 @@ export default function ListItem({ template }: { template: Template }) {
 
   return (
     <div
-      className={`rounded-lg cursor-pointer hover:bg-secondary p-4 ${
+      className={`cursor-pointer rounded-lg p-4 hover:bg-secondary ${
         selectedTemplate?.id == template.id ? "bg-secondary" : ""
       }`}
       onClick={() => {

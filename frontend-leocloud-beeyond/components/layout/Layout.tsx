@@ -13,9 +13,9 @@ const Layout = ({ children }: LayoutProps) => {
         <title>Beeyond</title>
         <link rel="icon" href={`${process.env.BASE_PATH}/favicon.ico`} />
       </Head>
-      <main className="flex flex-col h-screen mx-2">
+      <main className="mx-2 flex h-screen flex-col">
         <Navbar></Navbar>
-        <div className="h-full mb-2">{children}</div>
+        <div className="mb-2 h-full">{children}</div>
       </main>
     </>
   );
