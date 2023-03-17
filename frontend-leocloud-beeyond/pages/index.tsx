@@ -11,9 +11,9 @@ import useStateStore from "@stores/stateStore";
 
 const fetcher = async (url: string): Promise<Template[]> => {
   const res = await fetch(url);
-  const data = await res.json();
+  const data: Template[] = await res.json();
 
-  data.forEach((t: Template) => {
+  data.forEach((t) => {
     t.createIngress = false;
     t.fields.forEach((f) => {
       if (f.value === undefined) {
