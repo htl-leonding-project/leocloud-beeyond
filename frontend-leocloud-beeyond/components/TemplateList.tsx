@@ -11,7 +11,7 @@ const TemplateList = ({
 }) => {
   return (
     <>
-      <div className="p-2 text-2xl font-bold">{header}</div>
+      <div className="select-none p-2 text-2xl font-bold">{header}</div>
       <div className="h-full rounded-lg bg-white shadow-md">
         {templates.map((template) => (
           <ListItem key={template.id} template={template} />

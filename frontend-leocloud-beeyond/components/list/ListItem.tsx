@@ -16,7 +16,7 @@ export default function ListItem({ template }: { template: Template }) {
         setActiveTemplate(template);
       }}
     >
-      <div className="font-medium">{template.name}</div>
+      <div className="select-none font-medium">{template.name}</div>
     </div>
   );
 }
