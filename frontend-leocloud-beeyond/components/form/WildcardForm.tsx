@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
-
-import { FormElement } from "@components/template/form/FormElement";
+import { FormElement } from "@components/form/FormElement";
 import { WildcardField } from "@models/template";
-import useStateStore from "@stores/stateStore";
+import useTemplateStore from "@stores/templateStore";
 
-export function WildCardForm({}: {}) {
-  const selectedTemplate = useStateStore((state) => state.activeTemplate);
-  const [createIngress, setCreateIngress] = useState(
-    selectedTemplate!.createIngress
-  );
-
-  useEffect(() => {
-    setCreateIngress(selectedTemplate!.createIngress);
-  }, [selectedTemplate!.createIngress]);
+export function WildCardForm() {
+  const [selectedTemplate, setActiveTemplate] = useTemplateStore((state) => [
+    state.activeTemplate,
+    state.setActiveTemplate,
+  ]);
 
   return (
     <>
@@ -39,9 +33,10 @@ export function WildCardForm({}: {}) {
                   type="checkbox"
                   checked={selectedTemplate!.createIngress}
                   onChange={() => {
-                    setCreateIngress(!createIngress);
                     selectedTemplate!.createIngress =
                       !selectedTemplate!.createIngress;
+
+                    setActiveTemplate(selectedTemplate);
                   }}
                 />
                 <span className="text-sm">Create ingress for Service</span>

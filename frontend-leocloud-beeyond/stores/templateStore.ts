@@ -1,19 +1,20 @@
-import create from "zustand";
 import { Template } from "@models/template";
+import create from "zustand";
 
-interface StateStore {
+interface TemplateStore {
   activeTemplate: Template | null;
-  setActiveTemplate: (template: Template | null) => void;
   selectedTemplates: Template[];
+  setActiveTemplate: (template: Template | null) => void;
   addSelectedTemplate: (template: Template) => void;
   removeSelectedTemplate: (template: Template) => void;
+  setCreateIngress: (createIngress: boolean) => void;
 }
 
-const useStateStore = create<StateStore>((set) => ({
+const useTemplateStore = create<TemplateStore>((set) => ({
   activeTemplate: null,
+  selectedTemplates: [],
   setActiveTemplate: (template: Template | null) =>
     set(() => ({ activeTemplate: template })),
-  selectedTemplates: [],
   addSelectedTemplate: (template: Template) =>
     set((state) => ({
       selectedTemplates: [...state.selectedTemplates, template],
@@ -24,6 +25,13 @@ const useStateStore = create<StateStore>((set) => ({
         (t: Template) => t.id !== template.id
       ),
     })),
+  setCreateIngress: (createIngress: boolean) =>
+    set((state) => ({
+      activeTemplate: state.activeTemplate && {
+        ...state.activeTemplate,
+        createIngress,
+      },
+    })),
 }));
 
-export default useStateStore;
+export default useTemplateStore;

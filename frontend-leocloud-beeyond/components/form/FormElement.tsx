@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Template, WildcardField } from "@models/template";
 
-import useStateStore from "@stores/stateStore";
+import useTemplateStore from "@stores/templateStore";
 
 export function FormElement({
   wildcard,
@@ -10,10 +10,13 @@ export function FormElement({
   wildcard: WildcardField;
   selectedTemplate: Template;
 }) {
+  const setActiveTemplate = useTemplateStore(
+    (state) => state.setActiveTemplate
+  );
   const [value, setValue] = useState(wildcard.value);
-  const setActiveTemplate = useStateStore((state) => state.setActiveTemplate);
   const showPlaceholder = wildcard.value === "";
 
+  // update input field value when `wildcard.value` prop changes
   useEffect(() => {
     setValue(wildcard.value);
   }, [wildcard.value]);

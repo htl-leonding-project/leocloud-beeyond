@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import ArrowButton from "@components/ArrowButton";
-import ListItem from "@components/template/list/ListItem";
+import ListItem from "@components/list/ListItem";
 import { Template } from "@models/template";
-import { WildCardForm } from "@components/template/form/WildcardForm";
+import { WildCardForm } from "@components/form/WildcardForm";
 import { buildDeploymentContent } from "@utils/deployment-utils";
 import { downloadDeploymentFile } from "@utils/download-utils";
 import useSWR from "swr";
-import useStateStore from "@stores/stateStore";
+import useTemplateStore from "@stores/templateStore";
 
 const fetcher = async (url: string): Promise<Template[]> => {
   const res = await fetch(url);
@@ -31,16 +31,16 @@ export default function Home() {
   const { data } = useSWR<Template[]>(url, fetcher);
 
   const [
+    activeTemplate,
     selectedTemplates,
     addSelectedTemplate,
     removeSelectedTemplate,
-    activeTemplate,
     setActiveTemplate,
-  ] = useStateStore((state) => [
+  ] = useTemplateStore((state) => [
+    state.activeTemplate,
     state.selectedTemplates,
     state.addSelectedTemplate,
     state.removeSelectedTemplate,
-    state.activeTemplate,
     state.setActiveTemplate,
   ]);
 
@@ -66,10 +66,10 @@ export default function Home() {
   };
 
   return (
-    <div className={"flex h-full"}>
-      <div className={"flex w-2/5 flex-col"}>
-        <div className={"p-2 text-2xl font-bold"}>Available Templates</div>
-        <div className={"h-full rounded-lg bg-white shadow-md"}>
+    <div className="flex h-full">
+      <div className="flex w-2/5 flex-col">
+        <div className="p-2 text-2xl font-bold">Available Templates</div>
+        <div className="h-full rounded-lg bg-white shadow-md">
           {data
             ?.filter((template) => !selectedTemplates.includes(template))
             .map((template) => (
@@ -77,9 +77,9 @@ export default function Home() {
             ))}
         </div>
       </div>
-      <div className={"w-1/5 flex-col"}>
-        <div className={"h-1/3"}></div>
-        <div className={"flex h-1/3 flex-col items-center justify-center"}>
+      <div className="w-1/5 flex-col">
+        <div className="h-1/3"></div>
+        <div className="flex h-1/3 flex-col items-center justify-center">
           <ArrowButton
             direction="right"
             onClick={() => selectTemplate("right")}
@@ -114,8 +114,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={"flex w-2/5 flex-col"}>
-        <div className={"p-2 text-2xl font-bold"}>Selected Templates</div>
+      <div className="flex w-2/5 flex-col">
+        <div className="p-2 text-2xl font-bold">Selected Templates</div>
         <div className="flex h-full flex-col overflow-auto rounded-lg bg-white shadow-md">
           <div className="h-full overflow-auto rounded-lg bg-white">
             {selectedTemplates.map((template: Template) => (
