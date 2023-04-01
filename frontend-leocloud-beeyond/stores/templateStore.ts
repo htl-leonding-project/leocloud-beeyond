@@ -7,7 +7,6 @@ interface TemplateStore {
   setActiveTemplate: (template: Template | null) => void;
   addSelectedTemplate: (template: Template) => void;
   removeSelectedTemplate: (template: Template) => void;
-  setCreateIngress: (createIngress: boolean) => void;
 }
 
 const useTemplateStore = create<TemplateStore>((set) => ({
@@ -24,13 +23,6 @@ const useTemplateStore = create<TemplateStore>((set) => ({
       selectedTemplates: state.selectedTemplates.filter(
         (t: Template) => t.id !== template.id
       ),
-    })),
-  setCreateIngress: (createIngress: boolean) =>
-    set((state) => ({
-      activeTemplate: state.activeTemplate && {
-        ...state.activeTemplate,
-        createIngress,
-      },
     })),
 }));
 

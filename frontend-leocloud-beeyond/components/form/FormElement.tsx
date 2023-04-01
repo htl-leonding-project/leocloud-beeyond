@@ -28,7 +28,7 @@ export function FormElement({
           <span className="label-text pr-4 text-sm font-semibold text-gray-800">
             {wildcard.label}
           </span>
-          <span className="label-text-alt truncate text-sm text-gray-400">{`example: ${wildcard.placeholder}`}</span>
+          <span className="label-text-alt select-text truncate text-sm text-gray-400">{`example: ${wildcard.placeholder}`}</span>
         </label>
         <input
           className="input-bordered input w-full rounded-md text-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"

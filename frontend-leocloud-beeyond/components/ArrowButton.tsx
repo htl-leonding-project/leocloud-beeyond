@@ -1,5 +1,5 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
 
 const ArrowButton = ({
   direction,
@@ -13,6 +13,7 @@ const ArrowButton = ({
   return (
     <div className="cursor-pointer" onClick={onClick}>
       <Image
+        className="select-none"
         src={imagePath}
         alt={`arrow-${direction}`}
         width={48}
