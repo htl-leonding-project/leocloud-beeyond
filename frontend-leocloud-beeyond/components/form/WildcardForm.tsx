@@ -9,7 +9,7 @@ export function WildCardForm() {
   ]);
 
   return (
-    <>
+    <div className="flex h-full flex-col overflow-auto rounded-lg bg-white pt-1 shadow-md">
       <div className={"mx-2 block text-lg font-semibold text-gray-800"}>
         Template Fields
       </div>
@@ -45,6 +45,6 @@ export function WildCardForm() {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }

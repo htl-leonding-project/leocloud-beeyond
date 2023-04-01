@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
 import ArrowButton from "@components/ArrowButton";
-import ListItem from "@components/list/ListItem";
 import { Template } from "@models/template";
+import TemplateList from "@components/TemplateList";
 import { WildCardForm } from "@components/form/WildcardForm";
 import { buildDeploymentContent } from "@utils/deployment-utils";
 import { downloadDeploymentFile } from "@utils/download-utils";
@@ -68,15 +68,15 @@ export default function Home() {
   return (
     <div className="flex h-full">
       <div className="flex w-2/5 flex-col">
-        <div className="p-2 text-2xl font-bold">Available Templates</div>
-        <div className="h-full rounded-lg bg-white shadow-md">
-          {data
-            ?.filter((template) => !selectedTemplates.includes(template))
-            .map((template) => (
-              <ListItem key={template.id} template={template} />
-            ))}
-        </div>
+        <TemplateList
+          header="Available Templates"
+          templates={
+            data?.filter((template) => !selectedTemplates.includes(template)) ||
+            []
+          }
+        />
       </div>
+
       <div className="w-1/5 flex-col">
         <div className="h-1/3"></div>
         <div className="flex h-1/3 flex-col items-center justify-center">
@@ -115,17 +115,15 @@ export default function Home() {
       </div>
 
       <div className="flex w-2/5 flex-col">
-        <div className="p-2 text-2xl font-bold">Selected Templates</div>
-        <div className="flex h-full flex-col overflow-auto rounded-lg bg-white shadow-md">
-          <div className="h-full overflow-auto rounded-lg bg-white">
-            {selectedTemplates.map((template: Template) => (
-              <ListItem key={template.id} template={template} />
-            ))}
+        <TemplateList
+          header="Selected Templates"
+          templates={selectedTemplates}
+        />
+        {selectedTemplates.includes(activeTemplate!) && (
+          <div className="mt-1 h-1/2">
+            <WildCardForm />
           </div>
-          {selectedTemplates.includes(activeTemplate!) && (
-            <WildCardForm></WildCardForm>
-          )}
-        </div>
+        )}
       </div>
     </div>
   );
