@@ -45,6 +45,7 @@ export default function Home() {
   ]);
 
   const [username, setUsername] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent(selectedTemplates, username));
@@ -107,10 +108,26 @@ export default function Home() {
           </div>
           <button
             className="btn-primary btn w-full text-white"
-            onClick={downloadDeployment}
+            onClick={() => {
+              if (username === "") {
+                setShowToast(true);
+                setTimeout(() => setShowToast(false), 2500);
+              } else {
+                downloadDeployment;
+              }
+            }}
           >
-            DOWNLOAD
+            DOWNLOAD YAML
           </button>
+          {showToast && username === "" && (
+            <div className="toast">
+              <div className="alert alert-error">
+                <div>
+                  <span>Provide a valid username to download the YAML</span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
