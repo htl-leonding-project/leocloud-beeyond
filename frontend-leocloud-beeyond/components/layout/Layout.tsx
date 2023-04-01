@@ -1,12 +1,9 @@
 import React, { ReactNode } from "react";
+
 import Head from "next/head";
 import { Navbar } from "@components/layout/Navbar";
 
-interface LayoutProps {
-  children: ReactNode;
-}
-
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <Head>

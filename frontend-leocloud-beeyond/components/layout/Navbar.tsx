@@ -1,4 +1,4 @@
-export function Navbar({}: {}) {
+export function Navbar() {
   return (
     <div className="navbar my-2 rounded-lg bg-secondary px-4">
       <img
