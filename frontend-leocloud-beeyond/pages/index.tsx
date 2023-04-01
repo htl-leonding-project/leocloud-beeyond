@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import ArrowButton from "@components/ArrowButton";
+import { ErrorAlert } from "@components/ErrorAlert";
 import { Template } from "@models/template";
 import TemplateList from "@components/TemplateList";
 import { WildCardForm } from "@components/form/WildcardForm";
@@ -140,15 +141,7 @@ export default function Home() {
           >
             DOWNLOAD YAML
           </button>
-          {showToast && (
-            <div className="toast">
-              <div className="alert alert-error sm:max-w-xs md:max-w-sm lg:max-w-md">
-                <div>
-                  <span>{toastMessage}</span>
-                </div>
-              </div>
-            </div>
-          )}
+          {showToast && <ErrorAlert message={toastMessage}></ErrorAlert>}
         </div>
       </div>
 
