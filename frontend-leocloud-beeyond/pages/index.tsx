@@ -46,8 +46,10 @@ export default function Home() {
 
   const [username, setUsername] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
 
   const downloadDeployment = () => {
+    console.log("downloadDeployment");
     downloadDeploymentFile(buildDeploymentContent(selectedTemplates, username));
   };
 
@@ -64,6 +66,21 @@ export default function Home() {
     }
 
     setActiveTemplate(null);
+  };
+
+  const areTemplatesValid = () => {
+    for (const template of selectedTemplates) {
+      for (const field of template.fields) {
+        if (field.value === "") {
+          setToastMessage(
+            `Field "${field.label}" of Template "${template.name}" must have a value!`
+          );
+          return false;
+        }
+      }
+    }
+
+    return true;
   };
 
   return (
@@ -97,7 +114,7 @@ export default function Home() {
                 <span className="label-text pr-4 text-sm font-semibold text-gray-800">
                   Username
                 </span>
-                <span className="label-text-alt truncate text-sm text-gray-400">{`example: m.remplbauer`}</span>
+                <div className="label-text-alt select-text truncate text-sm text-gray-400">{`example: m.remplbauer`}</div>
               </label>
               <input
                 className="input-bordered input w-full rounded-md text-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
@@ -109,21 +126,25 @@ export default function Home() {
           <button
             className="btn-primary btn w-full text-white"
             onClick={() => {
-              if (username === "") {
+              if (username === "" || !areTemplatesValid()) {
+                if (username === "")
+                  setToastMessage(
+                    "Provide a valid username to download the YAML!"
+                  );
                 setShowToast(true);
                 setTimeout(() => setShowToast(false), 2500);
               } else {
-                downloadDeployment;
+                downloadDeployment();
               }
             }}
           >
             DOWNLOAD YAML
           </button>
-          {showToast && username === "" && (
+          {showToast && (
             <div className="toast">
-              <div className="alert alert-error">
+              <div className="alert alert-error sm:max-w-xs md:max-w-sm lg:max-w-md">
                 <div>
-                  <span>Provide a valid username to download the YAML</span>
+                  <span>{toastMessage}</span>
                 </div>
               </div>
             </div>
