@@ -26,10 +26,10 @@ export function WildCardForm() {
           )}
 
           <div className="mx-2 mb-2">
-            <div className="mt-2 block w-full rounded-md border bg-white px-4 py-2 text-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
-              <label className="flex text-sm font-semibold text-gray-800">
+            <div className="mt-2 block w-full rounded-md border px-4 py-2">
+              <label className="label justify-start">
                 <input
-                  className="mr-2 leading-tight"
+                  className="checkbox-primary checkbox mr-2"
                   type="checkbox"
                   checked={selectedTemplate!.createIngress}
                   onChange={() => {
@@ -39,7 +39,9 @@ export function WildCardForm() {
                     setActiveTemplate(selectedTemplate);
                   }}
                 />
-                <span className="text-sm">Create ingress for Service</span>
+                <span className="label-text select-none">
+                  Create ingress for Service
+                </span>
               </label>
             </div>
           </div>
