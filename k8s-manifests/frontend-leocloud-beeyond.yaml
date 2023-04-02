@@ -15,9 +15,9 @@ spec:
       containers:
         - env:
             - name: API_URL
-              value: https://student.cloud.htl-leonding.ac.at/n.hirsch/api
+              value: https://student.cloud.htl-leonding.ac.at/m.remplbauer/api
             - name: BASE_PATH
-              value: /n.hirsch/app
+              value: /m.remplbauer/app
           name: leocloud-beeyond-frontend
           image: ghcr.io/htl-leonding-project/leocloud-beeyond-frontend:latest
           ports:
@@ -47,7 +47,7 @@ spec:
     - host: student.cloud.htl-leonding.ac.at
       http:
         paths:
-          - path: /n.hirsch/app(/|$)(.*)$
+          - path: /m.remplbauer/app(/|$)(.*)$
             pathType: Prefix
             backend:
               service:
