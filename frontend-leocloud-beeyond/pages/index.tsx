@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ArrowButton from "@components/ArrowButton";
 import { ErrorAlert } from "@components/ErrorAlert";
@@ -7,6 +7,7 @@ import TemplateList from "@components/TemplateList";
 import { WildCardForm } from "@components/form/WildcardForm";
 import { buildDeploymentContent } from "@utils/deployment-utils";
 import { downloadDeploymentFile } from "@utils/download-utils";
+import { useEnvContext } from "@stores/envContext";
 import useSWR from "swr";
 import useTemplateStore from "@stores/templateStore";
 
@@ -26,10 +27,9 @@ const fetcher = async (url: string): Promise<Template[]> => {
   return data;
 };
 
-const url = `${process.env.API_URL}/template`;
-
 export default function Home() {
-  const { data } = useSWR<Template[]>(url, fetcher);
+  const { apiUrl } = useEnvContext();
+  const { data } = useSWR<Template[]>(`${apiUrl}/template`, fetcher);
 
   const [
     activeTemplate,

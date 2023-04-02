@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { useEnvContext } from "@stores/envContext";
 
 const ArrowButton = ({
   direction,
@@ -8,7 +9,8 @@ const ArrowButton = ({
   direction: "left" | "right";
   onClick: () => void;
 }) => {
-  const imagePath = `${process.env.BASE_PATH}/assets/arrow-${direction}.svg`;
+  const { basePath } = useEnvContext();
+  const imagePath = `${basePath}/assets/arrow-${direction}.svg`;
 
   return (
     <div className="cursor-pointer" onClick={onClick}>
