@@ -1,4 +1,5 @@
 #!/bin/sh
+# importand end of line sequence must be LF (unix) and not CRLF (windows)
 
 if [ -z "$BASE_PATH" ]; then
     echo "please set the BASE_PATH environment variable" 1>&2
