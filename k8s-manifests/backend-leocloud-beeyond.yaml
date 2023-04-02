@@ -51,7 +51,7 @@ spec:
     - host: student.cloud.htl-leonding.ac.at
       http:
         paths:
-          - path: /n.hirsch/api(/|$)(.*)$
+          - path: /m.remplbauer/api(/|$)(.*)$
             pathType: Prefix
             backend:
               service:
