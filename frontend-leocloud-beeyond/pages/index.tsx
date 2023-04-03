@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
+import Alert from "@components/Alert";
 import ArrowButton from "@components/ArrowButton";
-import { ErrorAlert } from "@components/ErrorAlert";
 import { Template } from "@models/template";
 import TemplateList from "@components/TemplateList";
 import { WildCardForm } from "@components/form/WildcardForm";
@@ -46,11 +46,10 @@ export default function Home() {
   ]);
 
   const [username, setUsername] = useState("");
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alert, setAlert] = useState({ message: "", type: "" });
 
   const downloadDeployment = () => {
-    console.log("downloadDeployment");
     downloadDeploymentFile(buildDeploymentContent(selectedTemplates, username));
   };
 
@@ -73,15 +72,15 @@ export default function Home() {
     for (const template of selectedTemplates) {
       for (const field of template.fields) {
         if (field.value === "") {
-          setToastMessage(
-            `Field "${field.label}" of Template "${template.name}" must have a value!`
-          );
-          return false;
+          return {
+            type: "error",
+            message: `Field "${field.label}" of Template "${template.name}" must have a value!`,
+          };
         }
       }
     }
 
-    return true;
+    return null;
   };
 
   return (
@@ -127,21 +126,45 @@ export default function Home() {
           <button
             className="btn-primary btn w-full text-white"
             onClick={() => {
-              if (username === "" || !areTemplatesValid()) {
-                if (username === "")
-                  setToastMessage(
-                    "Provide a valid username to download the YAML!"
-                  );
-                setShowToast(true);
-                setTimeout(() => setShowToast(false), 2500);
-              } else {
-                downloadDeployment();
+              let toast = {
+                type: "info",
+                message: "Downloading YAML Kubernetes Manifest.",
+              };
+
+              switch (true) {
+                case selectedTemplates.length === 0:
+                  toast = {
+                    type: "error",
+                    message:
+                      "Please select a valid template to download the YAML.",
+                  };
+                  break;
+                case username === "":
+                  toast = {
+                    type: "error",
+                    message:
+                      "Please provide a valid username to download the YAML.",
+                  };
+                  break;
+                default:
+                  const result = areTemplatesValid();
+                  if (result !== null) {
+                    toast = result;
+                  } else {
+                    downloadDeployment();
+                  }
               }
+
+              setAlert(toast);
+              setShowAlert(true);
+              setTimeout(() => setShowAlert(false), 2500);
             }}
           >
             DOWNLOAD YAML
           </button>
-          {showToast && <ErrorAlert message={toastMessage}></ErrorAlert>}
+          {showAlert && (
+            <Alert type={alert.type} message={alert.message}></Alert>
+          )}
         </div>
       </div>
 
