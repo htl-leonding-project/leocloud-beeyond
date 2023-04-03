@@ -51,7 +51,7 @@ spec:
     - host: student.cloud.htl-leonding.ac.at
       http:
         paths:
-          - path: /m.remplbauer/api(/|$)(.*)$
+          - path: /m.remplbauer/beeyond-backend(/|$)(.*)$
             pathType: Prefix
             backend:
               service:
