@@ -1,0 +1,26 @@
+{
+  "name": "Angular Deployment with Backend",
+  "description": "Deployment of an Angular Application",
+  "content": "angular.yaml",
+  "fields": [
+    {
+      "label": "Name",
+      "wildcard": "name",
+      "description": "Name of the service and deployment",
+      "value": "angular-frontend",
+      "placeholder": "angular-frontend"
+    },
+    {
+      "label": "Image",
+      "wildcard": "image",
+      "description": "Image name",
+      "placeholder": "ghcr.io/nicohirsch1/auction-frontend:latest"
+    },
+    {
+      "label": "Backend URL",
+      "wildcard": "backend-url",
+      "description": "URL to the backend",
+      "placeholder": "https://student.cloud.htl-leonding.ac.at/n.hirsch/auction-backend"
+    }
+  ]
+}
