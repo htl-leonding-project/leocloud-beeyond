@@ -2,6 +2,7 @@
   "name": ".NET Deployment",
   "description": "Deployment of a .NET Application",
   "content": "dotnet.yaml",
+  "img": "dotnet.svg",
   "fields": [
     {
       "label": "Name",

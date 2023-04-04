@@ -13,6 +13,7 @@ class TemplateDto(
     @field:NotNull @field:Size(min = 1, max = 255) var name: String? = null,
     @field:Size(max = 255) var description: String? = null,
     @field:NotBlank var content: String? = null,
+    @field:NotNull var img: String? = null,
     @field:Valid var fields: List<TemplateFieldDto> = LinkedList(),
 ) {
     constructor(template: Template) : this(
@@ -20,6 +21,7 @@ class TemplateDto(
         template.name,
         template.description,
         template.content,
+        template.img,
         template.fields.map { TemplateFieldDto(it) }.toList(),
     )
 
