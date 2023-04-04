@@ -1,5 +1,5 @@
 {
-  "name": ".NET Deployment",
+  "name": ".NET Deployment (in work)",
   "description": "Deployment of a .NET Application",
   "content": "dotnet.yaml",
   "img": "dotnet.svg",
