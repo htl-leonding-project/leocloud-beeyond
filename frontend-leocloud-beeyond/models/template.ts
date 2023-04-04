@@ -5,6 +5,7 @@ export interface Template {
   id: number;
   name: string;
   createIngress: boolean;
+  img: string;
 }
 
 export interface WildcardField {
