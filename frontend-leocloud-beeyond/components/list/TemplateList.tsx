@@ -1,4 +1,4 @@
-import ListItem from "./list/ListItem";
+import ListItem from "./ListItem";
 import React from "react";
 import { Template } from "@models/template";
 

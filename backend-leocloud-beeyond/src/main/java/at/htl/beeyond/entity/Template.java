@@ -22,6 +22,9 @@ public class Template extends PanacheEntityBase {
     @Lob
     private String content;
 
+    @Lob
+    private String img;
+
     @OneToMany(mappedBy = "template", cascade = CascadeType.ALL)
     private List<TemplateField> fields = new LinkedList<>();
 
@@ -29,6 +32,7 @@ public class Template extends PanacheEntityBase {
         this.name = templateDto.getName();
         this.description = templateDto.getDescription();
         this.content = templateDto.getContent();
+        this.img = templateDto.getImg();
 
         this.fields = templateDto.getFields()
                 .stream()
@@ -71,6 +75,14 @@ public class Template extends PanacheEntityBase {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public List<TemplateField> getFields() {
