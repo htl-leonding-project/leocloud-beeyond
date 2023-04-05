@@ -83,6 +83,39 @@ export default function Home() {
     return null;
   };
 
+  const downloadYaml = () => {
+    let toast = {
+      type: "info",
+      message: "Downloading YAML Kubernetes Manifest.",
+    };
+
+    switch (true) {
+      case selectedTemplates.length === 0:
+        toast = {
+          type: "error",
+          message: "Please select a valid template to download the YAML.",
+        };
+        break;
+      case username === "":
+        toast = {
+          type: "error",
+          message: "Please provide a valid username to download the YAML.",
+        };
+        break;
+      default:
+        const result = areTemplatesValid();
+        if (result !== null) {
+          toast = result;
+        } else {
+          downloadDeployment();
+        }
+    }
+
+    setAlert(toast);
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 2500);
+  };
+
   return (
     <>
       <div className="flex w-2/5 flex-col">
@@ -125,40 +158,7 @@ export default function Home() {
           </div>
           <button
             className="btn-primary btn w-full text-white"
-            onClick={() => {
-              let toast = {
-                type: "info",
-                message: "Downloading YAML Kubernetes Manifest.",
-              };
-
-              switch (true) {
-                case selectedTemplates.length === 0:
-                  toast = {
-                    type: "error",
-                    message:
-                      "Please select a valid template to download the YAML.",
-                  };
-                  break;
-                case username === "":
-                  toast = {
-                    type: "error",
-                    message:
-                      "Please provide a valid username to download the YAML.",
-                  };
-                  break;
-                default:
-                  const result = areTemplatesValid();
-                  if (result !== null) {
-                    toast = result;
-                  } else {
-                    downloadDeployment();
-                  }
-              }
-
-              setAlert(toast);
-              setShowAlert(true);
-              setTimeout(() => setShowAlert(false), 2500);
-            }}
+            onClick={downloadYaml}
           >
             DOWNLOAD YAML
           </button>
