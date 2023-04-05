@@ -14,8 +14,6 @@ spec:
     spec:
       containers:
         - env:
-            - name: BACKEND_URL
-              value: %backend-url%
           image: %image%
           name: %name%
           ports:
