@@ -2,6 +2,7 @@
   "name": "Angular Deployment with Backend",
   "description": "Deployment of an Angular Application",
   "content": "angular.yaml",
+  "img": "angular.svg",
   "fields": [
     {
       "label": "Name",
