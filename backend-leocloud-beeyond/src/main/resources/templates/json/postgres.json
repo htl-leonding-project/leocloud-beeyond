@@ -2,6 +2,7 @@
   "name": "Postgres DB",
   "description": "Deployment and service for a postgres database",
   "content": "postgres.yaml",
+  "img": "postgres.svg",
   "fields": [
     {
       "label": "Name",
