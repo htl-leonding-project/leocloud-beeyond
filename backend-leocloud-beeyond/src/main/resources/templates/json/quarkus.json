@@ -2,6 +2,7 @@
   "name": "Quarkus Deployment with DB",
   "description": "Deployment of a Quarkus Application",
   "content": "quarkus.yaml",
+  "img": "quarkus.svg",
   "fields": [
     {
       "label": "Name",

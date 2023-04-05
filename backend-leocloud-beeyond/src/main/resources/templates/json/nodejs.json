@@ -1,7 +1,8 @@
 {
-  "name": "Node.js Deployment",
+  "name": "Node.js Deployment (work in progress)",
   "description": "Deployment of a Node.js Application",
-  "content": "dotnet.yaml",
+  "content": "nodejs.yaml",
+  "img": "nodejs.svg",
   "fields": [
     {
       "label": "Name",

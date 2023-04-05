@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Alert from "@components/Alert";
 import ArrowButton from "@components/ArrowButton";
 import { Template } from "@models/template";
-import TemplateList from "@components/TemplateList";
+import TemplateList from "@components/list/TemplateList";
 import { WildCardForm } from "@components/form/WildcardForm";
 import { buildDeploymentContent } from "@utils/deployment-utils";
 import { downloadDeploymentFile } from "@utils/download-utils";
