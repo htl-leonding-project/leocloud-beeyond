@@ -24,6 +24,7 @@ spec:
               value: db
           name: leocloud-beeyond-backend
           image: ghcr.io/htl-leonding-project/leocloud-beeyond-backend:latest
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
@@ -31,7 +32,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: leocloud-beeyond-backend-sv
+  name: leocloud-beeyond-backend-svc
 spec:
   selector:
     app: leocloud-beeyond-backend
@@ -55,6 +56,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: leocloud-beeyond-backend-sv
+                name: leocloud-beeyond-backend-svc
                 port:
                   number: 8080

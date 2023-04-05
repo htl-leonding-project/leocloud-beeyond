@@ -20,6 +20,7 @@ spec:
               value: /m.remplbauer/beeyond
           name: leocloud-beeyond-frontend
           image: ghcr.io/htl-leonding-project/leocloud-beeyond-frontend:latest
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 3000
@@ -27,7 +28,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: leocloud-beeyond-frontend-sv
+  name: leocloud-beeyond-frontend-svc
 spec:
   selector:
     app: leocloud-beeyond-frontend
@@ -51,6 +52,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: leocloud-beeyond-frontend-sv
+                name: leocloud-beeyond-frontend-svc
                 port:
                   number: 80
