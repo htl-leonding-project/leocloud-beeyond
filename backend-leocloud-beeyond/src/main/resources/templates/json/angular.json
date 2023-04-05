@@ -9,7 +9,7 @@
       "wildcard": "name",
       "description": "Name of the service and deployment",
       "value": "angular-frontend",
-      "placeholder": "angular-frontend"
+      "placeholder": "auction-frontend"
     },
     {
       "label": "Image",

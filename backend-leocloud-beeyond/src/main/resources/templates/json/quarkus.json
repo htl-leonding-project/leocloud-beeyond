@@ -9,19 +9,19 @@
       "wildcard": "name",
       "description": "Name of the service and deployment",
       "value": "quarkus-backend",
-      "placeholder": "quarkus-backend"
+      "placeholder": "auction-backend"
     },
     {
       "label": "Image",
       "wildcard": "image",
       "description": "Image name",
-      "placeholder": "ghcr.io/markusremplbauer/auction-backend:latest"
+      "placeholder": "ghcr.io/nicohirsch1/auction-backend:latest"
     },
     {
       "label": "Database URL",
       "wildcard": "db-url",
       "description": "URL to the database",
-      "placeholder": "jdbc:postgresql://auction-db:5432/db"
+      "placeholder": "jdbc:postgresql://auction-db-svc:5432/db"
     },
     {
       "label": "Database Username",
