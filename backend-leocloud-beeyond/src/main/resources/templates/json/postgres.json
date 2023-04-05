@@ -9,7 +9,7 @@
       "wildcard": "name",
       "description": "Name of the service and deployment",
       "value": "postgres-db",
-      "placeholder": "postgres-db"
+      "placeholder": "auction-db"
     },
     {
       "label": "Database",
