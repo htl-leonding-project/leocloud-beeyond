@@ -4,7 +4,7 @@ export function Navbar() {
   const { basePath } = useEnvContext();
 
   return (
-    <div className="navbar my-2 rounded-lg bg-secondary px-4">
+    <div className="navbar h-12 rounded-lg bg-secondary">
       <img
         src={`${basePath}/assets/bee-purple.svg`}
         className="mr-3 h-6 select-none sm:h-9"

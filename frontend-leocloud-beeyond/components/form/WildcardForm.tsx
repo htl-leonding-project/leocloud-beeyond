@@ -9,44 +9,38 @@ export function WildCardForm() {
   ]);
 
   return (
-    <div className="flex h-full flex-col overflow-auto rounded-lg bg-white pt-1 shadow-md">
-      <div className={"mx-2 block text-lg font-semibold text-gray-800"}>
+    <div className="flex h-full w-full flex-col">
+      <div className={"block px-4 pt-4 text-lg font-semibold text-gray-800"}>
         Template Fields
       </div>
-      <div className={"h-full overflow-auto"}>
-        <form className="mt-2">
-          {selectedTemplate?.fields.map(
-            (field: WildcardField, index: number) => (
-              <FormElement
-                key={index}
-                wildcard={field}
-                selectedTemplate={selectedTemplate}
-              ></FormElement>
-            )
-          )}
+      <form className="flex h-full flex-col overflow-y-auto p-4">
+        {selectedTemplate?.fields.map((field: WildcardField, index: number) => (
+          <FormElement
+            key={index}
+            wildcard={field}
+            selectedTemplate={selectedTemplate}
+          />
+        ))}
 
-          <div className="mx-2 mb-2">
-            <div className="mt-2 block w-full rounded-md border px-4 py-2">
-              <label className="label justify-start">
-                <input
-                  className="checkbox-primary checkbox mr-2"
-                  type="checkbox"
-                  checked={selectedTemplate!.createIngress}
-                  onChange={() => {
-                    selectedTemplate!.createIngress =
-                      !selectedTemplate!.createIngress;
+        <div className="mt-2 block w-full rounded-md border px-4 py-2">
+          <label className="label justify-start">
+            <input
+              className="checkbox-primary checkbox mr-2"
+              type="checkbox"
+              checked={selectedTemplate!.createIngress}
+              onChange={() => {
+                selectedTemplate!.createIngress =
+                  !selectedTemplate!.createIngress;
 
-                    setActiveTemplate(selectedTemplate);
-                  }}
-                />
-                <span className="label-text select-none">
-                  Create ingress for Service
-                </span>
-              </label>
-            </div>
-          </div>
-        </form>
-      </div>
+                setActiveTemplate(selectedTemplate);
+              }}
+            />
+            <span className="label-text select-none">
+              Create ingress for Service
+            </span>
+          </label>
+        </div>
+      </form>
     </div>
   );
 }

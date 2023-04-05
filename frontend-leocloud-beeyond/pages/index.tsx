@@ -84,7 +84,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-full">
+    <>
       <div className="flex w-2/5 flex-col">
         <TemplateList
           header="Available Templates"
@@ -168,17 +168,17 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex w-2/5 flex-col">
+      <div className="flex h-full w-2/5 flex-col space-y-2">
         <TemplateList
           header="Selected Templates"
           templates={selectedTemplates}
         />
         {selectedTemplates.includes(activeTemplate!) && (
-          <div className="mt-1 h-1/2">
+          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg bg-white shadow-md">
             <WildCardForm />
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 }
