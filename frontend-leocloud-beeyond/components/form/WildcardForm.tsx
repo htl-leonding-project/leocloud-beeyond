@@ -9,8 +9,8 @@ export function WildCardForm() {
   ]);
 
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className={"block px-4 pt-4 text-lg font-semibold text-gray-800"}>
+    <div className="flex h-full flex-col overflow-auto rounded-lg bg-white pt-1 shadow-md">
+      <div className={"mx-2 block select-none text-lg font-semibold text-gray-800"}>
         Template Fields
       </div>
       <form className="flex h-full flex-col overflow-y-auto p-4">

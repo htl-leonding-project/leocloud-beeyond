@@ -17,7 +17,7 @@ const TemplateList = ({
 
   return (
     <>
-      <div className="select-none p-2 text-2xl font-bold">{header}</div>
+      <div className="select-none p-2 text-2xl font-semibold">{header}</div>
       <div
         className={`flex flex-col overflow-y-auto rounded-lg bg-white shadow-md ${
           header === "Available Templates" ||
