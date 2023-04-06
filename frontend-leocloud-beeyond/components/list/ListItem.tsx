@@ -2,18 +2,10 @@ import { Template } from "@models/template";
 import useTemplateStore from "@stores/templateStore";
 
 export default function ListItem({ template }: { template: Template }) {
-  // const [activeTemplate, setActiveTemplate] = useTemplateStore((state) => [
-  //   state.activeTemplate,
-  //   state.setActiveTemplate,
-  // ]);
-
-  const activeTemplate = useTemplateStore((state) => state.activeTemplate);
-  const setActiveTemplate = useTemplateStore(
-    (state) => state.setActiveTemplate
-  );
-
-  console.log("temp:", template.id);
-  console.log("active:", activeTemplate?.id);
+  const [activeTemplate, setActiveTemplate] = useTemplateStore((state) => [
+    state.activeTemplate,
+    state.setActiveTemplate,
+  ]);
 
   return (
     <div

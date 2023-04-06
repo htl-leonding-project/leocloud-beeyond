@@ -174,7 +174,7 @@ export default function Home() {
           templates={selectedTemplates}
         />
         {selectedTemplates.includes(activeTemplate!) && (
-          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg bg-white shadow-md">
+          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg bg-white border">
             <WildCardForm />
           </div>
         )}
