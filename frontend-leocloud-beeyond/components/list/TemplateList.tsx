@@ -17,18 +17,20 @@ const TemplateList = ({
 
   return (
     <>
-      <div className="select-none p-2 text-2xl font-semibold">{header}</div>
       <div
-        className={`flex flex-col overflow-y-auto rounded-lg bg-white shadow-md ${
+        className={`flex flex-col overflow-y-auto rounded-lg ${
           header === "Available Templates" ||
           !selectedTemplates.includes(activeTemplate!)
             ? "h-full"
             : "h-1/2"
         }`}
       >
-        {templates.map((template) => (
-          <ListItem key={template.id} template={template} />
-        ))}
+        <div className="select-none p-2 text-2xl font-semibold">{header}</div>
+        <div className="h-full overflow-y-auto rounded-lg border bg-white">
+          {templates.map((template) => (
+            <ListItem key={template.id} template={template} />
+          ))}
+        </div>
       </div>
     </>
   );
