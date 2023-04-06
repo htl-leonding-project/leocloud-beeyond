@@ -7,10 +7,10 @@ const TemplateList = ({
   header,
   templates,
 }: {
-  header: string;
+  header: "Available Templates" | "Selected Templates";
   templates: Template[];
 }) => {
-  const [activateTemplate, selectedTemplates] = useTemplateStore((state) => [
+  const [activeTemplate, selectedTemplates] = useTemplateStore((state) => [
     state.activeTemplate,
     state.selectedTemplates,
   ]);
@@ -19,15 +19,12 @@ const TemplateList = ({
     <>
       <div className="select-none p-2 text-2xl font-bold">{header}</div>
       <div
-        className={
-          activateTemplate === null ||
-          selectedTemplates.length === 0 ||
-          !selectedTemplates.includes(activateTemplate)
-            ? "flex h-full flex-col overflow-y-auto rounded-lg bg-white shadow-md"
-            : `flex ${
-                header === "Available Templates" ? "h-full" : "h-1/2"
-              } flex-col overflow-y-auto rounded-lg bg-white shadow-md`
-        }
+        className={`flex flex-col overflow-y-auto rounded-lg bg-white shadow-md ${
+          header === "Available Templates" ||
+          !selectedTemplates.includes(activeTemplate!)
+            ? "h-full"
+            : "h-1/2"
+        }`}
       >
         {templates.map((template) => (
           <ListItem key={template.id} template={template} />
