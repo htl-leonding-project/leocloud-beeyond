@@ -12,7 +12,7 @@ export default function ListItem({ template }: { template: Template }) {
 
   return (
     <div
-      className={`flex cursor-pointer items-center rounded-lg p-4 hover:bg-secondary ${
+      className={`flex cursor-pointer items-center rounded-lg p-4 hover:bg-secondary${
         activeTemplate?.id == template.id ? "bg-secondary" : ""
       }`}
       onClick={() => {
@@ -20,9 +20,11 @@ export default function ListItem({ template }: { template: Template }) {
       }}
     >
       <img
-        src={`data:image/svg+xml;base64,${Buffer.from(template.img).toString('base64')}`}
+        src={`data:image/svg+xml;base64,${Buffer.from(template.img).toString(
+          "base64"
+        )}`}
         alt={`${template.name}`}
-        className="mr-4 h-8 w-8"
+        className="mr-4 h-8 w-8 select-none"
       />
       <div className="select-none font-medium">{template.name}</div>
     </div>
