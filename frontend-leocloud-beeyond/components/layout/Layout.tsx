@@ -13,9 +13,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <title>Beeyond</title>
         <link rel="icon" href={`${basePath}/favicon.ico`} />
       </Head>
-      <main className="mx-2 flex h-screen flex-col">
-        <Navbar></Navbar>
-        <div className="mb-2 h-full">{children}</div>
+      <main className="flex h-screen flex-col p-2">
+        <div className={"p-2"}>
+          <Navbar />
+        </div>
+        <div className="flex h-full overflow-hidden p-2">{children}</div>
       </main>
     </>
   );
