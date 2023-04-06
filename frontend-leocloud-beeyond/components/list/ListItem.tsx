@@ -1,19 +1,24 @@
 import { Template } from "@models/template";
-import { useEnvContext } from "@stores/envContext";
 import useTemplateStore from "@stores/templateStore";
 
 export default function ListItem({ template }: { template: Template }) {
-  const { basePath } = useEnvContext();
+  // const [activeTemplate, setActiveTemplate] = useTemplateStore((state) => [
+  //   state.activeTemplate,
+  //   state.setActiveTemplate,
+  // ]);
 
-  const [activeTemplate, setActiveTemplate] = useTemplateStore((state) => [
-    state.activeTemplate,
-    state.setActiveTemplate,
-  ]);
+  const activeTemplate = useTemplateStore((state) => state.activeTemplate);
+  const setActiveTemplate = useTemplateStore(
+    (state) => state.setActiveTemplate
+  );
+
+  console.log("temp:", template.id);
+  console.log("active:", activeTemplate?.id);
 
   return (
     <div
-      className={`flex cursor-pointer items-center rounded-lg p-4 hover:bg-secondary${
-        activeTemplate?.id == template.id ? "bg-secondary" : ""
+      className={`flex cursor-pointer items-center rounded-lg p-4 hover:bg-secondary ${
+        activeTemplate?.id === template.id ? "bg-secondary" : ""
       }`}
       onClick={() => {
         setActiveTemplate(template);
