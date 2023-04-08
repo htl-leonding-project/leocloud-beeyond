@@ -1,0 +1,5 @@
+# Auto-detect and convert line endings
+* text=auto
+
+# github displays language information wrong
+backend-leocloud-beeyond/src/main/resources/META-INF/resources/index.html linguist-detectable=false
