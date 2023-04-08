@@ -10,6 +10,7 @@ import { downloadDeploymentFile } from "@utils/download-utils";
 import { useEnvContext } from "@stores/envContext";
 import useSWR from "swr";
 import useTemplateStore from "@stores/templateStore";
+import { useTimeoutFn } from "react-use";
 
 const fetcher = async (url: string): Promise<Template[]> => {
   const res = await fetch(url);
@@ -18,9 +19,7 @@ const fetcher = async (url: string): Promise<Template[]> => {
   data.forEach((t) => {
     t.createIngress = false;
     t.fields.forEach((f) => {
-      if (f.value === undefined) {
-        f.value = "";
-      }
+      f.value ??= "";
     });
   });
 
@@ -31,23 +30,21 @@ export default function Home() {
   const { apiUrl } = useEnvContext();
   const { data } = useSWR<Template[]>(`${apiUrl}/template`, fetcher);
 
-  const [
+  const {
     activeTemplate,
     selectedTemplates,
     addSelectedTemplate,
     removeSelectedTemplate,
     setActiveTemplate,
-  ] = useTemplateStore((state) => [
-    state.activeTemplate,
-    state.selectedTemplates,
-    state.addSelectedTemplate,
-    state.removeSelectedTemplate,
-    state.setActiveTemplate,
-  ]);
+  } = useTemplateStore();
 
   const [username, setUsername] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alert, setAlert] = useState({ message: "", type: "" });
+
+  const [, , resetAlertTimeout] = useTimeoutFn(() => {
+    setShowAlert(false);
+  }, 2500);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent(selectedTemplates, username));
@@ -113,7 +110,8 @@ export default function Home() {
 
     setAlert(toast);
     setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 2500);
+    // setTimeout(() => setShowAlert(false), 2500);
+    resetAlertTimeout();
   };
 
   return (
@@ -122,7 +120,7 @@ export default function Home() {
         <TemplateList
           header="Available Templates"
           templates={
-            data?.filter((template) => !selectedTemplates.includes(template)) ||
+            data?.filter((template) => !selectedTemplates.includes(template)) ??
             []
           }
         />
@@ -174,7 +172,7 @@ export default function Home() {
           templates={selectedTemplates}
         />
         {selectedTemplates.includes(activeTemplate!) && (
-          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg bg-white border">
+          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg border bg-white">
             <WildCardForm />
           </div>
         )}
