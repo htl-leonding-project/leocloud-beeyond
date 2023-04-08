@@ -39,11 +39,10 @@ export default function Home() {
   } = useTemplateStore();
 
   const [username, setUsername] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [alert, setAlert] = useState({ message: "", type: "" });
+  const [alert, setAlert] = useState({ message: "", type: "", show: false });
 
   const [, , resetAlertTimeout] = useTimeoutFn(() => {
-    setShowAlert(false);
+    setAlert((prevState) => ({ ...prevState, show: false }));
   }, 2500);
 
   const downloadDeployment = () => {
@@ -72,6 +71,7 @@ export default function Home() {
           return {
             type: "error",
             message: `Field "${field.label}" of Template "${template.name}" must have a value!`,
+            show: true,
           };
         }
       }
@@ -84,6 +84,7 @@ export default function Home() {
     let toast = {
       type: "info",
       message: "Downloading YAML Kubernetes Manifest.",
+      show: true,
     };
 
     switch (true) {
@@ -91,12 +92,14 @@ export default function Home() {
         toast = {
           type: "error",
           message: "Please select a valid template to download the YAML.",
+          show: true,
         };
         break;
       case username === "":
         toast = {
           type: "error",
           message: "Please provide a valid username to download the YAML.",
+          show: true,
         };
         break;
       default:
@@ -109,8 +112,6 @@ export default function Home() {
     }
 
     setAlert(toast);
-    setShowAlert(true);
-    // setTimeout(() => setShowAlert(false), 2500);
     resetAlertTimeout();
   };
 
@@ -160,7 +161,7 @@ export default function Home() {
           >
             DOWNLOAD YAML
           </button>
-          {showAlert && (
+          {alert.show && (
             <Alert type={alert.type} message={alert.message}></Alert>
           )}
         </div>
