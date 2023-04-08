@@ -1,4 +1,4 @@
-import { useEnvContext } from "@stores/envContext";
+import { useEnvContext } from "~/stores/envContext";
 
 export function Navbar() {
   const { basePath } = useEnvContext();

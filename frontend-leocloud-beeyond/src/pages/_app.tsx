@@ -1,8 +1,8 @@
-import "@styles/globals.css";
+import "~/styles/globals.css";
 
 import type { AppProps } from "next/app";
-import { EnvContext } from "@stores/envContext";
-import Layout from "@components/layout/Layout";
+import { EnvContext } from "~/stores/envContext";
+import Layout from "~/components/layout/Layout";
 
 export default function App({ Component, pageProps, apiUrl, basePath }: AppProps & { apiUrl: string, basePath: string }) {
   return (

@@ -1,9 +1,9 @@
-import { FormElement } from "@components/form/FormElement";
-import { WildcardField } from "@models/template";
-import useTemplateStore from "@stores/templateStore";
+import { FormElement } from "~/components/form/FormElement";
+import { WildcardField } from "~/models/template";
+import useTemplateStore from "~/stores/templateStore";
 
 export function WildCardForm() {
-  const {activeTemplate, setActiveTemplate} = useTemplateStore();
+  const { activeTemplate, setActiveTemplate } = useTemplateStore();
 
   return (
     <div className="flex h-full w-full flex-col">
@@ -30,8 +30,7 @@ export function WildCardForm() {
               type="checkbox"
               checked={activeTemplate!.createIngress}
               onChange={() => {
-                activeTemplate!.createIngress =
-                  !activeTemplate!.createIngress;
+                activeTemplate!.createIngress = !activeTemplate!.createIngress;
 
                 setActiveTemplate(activeTemplate);
               }}

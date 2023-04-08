@@ -1,5 +1,5 @@
-import { Template } from "@models/template";
-import useTemplateStore from "@stores/templateStore";
+import { Template } from "~/models/template";
+import useTemplateStore from "~/stores/templateStore";
 
 export default function ListItem({ template }: { template: Template }) {
   const {activeTemplate, setActiveTemplate} = useTemplateStore();

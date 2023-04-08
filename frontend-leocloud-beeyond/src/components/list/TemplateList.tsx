@@ -1,7 +1,7 @@
-import ListItem from "./ListItem";
+import ListItem from "~/components/list/ListItem";
 import React from "react";
-import { Template } from "@models/template";
-import useTemplateStore from "@stores/templateStore";
+import { Template } from "~/models/template";
+import useTemplateStore from "~/stores/templateStore";
 
 const TemplateList = ({
   header,
