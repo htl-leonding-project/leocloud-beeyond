@@ -5,14 +5,12 @@ import useTemplateStore from "@stores/templateStore";
 
 export function FormElement({
   wildcard,
-  selectedTemplate,
+  activeTemplate,
 }: {
   wildcard: WildcardField;
-  selectedTemplate: Template;
+  activeTemplate: Template;
 }) {
-  const setActiveTemplate = useTemplateStore(
-    (state) => state.setActiveTemplate
-  );
+  const {setActiveTemplate} = useTemplateStore();
   const [value, setValue] = useState(wildcard.value);
   const showPlaceholder = wildcard.value === "";
 
@@ -36,12 +34,12 @@ export function FormElement({
         onChange={(e) => {
           setValue(e.target.value);
 
-          const field = selectedTemplate.fields.find(
+          const field = activeTemplate.fields.find(
             (w) => w.id === wildcard.id
           );
           field!.value = e.target.value;
 
-          setActiveTemplate(selectedTemplate);
+          setActiveTemplate(activeTemplate);
         }}
       />
     </div>

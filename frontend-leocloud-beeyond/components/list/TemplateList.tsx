@@ -10,10 +10,7 @@ const TemplateList = ({
   header: "Available Templates" | "Selected Templates";
   templates: Template[];
 }) => {
-  const [activeTemplate, selectedTemplates] = useTemplateStore((state) => [
-    state.activeTemplate,
-    state.selectedTemplates,
-  ]);
+  const {activeTemplate, selectedTemplates} = useTemplateStore();
 
   return (
     <>

@@ -3,10 +3,7 @@ import { WildcardField } from "@models/template";
 import useTemplateStore from "@stores/templateStore";
 
 export function WildCardForm() {
-  const [selectedTemplate, setActiveTemplate] = useTemplateStore((state) => [
-    state.activeTemplate,
-    state.setActiveTemplate,
-  ]);
+  const {activeTemplate, setActiveTemplate} = useTemplateStore();
 
   return (
     <div className="flex h-full w-full flex-col">
@@ -18,11 +15,11 @@ export function WildCardForm() {
         Template Fields
       </div>
       <form className="flex h-full flex-col overflow-y-auto p-4">
-        {selectedTemplate?.fields.map((field: WildcardField, index: number) => (
+        {activeTemplate?.fields.map((field: WildcardField, index: number) => (
           <FormElement
             key={index}
             wildcard={field}
-            selectedTemplate={selectedTemplate}
+            activeTemplate={activeTemplate}
           />
         ))}
 
@@ -31,12 +28,12 @@ export function WildCardForm() {
             <input
               className="checkbox-primary checkbox mr-2"
               type="checkbox"
-              checked={selectedTemplate!.createIngress}
+              checked={activeTemplate!.createIngress}
               onChange={() => {
-                selectedTemplate!.createIngress =
-                  !selectedTemplate!.createIngress;
+                activeTemplate!.createIngress =
+                  !activeTemplate!.createIngress;
 
-                setActiveTemplate(selectedTemplate);
+                setActiveTemplate(activeTemplate);
               }}
             />
             <span className="label-text select-none">

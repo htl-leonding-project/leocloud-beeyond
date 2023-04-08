@@ -2,10 +2,7 @@ import { Template } from "@models/template";
 import useTemplateStore from "@stores/templateStore";
 
 export default function ListItem({ template }: { template: Template }) {
-  const [activeTemplate, setActiveTemplate] = useTemplateStore((state) => [
-    state.activeTemplate,
-    state.setActiveTemplate,
-  ]);
+  const {activeTemplate, setActiveTemplate} = useTemplateStore();
 
   return (
     <div
