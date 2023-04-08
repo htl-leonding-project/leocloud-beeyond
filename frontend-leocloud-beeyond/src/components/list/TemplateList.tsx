@@ -1,5 +1,5 @@
-import ListItem from "~/components/list/ListItem";
 import React from "react";
+import ListItem from "~/components/list/ListItem";
 import { Template } from "~/models/template";
 import useTemplateStore from "~/stores/templateStore";
 

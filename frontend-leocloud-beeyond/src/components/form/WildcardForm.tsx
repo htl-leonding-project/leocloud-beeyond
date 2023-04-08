@@ -1,8 +1,8 @@
-import { FormElement } from "~/components/form/FormElement";
+import FormElement from "~/components/form/FormElement";
 import { WildcardField } from "~/models/template";
 import useTemplateStore from "~/stores/templateStore";
 
-export function WildCardForm() {
+export default function WildCardForm() {
   const { activeTemplate, setActiveTemplate } = useTemplateStore();
 
   return (

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Template, WildcardField } from "~/models/template";
-
 import useTemplateStore from "~/stores/templateStore";
 
-export function FormElement({
+export default function FormElement({
   wildcard,
   activeTemplate,
 }: {

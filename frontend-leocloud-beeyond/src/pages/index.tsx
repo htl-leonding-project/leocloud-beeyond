@@ -1,16 +1,15 @@
 import React, { useState } from "react";
-
-import Alert from "~/components/alert/Alert";
+import { useTimeoutFn } from "react-use";
+import useSWR from "swr";
 import ArrowButton from "~/components/ArrowButton";
-import { Template } from "~/models/template";
+import Alert from "~/components/alert/Alert";
+import WildCardForm from "~/components/form/WildcardForm";
 import TemplateList from "~/components/list/TemplateList";
-import { WildCardForm } from "~/components/form/WildcardForm";
+import { Template } from "~/models/template";
+import { useEnvContext } from "~/stores/envContext";
+import useTemplateStore from "~/stores/templateStore";
 import { buildDeploymentContent } from "~/utils/deployment-utils";
 import { downloadDeploymentFile } from "~/utils/download-utils";
-import { useEnvContext } from "~/stores/envContext";
-import useSWR from "swr";
-import useTemplateStore from "~/stores/templateStore";
-import { useTimeoutFn } from "react-use";
 
 const fetcher = async (url: string): Promise<Template[]> => {
   const res = await fetch(url);

@@ -7,6 +7,8 @@ const config = {
   printWidth: 100,
   endOfLine: "lf",
   embeddedLanguageFormatting: "auto",
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
 };
 
 module.exports = config;

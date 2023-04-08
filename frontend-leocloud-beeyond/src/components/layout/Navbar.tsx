@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEnvContext } from "~/stores/envContext";
 
-export function Navbar() {
+export default function Navbar() {
   const { basePath } = useEnvContext();
 
   return (

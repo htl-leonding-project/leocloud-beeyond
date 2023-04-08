@@ -1,5 +1,5 @@
-import { K8sYaml } from "~/models/K8sYaml";
 import yaml from "js-yaml";
+import { K8sYaml } from "~/models/K8sYaml";
 
 function generateIngressYaml(
   serviceName: string,

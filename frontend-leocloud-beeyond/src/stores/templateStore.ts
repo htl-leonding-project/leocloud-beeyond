@@ -1,5 +1,5 @@
-import { Template } from "~/models/template";
 import create from "zustand";
+import { Template } from "~/models/template";
 
 interface TemplateStore {
   activeTemplate: Template | null;

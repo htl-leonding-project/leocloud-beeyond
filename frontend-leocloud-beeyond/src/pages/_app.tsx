@@ -1,8 +1,7 @@
-import "~/styles/globals.css";
-
 import type { AppProps } from "next/app";
-import { EnvContext } from "~/stores/envContext";
 import Layout from "~/components/layout/Layout";
+import { EnvContext } from "~/stores/envContext";
+import "~/styles/globals.css";
 
 export default function App({
   Component,
