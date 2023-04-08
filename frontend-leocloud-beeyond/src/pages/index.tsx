@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-
-import Alert from "@components/Alert";
-import ArrowButton from "@components/ArrowButton";
-import { Template } from "@models/template";
-import TemplateList from "@components/list/TemplateList";
-import { WildCardForm } from "@components/form/WildcardForm";
-import { buildDeploymentContent } from "@utils/deployment-utils";
-import { downloadDeploymentFile } from "@utils/download-utils";
-import { useEnvContext } from "@stores/envContext";
+import { useTimeoutFn } from "react-use";
 import useSWR from "swr";
-import useTemplateStore from "@stores/templateStore";
+import ArrowButton from "~/components/ArrowButton";
+import Alert from "~/components/alert/Alert";
+import WildCardForm from "~/components/form/WildcardForm";
+import TemplateList from "~/components/list/TemplateList";
+import { Template } from "~/models/template";
+import { useEnvContext } from "~/stores/envContext";
+import useTemplateStore from "~/stores/templateStore";
+import { buildDeploymentContent } from "~/utils/deployment-utils";
+import { downloadDeploymentFile } from "~/utils/download-utils";
 
 const fetcher = async (url: string): Promise<Template[]> => {
   const res = await fetch(url);
@@ -18,9 +18,7 @@ const fetcher = async (url: string): Promise<Template[]> => {
   data.forEach((t) => {
     t.createIngress = false;
     t.fields.forEach((f) => {
-      if (f.value === undefined) {
-        f.value = "";
-      }
+      f.value ??= "";
     });
   });
 
@@ -31,23 +29,20 @@ export default function Home() {
   const { apiUrl } = useEnvContext();
   const { data } = useSWR<Template[]>(`${apiUrl}/template`, fetcher);
 
-  const [
+  const {
     activeTemplate,
     selectedTemplates,
     addSelectedTemplate,
     removeSelectedTemplate,
     setActiveTemplate,
-  ] = useTemplateStore((state) => [
-    state.activeTemplate,
-    state.selectedTemplates,
-    state.addSelectedTemplate,
-    state.removeSelectedTemplate,
-    state.setActiveTemplate,
-  ]);
+  } = useTemplateStore();
 
   const [username, setUsername] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [alert, setAlert] = useState({ message: "", type: "" });
+  const [alert, setAlert] = useState({ message: "", type: "", show: false });
+
+  const [, , resetAlertTimeout] = useTimeoutFn(() => {
+    setAlert((prevState) => ({ ...prevState, show: false }));
+  }, 2500);
 
   const downloadDeployment = () => {
     downloadDeploymentFile(buildDeploymentContent(selectedTemplates, username));
@@ -58,10 +53,7 @@ export default function Home() {
 
     if (direction === "right" && !selectedTemplates.includes(activeTemplate)) {
       addSelectedTemplate(activeTemplate);
-    } else if (
-      direction === "left" &&
-      selectedTemplates.includes(activeTemplate)
-    ) {
+    } else if (direction === "left" && selectedTemplates.includes(activeTemplate)) {
       removeSelectedTemplate(activeTemplate);
     }
 
@@ -75,6 +67,7 @@ export default function Home() {
           return {
             type: "error",
             message: `Field "${field.label}" of Template "${template.name}" must have a value!`,
+            show: true,
           };
         }
       }
@@ -87,6 +80,7 @@ export default function Home() {
     let toast = {
       type: "info",
       message: "Downloading YAML Kubernetes Manifest.",
+      show: true,
     };
 
     switch (true) {
@@ -94,17 +88,19 @@ export default function Home() {
         toast = {
           type: "error",
           message: "Please select a valid template to download the YAML.",
+          show: true,
         };
         break;
       case username === "":
         toast = {
           type: "error",
           message: "Please provide a valid username to download the YAML.",
+          show: true,
         };
         break;
       default:
         const result = areTemplatesValid();
-        if (result !== null) {
+        if (result) {
           toast = result;
         } else {
           downloadDeployment();
@@ -112,8 +108,7 @@ export default function Home() {
     }
 
     setAlert(toast);
-    setShowAlert(true);
-    setTimeout(() => setShowAlert(false), 2500);
+    resetAlertTimeout();
   };
 
   return (
@@ -121,24 +116,15 @@ export default function Home() {
       <div className="flex w-2/5 flex-col">
         <TemplateList
           header="Available Templates"
-          templates={
-            data?.filter((template) => !selectedTemplates.includes(template)) ||
-            []
-          }
+          templates={data?.filter((template) => !selectedTemplates.includes(template)) ?? []}
         />
       </div>
 
       <div className="w-1/5 flex-col">
         <div className="h-1/3"></div>
         <div className="flex h-1/3 flex-col items-center justify-center">
-          <ArrowButton
-            direction="right"
-            onClick={() => selectTemplate("right")}
-          />
-          <ArrowButton
-            direction="left"
-            onClick={() => selectTemplate("left")}
-          />
+          <ArrowButton direction="right" onClick={() => selectTemplate("right")} />
+          <ArrowButton direction="left" onClick={() => selectTemplate("left")} />
         </div>
         <div className="flex h-1/3 flex-col items-end justify-end space-y-4 pr-4 pl-4">
           <div className="w-full">
@@ -156,25 +142,17 @@ export default function Home() {
               />
             </div>
           </div>
-          <button
-            className="btn-primary btn w-full text-white"
-            onClick={downloadYaml}
-          >
+          <button className="btn-primary btn w-full text-white" onClick={downloadYaml}>
             DOWNLOAD YAML
           </button>
-          {showAlert && (
-            <Alert type={alert.type} message={alert.message}></Alert>
-          )}
+          {alert.show && <Alert type={alert.type} message={alert.message}></Alert>}
         </div>
       </div>
 
       <div className="flex h-full w-2/5 flex-col space-y-2">
-        <TemplateList
-          header="Selected Templates"
-          templates={selectedTemplates}
-        />
+        <TemplateList header="Selected Templates" templates={selectedTemplates} />
         {selectedTemplates.includes(activeTemplate!) && (
-          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg bg-white border">
+          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg border bg-white">
             <WildCardForm />
           </div>
         )}

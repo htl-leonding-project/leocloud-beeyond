@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { useEnvContext } from "@stores/envContext";
+import { useEnvContext } from "~/stores/envContext";
 
 const ArrowButton = ({
   direction,

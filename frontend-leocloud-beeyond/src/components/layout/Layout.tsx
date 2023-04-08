@@ -1,8 +1,7 @@
-import React, { ReactNode } from "react";
-
 import Head from "next/head";
-import { Navbar } from "@components/layout/Navbar";
-import { useEnvContext } from "@stores/envContext";
+import React, { ReactNode } from "react";
+import Navbar from "~/components/layout/Navbar";
+import { useEnvContext } from "~/stores/envContext";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const { basePath } = useEnvContext();

@@ -1,5 +1,5 @@
-import { K8sYaml } from "@models/K8sYaml";
 import yaml from "js-yaml";
+import { K8sYaml } from "~/models/K8sYaml";
 
 function generateIngressYaml(
   serviceName: string,
@@ -27,10 +27,7 @@ spec:
                   number: ${port}`;
 }
 
-export function getIngressForTemplate(
-  templateContent: string,
-  username: string
-): string {
+export function getIngressForTemplate(templateContent: string, username: string): string {
   const documents = yaml.loadAll(templateContent) as K8sYaml[];
 
   if (documents.length < 2) {

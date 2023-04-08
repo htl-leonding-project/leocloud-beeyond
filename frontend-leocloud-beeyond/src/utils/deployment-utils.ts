@@ -1,5 +1,5 @@
-import { Template } from "@models/template";
-import { getIngressForTemplate } from "./ingress-utils";
+import { Template } from "~/models/template";
+import { getIngressForTemplate } from "~/utils/ingress-utils";
 
 const getTemplateContent = (template: Template) => {
   const regex = /%([\w-]+)%/g;
@@ -13,10 +13,7 @@ const getTemplateContent = (template: Template) => {
   return temp.replace(regex, "temp");
 };
 
-export const buildDeploymentContent = (
-  selectedTemplates: Template[],
-  username: string
-): string => {
+export const buildDeploymentContent = (selectedTemplates: Template[], username: string): string => {
   let content = "";
 
   for (const template of selectedTemplates) {

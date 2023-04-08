@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Template, WildcardField } from "@models/template";
+import { Template, WildcardField } from "~/models/template";
+import useTemplateStore from "~/stores/templateStore";
 
-import useTemplateStore from "@stores/templateStore";
-
-export function FormElement({
+export default function FormElement({
   wildcard,
-  selectedTemplate,
+  activeTemplate,
 }: {
   wildcard: WildcardField;
-  selectedTemplate: Template;
+  activeTemplate: Template;
 }) {
-  const setActiveTemplate = useTemplateStore(
-    (state) => state.setActiveTemplate
-  );
+  const { setActiveTemplate } = useTemplateStore();
   const [value, setValue] = useState(wildcard.value);
   const showPlaceholder = wildcard.value === "";
 
@@ -36,12 +33,10 @@ export function FormElement({
         onChange={(e) => {
           setValue(e.target.value);
 
-          const field = selectedTemplate.fields.find(
-            (w) => w.id === wildcard.id
-          );
+          const field = activeTemplate.fields.find((w) => w.id === wildcard.id);
           field!.value = e.target.value;
 
-          setActiveTemplate(selectedTemplate);
+          setActiveTemplate(activeTemplate);
         }}
       />
     </div>

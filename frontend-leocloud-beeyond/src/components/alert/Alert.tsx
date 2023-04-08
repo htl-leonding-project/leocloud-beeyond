@@ -1,5 +1,5 @@
-import AlertError from "@components/AlertError";
-import AlertInfo from "@components/AlertInfo";
+import AlertError from "~/components/alert/AlertError";
+import AlertInfo from "~/components/alert/AlertInfo";
 
 function Alert({ type, message }: { type: string; message: string }) {
   switch (type) {
