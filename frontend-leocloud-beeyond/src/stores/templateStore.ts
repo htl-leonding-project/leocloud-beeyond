@@ -12,17 +12,14 @@ interface TemplateStore {
 const useTemplateStore = create<TemplateStore>((set) => ({
   activeTemplate: null,
   selectedTemplates: [],
-  setActiveTemplate: (template: Template | null) =>
-    set(() => ({ activeTemplate: template })),
+  setActiveTemplate: (template: Template | null) => set(() => ({ activeTemplate: template })),
   addSelectedTemplate: (template: Template) =>
     set((state) => ({
       selectedTemplates: [...state.selectedTemplates, template],
     })),
   removeSelectedTemplate: (template: Template) =>
     set((state) => ({
-      selectedTemplates: state.selectedTemplates.filter(
-        (t: Template) => t.id !== template.id
-      ),
+      selectedTemplates: state.selectedTemplates.filter((t: Template) => t.id !== template.id),
     })),
 }));
 

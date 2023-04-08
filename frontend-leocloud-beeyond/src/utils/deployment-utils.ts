@@ -13,10 +13,7 @@ const getTemplateContent = (template: Template) => {
   return temp.replace(regex, "temp");
 };
 
-export const buildDeploymentContent = (
-  selectedTemplates: Template[],
-  username: string
-): string => {
+export const buildDeploymentContent = (selectedTemplates: Template[], username: string): string => {
   let content = "";
 
   for (const template of selectedTemplates) {

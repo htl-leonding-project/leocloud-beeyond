@@ -13,9 +13,7 @@ export function Navbar() {
         width={48}
         height={48}
       />
-      <span className="select-none text-2xl font-semibold text-white">
-        Beeyond
-      </span>
+      <span className="select-none text-2xl font-semibold text-white">Beeyond</span>
     </div>
   );
 }

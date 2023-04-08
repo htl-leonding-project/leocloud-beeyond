@@ -10,7 +10,7 @@ export function FormElement({
   wildcard: WildcardField;
   activeTemplate: Template;
 }) {
-  const {setActiveTemplate} = useTemplateStore();
+  const { setActiveTemplate } = useTemplateStore();
   const [value, setValue] = useState(wildcard.value);
   const showPlaceholder = wildcard.value === "";
 
@@ -34,9 +34,7 @@ export function FormElement({
         onChange={(e) => {
           setValue(e.target.value);
 
-          const field = activeTemplate.fields.find(
-            (w) => w.id === wildcard.id
-          );
+          const field = activeTemplate.fields.find((w) => w.id === wildcard.id);
           field!.value = e.target.value;
 
           setActiveTemplate(activeTemplate);

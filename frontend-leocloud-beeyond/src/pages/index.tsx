@@ -54,10 +54,7 @@ export default function Home() {
 
     if (direction === "right" && !selectedTemplates.includes(activeTemplate)) {
       addSelectedTemplate(activeTemplate);
-    } else if (
-      direction === "left" &&
-      selectedTemplates.includes(activeTemplate)
-    ) {
+    } else if (direction === "left" && selectedTemplates.includes(activeTemplate)) {
       removeSelectedTemplate(activeTemplate);
     }
 
@@ -120,24 +117,15 @@ export default function Home() {
       <div className="flex w-2/5 flex-col">
         <TemplateList
           header="Available Templates"
-          templates={
-            data?.filter((template) => !selectedTemplates.includes(template)) ??
-            []
-          }
+          templates={data?.filter((template) => !selectedTemplates.includes(template)) ?? []}
         />
       </div>
 
       <div className="w-1/5 flex-col">
         <div className="h-1/3"></div>
         <div className="flex h-1/3 flex-col items-center justify-center">
-          <ArrowButton
-            direction="right"
-            onClick={() => selectTemplate("right")}
-          />
-          <ArrowButton
-            direction="left"
-            onClick={() => selectTemplate("left")}
-          />
+          <ArrowButton direction="right" onClick={() => selectTemplate("right")} />
+          <ArrowButton direction="left" onClick={() => selectTemplate("left")} />
         </div>
         <div className="flex h-1/3 flex-col items-end justify-end space-y-4 pr-4 pl-4">
           <div className="w-full">
@@ -155,23 +143,15 @@ export default function Home() {
               />
             </div>
           </div>
-          <button
-            className="btn-primary btn w-full text-white"
-            onClick={downloadYaml}
-          >
+          <button className="btn-primary btn w-full text-white" onClick={downloadYaml}>
             DOWNLOAD YAML
           </button>
-          {alert.show && (
-            <Alert type={alert.type} message={alert.message}></Alert>
-          )}
+          {alert.show && <Alert type={alert.type} message={alert.message}></Alert>}
         </div>
       </div>
 
       <div className="flex h-full w-2/5 flex-col space-y-2">
-        <TemplateList
-          header="Selected Templates"
-          templates={selectedTemplates}
-        />
+        <TemplateList header="Selected Templates" templates={selectedTemplates} />
         {selectedTemplates.includes(activeTemplate!) && (
           <div className="flex h-1/2 w-full overflow-y-auto rounded-lg border bg-white">
             <WildCardForm />

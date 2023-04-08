@@ -15,9 +15,7 @@ export default function ListItem({ template }: { template: Template }) {
       }}
     >
       <Image
-        src={`data:image/svg+xml;base64,${Buffer.from(template.img).toString(
-          "base64"
-        )}`}
+        src={`data:image/svg+xml;base64,${Buffer.from(template.img).toString("base64")}`}
         alt={`${template.name}`}
         className="mr-4 h-8 w-8 select-none"
         width={32}

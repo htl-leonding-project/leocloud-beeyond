@@ -10,14 +10,13 @@ const TemplateList = ({
   header: "Available Templates" | "Selected Templates";
   templates: Template[];
 }) => {
-  const {activeTemplate, selectedTemplates} = useTemplateStore();
+  const { activeTemplate, selectedTemplates } = useTemplateStore();
 
   return (
     <>
       <div
         className={`flex flex-col overflow-y-auto rounded-lg ${
-          header === "Available Templates" ||
-          !selectedTemplates.includes(activeTemplate!)
+          header === "Available Templates" || !selectedTemplates.includes(activeTemplate!)
             ? "h-full"
             : "h-1/2"
         }`}

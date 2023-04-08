@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write --ignore-path .gitignore ."
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx}"
   },
   "dependencies": {
     "@types/node": "18.11.9",

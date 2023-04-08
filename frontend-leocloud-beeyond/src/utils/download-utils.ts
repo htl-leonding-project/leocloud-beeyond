@@ -1,7 +1,4 @@
-export const downloadDeploymentFile = (
-  content: string,
-  link?: HTMLAnchorElement
-) => {
+export const downloadDeploymentFile = (content: string, link?: HTMLAnchorElement) => {
   const url = URL.createObjectURL(new Blob([content], { type: "text/yaml" }));
 
   if (!link) {

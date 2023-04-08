@@ -27,10 +27,7 @@ spec:
                   number: ${port}`;
 }
 
-export function getIngressForTemplate(
-  templateContent: string,
-  username: string
-): string {
+export function getIngressForTemplate(templateContent: string, username: string): string {
   const documents = yaml.loadAll(templateContent) as K8sYaml[];
 
   if (documents.length < 2) {
