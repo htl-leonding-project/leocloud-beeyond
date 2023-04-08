@@ -1,4 +1,4 @@
-import { Template } from "@models/template";
+import { Template } from "~/models/template";
 import create from "zustand";
 
 interface TemplateStore {
