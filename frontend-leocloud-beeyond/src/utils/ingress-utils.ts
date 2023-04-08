@@ -1,4 +1,4 @@
-import { K8sYaml } from "@models/K8sYaml";
+import { K8sYaml } from "~/models/K8sYaml";
 import yaml from "js-yaml";
 
 function generateIngressYaml(

@@ -1,5 +1,5 @@
-import { Template } from "@models/template";
-import { getIngressForTemplate } from "./ingress-utils";
+import { Template } from "~/models/template";
+import { getIngressForTemplate } from "~/utils/ingress-utils";
 
 const getTemplateContent = (template: Template) => {
   const regex = /%([\w-]+)%/g;
