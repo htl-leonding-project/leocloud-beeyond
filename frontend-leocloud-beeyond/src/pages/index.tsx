@@ -104,7 +104,7 @@ export default function Home() {
         break;
       default:
         const result = areTemplatesValid();
-        if (result !== null) {
+        if (result) {
           toast = result;
         } else {
           downloadDeployment();
