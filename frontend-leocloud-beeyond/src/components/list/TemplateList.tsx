@@ -22,7 +22,7 @@ const TemplateList = ({
         }`}
       >
         <div className="select-none p-2 text-2xl font-semibold">{header}</div>
-        <div className="h-full overflow-y-auto rounded-lg bg-base-100 border">
+        <div className="h-full overflow-y-auto rounded-lg bg-base-100 border border-[hsl(var(--bc))]/20">
           {templates.map((template) => (
             <ListItem key={template.id} template={template} />
           ))}
