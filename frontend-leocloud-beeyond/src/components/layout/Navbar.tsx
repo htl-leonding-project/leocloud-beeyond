@@ -46,6 +46,7 @@ export default function Navbar() {
       />
       <span className="select-none text-2xl font-semibold text-base-100">Beeyond</span>
       <select className="select ml-auto" data-choose-theme>
+        <option value="">Default</option>
         {themes.map((theme) => (
           <option key={theme} value={theme}>
             {theme}
