@@ -130,19 +130,17 @@ export default function Home() {
           <div className="w-full">
             <div className="form-control w-full">
               <label className="label">
-                <span className="label-text pr-4 text-sm font-semibold text-gray-800">
-                  Username
-                </span>
-                <div className="label-text-alt select-text truncate text-sm text-gray-400">{`example: m.remplbauer`}</div>
+                <span className="label-text pr-4 text-sm font-semibold">Username</span>
+                <div className="label-text-alt select-text truncate text-sm text-opacity-50">{`example: m.remplbauer`}</div>
               </label>
               <input
-                className="input-bordered input w-full rounded-md text-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+                className="input-bordered input w-full rounded-md text-primary focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40"
                 type="text"
                 onChange={(e) => setUsername(e.target.value)}
               />
             </div>
           </div>
-          <button className="btn-primary btn w-full text-white" onClick={downloadYaml}>
+          <button className="btn-primary btn w-full" onClick={downloadYaml}>
             DOWNLOAD YAML
           </button>
           {alert.show && <Alert type={alert.type} message={alert.message}></Alert>}
@@ -152,7 +150,7 @@ export default function Home() {
       <div className="flex h-full w-2/5 flex-col space-y-2">
         <TemplateList header="Selected Templates" templates={selectedTemplates} />
         {selectedTemplates.includes(activeTemplate!) && (
-          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg border bg-white">
+          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg">
             <WildCardForm />
           </div>
         )}
