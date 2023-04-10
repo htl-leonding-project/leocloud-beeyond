@@ -7,8 +7,8 @@ export default function ListItem({ template }: { template: Template }) {
 
   return (
     <div
-      className={`flex cursor-pointer items-center rounded-lg p-4 hover:bg-secondary ${
-        activeTemplate?.id === template.id ? "bg-secondary" : ""
+      className={`flex cursor-pointer items-center rounded-lg p-4 hover:bg-secondary/50 ${
+        activeTemplate?.id === template.id ? "bg-secondary/50" : ""
       }`}
       onClick={() => {
         setActiveTemplate(template);

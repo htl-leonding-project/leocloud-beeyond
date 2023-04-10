@@ -1,7 +1,10 @@
-import type { AppProps } from "next/app";
-import Layout from "~/components/layout/Layout";
-import { EnvContext } from "~/stores/envContext";
 import "~/styles/globals.css";
+
+import type { AppProps } from "next/app";
+import { EnvContext } from "~/stores/envContext";
+import Layout from "~/components/layout/Layout";
+import { themeChange } from 'theme-change';
+import { useEffect } from "react";
 
 export default function App({
   Component,
@@ -9,6 +12,10 @@ export default function App({
   apiUrl,
   basePath,
 }: AppProps & { apiUrl: string; basePath: string }) {
+  useEffect(() => {
+    themeChange(false);
+  }, []);
+  
   return (
     <EnvContext.Provider value={{ apiUrl: apiUrl, basePath: basePath }}>
       <Layout>

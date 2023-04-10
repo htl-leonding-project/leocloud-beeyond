@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Template, WildcardField } from "~/models/template";
+
 import useTemplateStore from "~/stores/templateStore";
 
 export default function FormElement({
@@ -21,13 +22,11 @@ export default function FormElement({
   return (
     <div className="form-control w-full">
       <label className="label">
-        <span className="label-text pr-4 text-sm font-semibold text-gray-800">
-          {wildcard.label}
-        </span>
-        <span className="label-text-alt select-text truncate text-sm text-gray-400">{`example: ${wildcard.placeholder}`}</span>
+        <span className="label-text pr-4 text-sm font-semibold">{wildcard.label}</span>
+        <span className="label-text-alt select-text truncate text-sm text-opacity-50">{`example: ${wildcard.placeholder}`}</span>
       </label>
       <input
-        className="input-bordered input w-full rounded-md text-indigo-700 focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40"
+        className="input-bordered input w-full rounded-md text-primary focus:border-primary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-40"
         type="text"
         value={showPlaceholder ? "" : value}
         onChange={(e) => {
