@@ -48,7 +48,7 @@ export default function Navbar() {
       <span className="select-none text-2xl font-semibold text-base-100">Beeyond</span>
       <div className="dropdown dropdown-end ml-auto">
         <div tabIndex={0}>{<ThemeCard theme="Theme" />}</div>
-        <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 h-[70vh] w-52 overflow-y-auto shadow-2xl mt-16">
+        <div className="dropdown-content bg-base-200 text-base-content rounded-t-box rounded-b-box top-px max-h-96 h-[70vh] w-40 overflow-y-auto shadow-2xl mt-16">
           <div className="grid grid-cols-1 gap-3 p-3" tabIndex={0}>
             {themes.map((theme) => (
               <ThemeButton key={theme} theme={theme} />
@@ -83,8 +83,6 @@ function ThemeCard({ theme }: { theme: string }) {
           <div className="flex flex-shrink-0 flex-wrap gap-1 h-full">
             <div className="bg-primary w-2 rounded"></div>
             <div className="bg-secondary w-2 rounded"></div>
-            <div className="bg-accent w-2 rounded"></div>
-            <div className="bg-neutral w-2 rounded"></div>
           </div>
         </div>
       </div>
