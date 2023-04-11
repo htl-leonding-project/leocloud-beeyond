@@ -44,7 +44,5 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
-      - name: Upgrade Helm Deployment # to update k8s manifests in the leocloud cluster, doesn't trigger image pull
+      - name: Upgrade Helm Deployment
         run: helm upgrade --install ${{ env.HELM_RELEASE_NAME }} ./helm --namespace ${{ env.NAMESPACE }}
-      - name: Rollout Restart Deployment # to trigger image pull action in the leocloud
-        run: kubectl rollout restart deployment ${{ env.DEPLOYMENT_NAME }} --namespace=${{ env.NAMESPACE }}

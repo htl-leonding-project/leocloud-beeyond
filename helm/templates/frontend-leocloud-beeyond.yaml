@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: leocloud-beeyond-frontend
+        date: "{{ now | unixEpoch }}"
     spec:
       containers:
         - env:
