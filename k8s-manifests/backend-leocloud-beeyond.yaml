@@ -15,7 +15,7 @@ spec:
       containers:
         - env:
             - name: beeyond.database.jdbc
-              value: jdbc:postgresql://leocloud-beeyond-db:5432
+              value: jdbc:postgresql://leocloud-beeyond-db-svc:5432
             - name: beeyond.database.username
               value: app
             - name: beeyond.database.password
