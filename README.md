@@ -4,7 +4,7 @@
 
 # Beeyond
 
-Beeyond is a project aimed to provide user effortless access to Kubernetes. By utilizing templates with wildcards, Beeyond enables users to create K8s manifest files with ease, allowing for efficient testing and deployment of their applications on Kubernetes.
+Beeyond is a project aimed to provide user effortless access to Kubernetes. By utilizing manifest templates with wildcards, Beeyond enables users to create K8s manifest files with ease, allowing for efficient testing and deployment of their applications on Kubernetes.
 
 ## ⚓ Kubernetes Deployment
 
