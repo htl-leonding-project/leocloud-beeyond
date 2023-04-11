@@ -4,7 +4,7 @@
 
 # Beeyond
 
-Beeyond is a project aimed to providing HTL Leonding students an effortless access to Kubernetes and allow efficient testing and deployment of their applications.
+Beeyond is a project aimed to providing users effortless access to Kubernetes. By utilizing templates with wildcards, Beeyond enables users to create K8s manifest files with ease, allowing for efficient testing and deployment of their applications on Kubernetes.
 
 ## ⚓ Kubernetes Deployment
 
