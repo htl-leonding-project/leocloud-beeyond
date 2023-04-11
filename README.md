@@ -15,14 +15,20 @@ Beeyond is deployed in the LeoCloud and is accessible at:
 
 When deploying using Kubernetes manifests, you need update some parts of the manifests to match your environment:
 
-- you need to update the `path` field for the `ingress` of the `leocloud-beeyond-frontend` and `leocloud-beeyond-backend` deployment to match the `username` of the namespace it should be deployed in following the format `/<username>/beeyond(/|$)(.*)$`
+- you need to update the `path` field for the `ingress` of the `leocloud-beeyond-frontend` and `leocloud-beeyond-backend` deployment to match the `username` of the environment it should be deployed in following the format `/<username>/<deployment-name>(/|$)(.*)$`
 
-- you need to update the `$BASE_PATH` and `$API_URL` environment variables in the `leocloud-beeyond-frontend` deployment to match the `username` of the namespace it should be deployed in
+- you need to update the `$BASE_PATH` and `$API_URL` environment variables in the `leocloud-beeyond-frontend` deployment to match the `username` of the environment it should be deployed in
 
 With the updated manifests, you can deploy Beeyond using:
 
 ```sh
 kubectl apply -f k8s-manifests
+```
+
+To remove the deployment, run the following command:
+
+```sh
+kubectl delete -f k8s-manifests
 ```
 
 ### Deployment using Helm
@@ -39,4 +45,10 @@ To upgrade a existing deployment, run the following command:
 
 ```sh
 helm upgrade leocloud-beeyond helm
+```
+
+To remove the deployment, run the following command:
+
+```sh
+helm uninstall leocloud-beeyond
 ```
