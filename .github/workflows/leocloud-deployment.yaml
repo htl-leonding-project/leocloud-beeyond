@@ -16,7 +16,6 @@ jobs:
   deploy:
     name: 🚀 Deploy to Leocloud
     runs-on: ubuntu-latest
-    needs: build
 
     steps:
       - name: Check out the repo
