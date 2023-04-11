@@ -1,11 +1,11 @@
 name: CD frontend
 
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
     paths:
       - 'frontend-leocloud-beeyond/**'
-  workflow_dispatch:
 
 
 jobs:
