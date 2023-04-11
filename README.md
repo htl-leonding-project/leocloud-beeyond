@@ -1,4 +1,8 @@
-# leocloud-beeyond
+<!-- markdownlint-disable no-inline-html first-line-h1 -->
+
+<img align="left" alt="Beeyond" width="64" src="./docs/images/bee-purple.svg" />
+
+# Beeyond
 
 Beeyond is a project aimed to providing HTL Leonding students an effortless access to Kubernetes and allow efficient testing and deployment of their applications.
 
