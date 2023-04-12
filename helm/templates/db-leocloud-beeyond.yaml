@@ -4,6 +4,7 @@ metadata:
   name: leocloud-beeyond-db-pv-claim
   labels:
     app: leocloud-beeyond-db
+    date: "{{ now | unixEpoch }}"
 spec:
   storageClassName: standard
   accessModes:
