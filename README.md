@@ -6,6 +6,14 @@
 
 Beeyond is a project aimed to provide user effortless access to Kubernetes. By utilizing manifest templates with wildcards, Beeyond enables users to create K8s manifest files with ease, allowing for efficient testing and deployment of their applications on Kubernetes.
 
+## 🎬 Can I see it in action?
+
+Sure! Below you see the process of generating a k8s manifest for an Angular application.
+
+<p align="center">
+  <img src="./docs/images/beeyond.gif" alt="Beeyond Demo" width="800"/>
+</p>
+
 ## ⚓ Kubernetes Deployment
 
 Beeyond is deployed in the LeoCloud and is accessible at:
