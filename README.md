@@ -10,7 +10,9 @@ Beeyond is a project aimed to provide user effortless access to Kubernetes. By u
 
 Sure! Below you see the process of generating a k8s manifest for an Angular application.
 
-<video src="./docs/images/beeyond.mp4" autoplay muted loop style="max-width: 730px;"></video>
+<p align="center">
+  <img src="./docs/images/beeyond-example.gif" alt="Beeyond Demo"/>
+</p>
 
 ## ⚓ Kubernetes Deployment
 
