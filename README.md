@@ -34,13 +34,13 @@ When deploying using Kubernetes manifests, you need update some parts of the man
 With the updated manifests, you can deploy Beeyond using:
 
 ```sh
-kubectl apply -f k8s-manifests
+kubectl apply -f ./k8s-manifests
 ```
 
 To remove the deployment, run the following command:
 
 ```sh
-kubectl delete -f k8s-manifests
+kubectl delete -f ./k8s-manifests
 ```
 
 ### Deployment using Helm
@@ -50,13 +50,7 @@ When deploying using Helm, you need to update `username` field in the `values.ya
 Now you can create the initial deployment using:
 
 ```sh
-helm install leocloud-beeyond helm
-```
-
-To upgrade a existing deployment, run the following command:
-
-```sh
-helm upgrade leocloud-beeyond helm
+helm install leocloud-beeyond ./helm
 ```
 
 To remove the deployment, run the following command:
