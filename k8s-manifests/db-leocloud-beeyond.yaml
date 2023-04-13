@@ -20,7 +20,6 @@ spec:
   selector:
     matchLabels:
       app: leocloud-beeyond-db
-      date: "{{ now | unixEpoch }}"
   replicas: 1
   template:
     metadata:
