@@ -46,5 +46,8 @@ jobs:
           method: kubeconfig
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
-      - name: Upgrade Helm Deployment
-        run: helm upgrade --install ${{ env.HELM_RELEASE_NAME }} ./helm --namespace ${{ env.NAMESPACE }}
+      - name: Delete Helm Deployment
+        run: helm delete ${{ env.HELM_RELEASE_NAME }} --namespace ${{ env.NAMESPACE }}
+
+      - name: Install Helm Deployment
+        run: helm install ${{ env.HELM_RELEASE_NAME }} ./helm --namespace ${{ env.NAMESPACE }}  
