@@ -1,0 +1,5 @@
+#!/bin/sh
+PATH_TO_SCRIPT=`dirname $0`
+PATH_TO_JSON=$PATH_TO_SCRIPT/json
+PATH_TO_FILE_LIST=$PATH_TO_SCRIPT/file-list.txt
+ls $PATH_TO_JSON > $PATH_TO_FILE_LIST

@@ -11,7 +11,7 @@ import javax.transaction.Transactional
 class TemplateBean {
     @Transactional
     fun init(@Observes event: StartupEvent) {
-        val filesIn = javaClass.getResourceAsStream("/templates/json")
+        val filesIn = javaClass.getResourceAsStream("/templates/file-list.txt")
         filesIn?.let { stream ->
             val files = stream.bufferedReader().use { it.readLines() }
             files.forEach { filename ->
