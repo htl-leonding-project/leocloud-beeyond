@@ -1,5 +1,0 @@
-angular.json
-dotnet.json
-nodejs.json
-postgres.json
-quarkus.json
