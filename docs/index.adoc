@@ -18,10 +18,13 @@ image::sys-spec.png[]
 
 * https://htl-leonding-project.github.io/leocloud-beeyond/slides/syp-5ahif/[Slides^]
 
-== Beeyond Tutorial
+== Template Docs
+
+* https://htl-leonding-project.github.io/leocloud-beeyond/template-docs.html[Template Docs^]
 
 
 == Pflichtenheft
 
-include::pflichtenheft.adoc[]
+* https://htl-leonding-project.github.io/leocloud-beeyond/pflichtenheft.html[Pflichtenheft^]
+
 

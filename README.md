@@ -14,6 +14,10 @@ Sure! Below you see the process of generating a k8s manifest for an Angular appl
   <img src="./docs/images/beeyond-example.gif" alt="Beeyond Demo"/>
 </p>
 
+## 📝 Template Documentation
+
+The way Beeyond works is by utilizing manifest templates. These templates are used to generate the actual manifest files. The template documentation can be found [here](https://htl-leonding-project.github.io/leocloud-beeyond/template-docs.html).
+
 ## ⚓ Kubernetes Deployment
 
 Beeyond is deployed in the LeoCloud and is accessible at:
@@ -22,6 +26,22 @@ Beeyond is deployed in the LeoCloud and is accessible at:
 - Backend: https://student.cloud.htl-leonding.ac.at/m.remplbauer/beeyond-backend
 
 ## 🚀 Deploying Beeyond
+
+### Deployment using Helm
+
+When deploying using Helm, you need to update `username` field in the `values.yaml` file of the helm chart to match your environment:
+
+Now you can create the initial deployment using:
+
+```sh
+helm install leocloud-beeyond ./helm
+```
+
+To remove the deployment, run the following command:
+
+```sh
+helm uninstall leocloud-beeyond
+```
 
 ### Deployment using Kubernetes manifests
 
@@ -41,20 +61,4 @@ To remove the deployment, run the following command:
 
 ```sh
 kubectl delete -f ./k8s-manifests
-```
-
-### Deployment using Helm
-
-When deploying using Helm, you need to update `username` field in the `values.yaml` file of the helm chart to match your environment:
-
-Now you can create the initial deployment using:
-
-```sh
-helm install leocloud-beeyond ./helm
-```
-
-To remove the deployment, run the following command:
-
-```sh
-helm uninstall leocloud-beeyond
 ```

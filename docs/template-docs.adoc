@@ -1,0 +1,120 @@
+Beeyond templates are used to automate the creation of Kubernetes resources using wildcards that can be replaced with actual values provided by the user.
+Each template consists of three files:
+
+* a JSON file that defines the template's metadata and wildcards
+* a YAML file that contains the Kubernetes template manifest
+* an SVG file that provides an icon for the template.
+
+== File Structure
+
+The templates are stored in the `backend-leocloud-beeyond\src\main\resources\templates` directory.
+Each template consists of three files:
+
+* `./json/<template_name>.json`: A JSON file that defines the template's metadata and wildcards.
+* `./yaml/<template_name>.yaml`: A YAML file that contains the Kubernetes template manifest with wildcards that will be replaced by user-provided values.
+* `./svg/<template_name>.svg`: An SVG file that provides an icon for the template.
+
+== Template JSON File
+
+The JSON file contains metadata about the template and its wildcards. Here is an example `quarkus.json` file:
+
+[source,json]
+{
+  "name": "Quarkus Deployment with DB",
+  "description": "Deployment of a Quarkus Application",
+  "content": "quarkus.yaml",
+  "img": "quarkus.svg",
+  "fields": [
+    {
+      "label": "Name",
+      "wildcard": "name",
+      "description": "Name of the service and deployment",
+      "value": "quarkus-backend",
+      "placeholder": "auction-backend"
+    },
+    {
+      "label": "Image",
+      "wildcard": "image",
+      "description": "Image name",
+      "placeholder": "ghcr.io/nicohirsch1/auction-backend:latest"
+    },
+    {
+      "label": "Database URL",
+      "wildcard": "db-url",
+      "description": "URL to the database",
+      "placeholder": "jdbc:postgresql://auction-db-svc:5432/db"
+    },
+    {
+      "label": "Database Username",
+      "wildcard": "db-user",
+      "description": "Database user",
+      "value": "app",
+      "placeholder": "app"
+    },
+    {
+      "label": "Database Password",
+      "wildcard": "db-password",
+      "description": "Password for the specified user",
+      "value": "app",
+      "placeholder": "app"
+    }
+  ]
+}
+
+
+* `name`: The name of the template.
+* `description`: A description of what the template does.
+* `content`: The filename of the YAML file that contains the Kubernetes resources.
+* `img`: The filename of the SVG file that provides an icon for the template.
+* `fields`: An array of objects that define the wildcards used in the YAML file. Each object contains:
+** `label`: The label for the input field that will be displayed to the user.
+** `wildcard`: The name of the wildcard used in the YAML file.
+** `description`: A description of what the wildcard represents.
+** `value (optional)`: A default value for the wildcard.
+** `placeholder`: This value is shown as example in the frontend.
+
+== Template YAML File
+
+The YAML file contains the Kubernetes resources that will be created when the template is used.
+The wildcards defined in the JSON file are used to replace the corresponding values provided by the user.
+Here is an example `quarkus.yaml` file:
+
+[source,yaml]
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: %name%
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: %name%
+  template:
+    metadata:
+      labels:
+        app: %name%
+    spec:
+      containers:
+        - env:
+            - name: QUARKUS_DATASOURCE_JDBC_URL
+              value: %db-url%
+            - name: QUARKUS_DATASOURCE_USERNAME
+              value: %db-user%
+            - name: QUARKUS_DATASOURCE_PASSWORD
+              value: %db-password%
+          image: %image%
+          name: %name%
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: %name%-svc
+spec:
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: %name%
