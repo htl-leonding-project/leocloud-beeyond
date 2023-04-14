@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.18">
-<meta name="author" content="Hirsch Nico, Remplbauer Markus">
 <link rel="icon" type="image/png" href="themes/favicon.png">
-<title>Beeyond</title>
+<title>File Structure</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,79 +437,319 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Beeyond</h1>
-<div class="details">
-<span id="author" class="author">Hirsch Nico, Remplbauer Markus</span><br>
-</div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_systemarchitektur">1. Systemarchitektur</a></li>
-<li><a href="#_slides">2. Slides</a></li>
-<li><a href="#_template_docs">3. Template Docs</a></li>
-<li><a href="#_pflichtenheft">4. Pflichtenheft</a></li>
+<li><a href="#_file_structure">1. File Structure</a></li>
+<li><a href="#_template_json_file">2. Template JSON File</a></li>
+<li><a href="#_template_yaml_file">3. Template YAML File</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="paragraph">
+<p>Beeyond templates are used to automate the creation of Kubernetes resources using wildcards that can be replaced with actual values provided by the user.
+Each template consists of three files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a JSON file that defines the template&#8217;s metadata and wildcards</p>
+</li>
+<li>
+<p>a YAML file that contains the Kubernetes template manifest</p>
+</li>
+<li>
+<p>an SVG file that provides an icon for the template.</p>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="_file_structure"><a class="anchor" href="#_file_structure"></a>1. File Structure</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Beeyond ist ein Projekt, dessen Ziel es ist, Schülern der HTL Leonding einfachen Zugang zu LeoCloud – der Cloud-Computing Umgebung der HTL Leonding – zu geben.
-Beeyond stellt Templates für die Schüler zur Verfügung, welche ihnen ermöglichen, ihre Anwendungen und Dienste schnell und effizient in einer Produktions-ähnlichen Umgebung zu testen und zu deployen.
-Die Kubernetes Templates werden an die Bedürfnisse und Anforderungen der Schüler angepasst und sollen eine einfache Handhabung garantieren.
-Beeyond soll somit dazu beitragen, dass die Schüler frühzeitig praktische Erfahrungen im Umgang mit modernen Technologien sammeln und ihre Fähigkeiten verbessern können.</p>
+<p>The templates are stored in the <code>backend-leocloud-beeyond\src\main\resources\templates</code> directory.
+Each template consists of three files:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>./json/&lt;template_name&gt;.json</code>: A JSON file that defines the template&#8217;s metadata and wildcards.</p>
+</li>
+<li>
+<p><code>./yaml/&lt;template_name&gt;.yaml</code>: A YAML file that contains the Kubernetes template manifest with wildcards that will be replaced by user-provided values.</p>
+</li>
+<li>
+<p><code>./svg/&lt;template_name&gt;.svg</code>: An SVG file that provides an icon for the template.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_systemarchitektur"><a class="anchor" href="#_systemarchitektur"></a>1. Systemarchitektur</h2>
+<h2 id="_template_json_file"><a class="anchor" href="#_template_json_file"></a>2. Template JSON File</h2>
 <div class="sectionbody">
-<div class="imageblock">
+<div class="paragraph">
+<p>The JSON file contains metadata about the template and its wildcards. Here is an example <code>quarkus.json</code> file:</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="images/sys-spec.png" alt="sys spec">
+<pre class="rouge highlight"><code data-lang="json"><span class="p">{</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quarkus Deployment with DB"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deployment of a Quarkus Application"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarkus.yaml"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"img"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarkus.svg"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"wildcard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Name of the service and deployment"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"quarkus-backend"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auction-backend"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Image"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"wildcard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"image"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Image name"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ghcr.io/nicohirsch1/auction-backend:latest"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Database URL"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"wildcard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db-url"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"URL to the database"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jdbc:postgresql://auction-db-svc:5432/db"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Database Username"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"wildcard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db-user"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Database user"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Database Password"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"wildcard"</span><span class="p">:</span><span class="w"> </span><span class="s2">"db-password"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Password for the specified user"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"placeholder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_slides"><a class="anchor" href="#_slides"></a>2. Slides</h2>
-<div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://htl-leonding-project.github.io/leocloud-beeyond/slides/syp-5ahif/" target="_blank" rel="noopener">Slides</a></p>
+<p><code>name</code>: The name of the template.</p>
+</li>
+<li>
+<p><code>description</code>: A description of what the template does.</p>
+</li>
+<li>
+<p><code>content</code>: The filename of the YAML file that contains the Kubernetes resources.</p>
+</li>
+<li>
+<p><code>img</code>: The filename of the SVG file that provides an icon for the template.</p>
+</li>
+<li>
+<p><code>fields</code>: An array of objects that define the wildcards used in the YAML file. Each object contains:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>label</code>: The label for the input field that will be displayed to the user.</p>
+</li>
+<li>
+<p><code>wildcard</code>: The name of the wildcard used in the YAML file.</p>
+</li>
+<li>
+<p><code>description</code>: A description of what the wildcard represents.</p>
+</li>
+<li>
+<p><code>value (optional)</code>: A default value for the wildcard.</p>
+</li>
+<li>
+<p><code>placeholder</code>: This value is shown as example in the frontend.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_template_docs"><a class="anchor" href="#_template_docs"></a>3. Template Docs</h2>
+<h2 id="_template_yaml_file"><a class="anchor" href="#_template_yaml_file"></a>3. Template YAML File</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://htl-leonding-project.github.io/leocloud-beeyond/template-docs.html" target="_blank" rel="noopener">Template Docs</a></p>
-</li>
-</ul>
+<div class="paragraph">
+<p>The YAML file contains the Kubernetes resources that will be created when the template is used.
+The wildcards defined in the JSON file are used to replace the corresponding values provided by the user.
+Here is an example <code>quarkus.yaml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="yaml"><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="err">%</span><span class="s">name%</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">1</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="err">%</span><span class="s">name%</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="err">%</span><span class="s">name%</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">env</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">QUARKUS_DATASOURCE_JDBC_URL</span>
+              <span class="na">value</span><span class="pi">:</span> <span class="err">%</span><span class="s">db-url%</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">QUARKUS_DATASOURCE_USERNAME</span>
+              <span class="na">value</span><span class="pi">:</span> <span class="err">%</span><span class="s">db-user%</span>
+            <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">QUARKUS_DATASOURCE_PASSWORD</span>
+              <span class="na">value</span><span class="pi">:</span> <span class="err">%</span><span class="s">db-password%</span>
+          <span class="na">image</span><span class="pi">:</span> <span class="err">%</span><span class="s">image%</span>
+          <span class="na">name</span><span class="pi">:</span> <span class="err">%</span><span class="s">name%</span>
+          <span class="na">ports</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">8080</span>
+<span class="nn">---</span>
+<span class="na">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="err">%</span><span class="s">name%-svc</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">ports</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">http</span>
+      <span class="na">port</span><span class="pi">:</span> <span class="m">8080</span>
+      <span class="na">targetPort</span><span class="pi">:</span> <span class="m">8080</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">app</span><span class="pi">:</span> <span class="err">%</span><span class="s">name%</span></code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_pflichtenheft"><a class="anchor" href="#_pflichtenheft"></a>4. Pflichtenheft</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://htl-leonding-project.github.io/leocloud-beeyond/pflichtenheft.html" target="_blank" rel="noopener">Pflichtenheft</a></p>
-</li>
-</ul>
 </div>
 </div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2023-04-14 18:05:41 UTC
 </div>
 </div>
 </body>
