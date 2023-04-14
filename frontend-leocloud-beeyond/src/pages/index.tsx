@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import { useTimeoutFn } from "react-use";
 import useSWR from "swr";
+import Alert from "~/components/Alert";
 import ArrowButton from "~/components/ArrowButton";
-import Alert from "~/components/alert/Alert";
 import WildCardForm from "~/components/form/WildcardForm";
 import TemplateList from "~/components/list/TemplateList";
 import { Template } from "~/models/template";
@@ -143,7 +144,15 @@ export default function Home() {
           <button className="btn-primary btn w-full" onClick={downloadYaml}>
             DOWNLOAD YAML
           </button>
-          {alert.show && <Alert type={alert.type} message={alert.message}></Alert>}
+          {
+            <AnimatePresence>
+              {alert.show && (
+                <motion.div exit={{ opacity: 0 }} className="toast">
+                  {alert.show && <Alert type={alert.type} message={alert.message} />}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          }
         </div>
       </div>
 
