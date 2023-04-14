@@ -9,7 +9,7 @@ Each template consists of three files:
 
 == File Structure
 
-The templates are stored in the `backend-leocloud-beeyond\src\main\resources\templates` directory.
+The templates are stored in the `backend-leocloud-beeyond/src/main/resources/templates` directory.
 Each template consists of three files:
 
 * `./json/<template_name>.json`: A JSON file that defines the template's metadata and wildcards.
@@ -120,3 +120,8 @@ spec:
       targetPort: 8080
   selector:
     app: %name%
+
+== Adding new Template
+
+CAUTION: When adding a new template, make sure to run the `backend-leocloud-beeyond/src/main/resources/templates/create-file-list.sh` to update the `file-list.txt` file which is read in the `TemplateBean` class at startup.
+The backend gh-action will fail automatically run the script to update the `file-list.txt` file.
