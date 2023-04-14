@@ -29,7 +29,7 @@ Beeyond is deployed in the LeoCloud and is accessible at:
 
 ### Deployment using Helm
 
-When deploying using Helm, you need to update `username` field in the `values.yaml` file of the helm chart to match your environment:
+When deploying using Helm, you need to update the `username` field in the `values.yaml` file of the helm chart to match your environment:
 
 Now you can create the initial deployment using:
 
