@@ -14,7 +14,7 @@ Sure! Below you see the process of generating a k8s manifest for an Angular appl
   <img src="./docs/images/beeyond-example.gif" alt="Beeyond Demo"/>
 </p>
 
-## 📝 Template Documentation
+## 📝 Template Format
 
 The way Beeyond works is by utilizing manifest templates. These templates are used to generate the actual manifest files. The template documentation can be found [here](https://htl-leonding-project.github.io/leocloud-beeyond/template-docs.html).
 

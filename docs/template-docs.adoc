@@ -1,3 +1,5 @@
+= Beeyond Template Format
+
 Beeyond templates are used to automate the creation of Kubernetes resources using wildcards that can be replaced with actual values provided by the user.
 Each template consists of three files:
 
