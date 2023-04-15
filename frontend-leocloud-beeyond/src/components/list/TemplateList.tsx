@@ -1,7 +1,5 @@
-import React from "react";
 import ListItem from "~/components/list/ListItem";
 import { Template } from "~/models/template";
-import useTemplateStore from "~/stores/templateStore";
 
 const TemplateList = ({
   header,
@@ -10,25 +8,15 @@ const TemplateList = ({
   header: "Available Templates" | "Selected Templates";
   templates: Template[];
 }) => {
-  const { activeTemplate, selectedTemplates } = useTemplateStore();
-
   return (
-    <>
-      <div
-        className={`flex flex-col overflow-y-auto rounded-lg ${
-          header === "Available Templates" || !selectedTemplates.includes(activeTemplate!)
-            ? "h-full"
-            : "h-1/2"
-        }`}
-      >
-        <div className="select-none p-2 text-2xl font-semibold">{header}</div>
-        <div className="h-full overflow-y-auto rounded-lg bg-base-100 border border-[hsl(var(--bc))]/20">
-          {templates.map((template) => (
-            <ListItem key={template.id} template={template} />
-          ))}
-        </div>
+    <div className="flex flex-col h-full overflow-y-auto rounded-l">
+      <div className="select-none p-2 text-2xl font-semibold">{header}</div>
+      <div className="h-full overflow-y-auto rounded-lg bg-base-100 border border-[hsl(var(--bc))]/20">
+        {templates.map((template) => (
+          <ListItem key={template.id} template={template} />
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
