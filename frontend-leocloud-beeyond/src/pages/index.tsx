@@ -104,7 +104,7 @@ export default function Home() {
         if (result) {
           toast = result;
         } else {
-          // downloadDeployment();
+          downloadDeployment();
         }
     }
 
