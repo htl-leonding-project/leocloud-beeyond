@@ -18,7 +18,7 @@ export default function WildCardForm() {
             <input
               className="checkbox-primary checkbox mr-2"
               type="checkbox"
-              checked={activeTemplate!.createIngress}
+              checked={!!(activeTemplate && activeTemplate.createIngress)}
               onChange={() => {
                 activeTemplate!.createIngress = !activeTemplate!.createIngress;
 
