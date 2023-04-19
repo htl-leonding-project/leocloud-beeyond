@@ -25,7 +25,9 @@ export default function WildCardForm() {
                 setActiveTemplate(activeTemplate);
               }}
             />
-            <span className="label-text select-none">Create ingress for Service</span>
+            <span className="label-text select-none">
+              Create <strong>Ingress</strong> for <strong>Service</strong>
+            </span>
           </label>
         </div>
       </form>
