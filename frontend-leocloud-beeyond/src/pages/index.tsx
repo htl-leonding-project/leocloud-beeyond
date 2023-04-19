@@ -147,7 +147,13 @@ export default function Home() {
           {
             <AnimatePresence>
               {alert.show && (
-                <motion.div exit={{ opacity: 0 }} className="toast">
+                <motion.div
+                  className="toast"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ ease: "easeInOut", duration: 0.25 }}
+                >
                   {alert.show && <Alert type={alert.type} message={alert.message} />}
                 </motion.div>
               )}
@@ -157,12 +163,20 @@ export default function Home() {
       </div>
 
       <div className="flex h-full w-2/5 flex-col space-y-2">
-        <TemplateList header="Selected Templates" templates={selectedTemplates} />
-        {selectedTemplates.includes(activeTemplate!) && (
-          <div className="flex h-1/2 w-full overflow-y-auto rounded-lg">
-            <WildCardForm />
-          </div>
-        )}
+        <AnimatePresence>
+          <TemplateList header="Selected Templates" templates={selectedTemplates} />
+          {selectedTemplates.includes(activeTemplate!) && (
+            <motion.div
+              className="h-full overflow-y-auto"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 50 }}
+              transition={{ ease: "easeInOut", duration: 0.25 }}
+            >
+              <WildCardForm />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );
