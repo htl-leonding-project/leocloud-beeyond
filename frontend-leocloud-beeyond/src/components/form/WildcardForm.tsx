@@ -6,7 +6,7 @@ export default function WildCardForm() {
   const { activeTemplate, setActiveTemplate } = useTemplateStore();
 
   return (
-    <div className="flex h-full w-full flex-col bg-base-100 border border-[hsl(var(--bc))]/20">
+    <div className="flex h-full w-full flex-col bg-base-100 border border-[hsl(var(--bc))]/20 rounded-lg">
       <div className={"block select-none px-4 pt-4 text-lg font-semibold"}>Template Fields</div>
       <form className="flex h-full flex-col overflow-y-auto p-4">
         {activeTemplate?.fields.map((field: WildcardField, index: number) => (

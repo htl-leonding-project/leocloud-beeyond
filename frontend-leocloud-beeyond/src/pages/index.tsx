@@ -163,11 +163,11 @@ export default function Home() {
       </div>
 
       <div className="flex h-full w-2/5 flex-col space-y-2">
-        <TemplateList header="Selected Templates" templates={selectedTemplates} />
         <AnimatePresence>
+          <TemplateList header="Selected Templates" templates={selectedTemplates} />
           {selectedTemplates.includes(activeTemplate!) && (
             <motion.div
-              className="flex h-full w-full overflow-y-auto rounded-lg"
+              className="h-full overflow-y-auto"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 50 }}
