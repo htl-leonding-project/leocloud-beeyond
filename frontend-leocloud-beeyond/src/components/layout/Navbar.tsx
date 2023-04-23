@@ -7,6 +7,8 @@ export default function Navbar() {
   const themes = [
     "light",
     "dark",
+    "orange",
+    "fieryocean",
     "cupcake",
     "bumblebee",
     "emerald",
