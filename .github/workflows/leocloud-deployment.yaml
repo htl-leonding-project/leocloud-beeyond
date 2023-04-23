@@ -45,7 +45,10 @@ jobs:
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Delete Helm Deployment if exists
-        run: helm uninstall ${{ env.HELM_RELEASE_NAME }} || true
+        run: |
+          helm delete ${{ env.HELM_RELEASE_NAME }} || true
+          sleep 4 # Wait for deployment to be deleted
+
 
       - name: Install Helm Deployment
         run: helm install ${{ env.HELM_RELEASE_NAME }} ./helm
