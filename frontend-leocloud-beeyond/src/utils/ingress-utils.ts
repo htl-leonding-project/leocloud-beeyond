@@ -1,16 +1,16 @@
-import yaml from "js-yaml";
 import { K8sYaml } from "~/models/K8sYaml";
+import yaml from "js-yaml";
 
 function generateIngressYaml(
   serviceName: string,
   port: number,
   user: string,
-  name: string
+  deploymentName: string
 ): string {
   return `apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ${name}-ingress
+  name: ${deploymentName}-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
@@ -18,7 +18,7 @@ spec:
     - host: student.cloud.htl-leonding.ac.at
       http:
         paths:
-          - path: /${user}/${name}(/|$)(.*)$
+          - path: /${user}/${deploymentName}(/|$)(.*)$
             pathType: Prefix
             backend:
               service:
