@@ -2,16 +2,18 @@ import { Template } from "~/models/template";
 import { getIngressForTemplate } from "~/utils/ingress-utils";
 
 const getTemplateContent = (template: Template) => {
-  const regex = /%([\w-]+)%/g;
-  let temp = template.content;
+  let content = template.content;
+
   template.fields.forEach((f) => {
     if (f.value) {
-      const re = new RegExp("%" + f.wildcard + "%", "g");
-      temp = temp.replace(re, f.value);
+      const re = new RegExp(`%${f.wildcard}%`, "g");
+      content = content.replace(re, f.value);
     }
   });
-  return temp.replace(regex, "temp");
+
+  return content;
 };
+
 
 export const buildDeploymentContent = (selectedTemplates: Template[], username: string): string => {
   let content = "";
